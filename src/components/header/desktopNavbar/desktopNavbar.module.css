@@ -1,0 +1,15 @@
+.DesktopNavbar {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+
+  .navLink {
+    font-size: 1.2vw;
+    font-weight: 600;
+  }
+  .signIn {
+    /* border: 1px solid black; */
+  }
+}
