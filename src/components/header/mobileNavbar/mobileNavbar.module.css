@@ -1,0 +1,40 @@
+.MobileNavbar {
+  /* border: 1px solid #fff; */
+  width: 70%;
+  height: 100%;
+  background-color: #3d3b40;
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+  transition: transform ease-in-out 0.5s;
+  ul {
+    /* border: 1px solid black; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10vw;
+    position: relative;
+    a {
+      text-decoration: none;
+      li {
+        list-style-type: none;
+        font-size: 6vw;
+      }
+    }
+  }
+  .close {
+    /* border: 1px solid white; */
+    position: absolute;
+    top: 3%;
+    right: 6%;
+    font-size: 1vw;
+  }
+}
+
+.showSidebar {
+  transform: translateX(0);
+}

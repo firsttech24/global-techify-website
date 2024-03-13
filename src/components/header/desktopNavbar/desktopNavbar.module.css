@@ -1,15 +1,18 @@
 .DesktopNavbar {
   /* border: 1px solid black; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2vw;
-
-  .navLink {
-    font-size: 1.2vw;
-    font-weight: 600;
-  }
-  .signIn {
-    /* border: 1px solid black; */
+  ul {
+    display: flex;
+    gap: 2vw;
+    a {
+      text-decoration: none;
+      li {
+        font-size: 1.5vw;
+        transition: color ease 0.2s;
+        /* font-weight: bold; */
+        &:hover {
+          color: #525ceb;
+        }
+      }
+    }
   }
 }

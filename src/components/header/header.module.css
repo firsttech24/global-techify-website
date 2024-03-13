@@ -1,64 +1,70 @@
 .Header {
-  /* border: 1px solid red; */
-  background-color: #fff;
-  padding: 1vw 3vw;
+  width: 100vw;
+  /* border: 1px solid black; */
+  padding: 2vw 4vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  .logoContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 18vw;
-  }
-  .rightContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2vw;
+  .imgContainer {
     /* border: 1px solid black; */
-    .creditBtn {
-      font-size: 1.2vw;
-      font-weight: 600;
+    width: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    place-items: center;
+  }
+  .searchContainer {
+    border: 0.15vw solid #fff;
+    display: flex;
+    place-items: center;
+    border-radius: 50px;
+    width: 30vw;
+    .input {
+      /* border: 1px solid red; */
+      padding: 1vw;
     }
   }
-  .bar {
-    display: none;
-    cursor: pointer;
+  .navbarContainer {
+    .desktopNavbar {
+      display: flex;
+    }
+    .mobileNavbar {
+      display: none;
+    }
     svg {
-      color: #7a21bb;
+      display: none;
     }
   }
 }
 
 @media all and (max-width: 480px) {
   .Header {
-    /* border: 1px solid black; */
-    padding: 2vw 6vw;
-    .logoContainer {
-      width: 36vw;
+    /* border: 1px solid white; */
+    padding: 2vw 4vw;
+    .imgContainer {
+      border: 1px solid black;
+      width: 10vw;
     }
-    .rightContainer {
-      gap: 4vw;
-      /* border: 1px solid black; */
-      .creditBtn {
-        font-size: 2.4vw;
-        font-weight: 600;
+    .searchContainer {
+      border: 0.3vw solid #fff;
+      width: 60vw;
+      .input {
+        padding: 2vw;
       }
     }
-    .desktopNavbar {
-      display: none;
-    }
-    .bar {
-      display: flex;
+    .navbarContainer {
+      .desktopNavbar {
+        display: none;
+      }
+      .mobileNavbar {
+        display: flex;
+      }
+
       svg {
+        display: flex;
         font-size: 6vw;
+        cursor: pointer;
       }
     }
   }

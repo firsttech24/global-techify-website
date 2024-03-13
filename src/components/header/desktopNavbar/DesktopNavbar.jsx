@@ -5,15 +5,26 @@ import { Link } from "react-router-dom";
 export default function DesktopNavbar() {
   return (
     <nav className={styles.DesktopNavbar}>
-      <Link to={"/"} className={styles.navLink}>
-        Products
-      </Link>
-      <Link to={"/"} className={styles.navLink}>
-        Chat with Us
-      </Link>
-      <Link to={"/"} className={`${styles.navLink} ${styles.signIn} btn1`}>
-        Sign in
-      </Link>
+      <ul>
+        <Link to={"/"}>
+          <li>Home</li>
+        </Link>
+        <Link to={"/"}>
+          <li>About</li>
+        </Link>
+        <Link to={"/"}>
+          <li>Mentor</li>
+        </Link>
+        <Link to={"/"}>
+          <li>Services</li>
+        </Link>
+        <Link to={"/"}>
+          <li>Our Team</li>
+        </Link>
+        <Link to={"/"}>
+          <li>Contact</li>
+        </Link>
+      </ul>
     </nav>
   );
 }

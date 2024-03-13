@@ -1,25 +1,52 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --bg1: #212121;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: #fff;
 }
 
 a {
   text-decoration: none;
 }
 
+li {
+  list-style-type: none;
+}
+
 body {
   overflow-x: hidden;
   display: flex;
-  max-width: 100vw;
+  min-width: 100vw;
   min-height: 100vh;
+  background-color: #212121;
 }
 
 h1 {
   font-size: 3vw;
   /* line-height: 1.1; */
+}
+
+img {
+  height: 100%;
+  width: 100%;
+}
+
+input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 1.2vw;
+  font-weight: 500;
+  width: 100%;
+}
+
+@media all and (max-width: 480px) {
+  input {
+    font-size: 2.4vw;
+  }
 }
