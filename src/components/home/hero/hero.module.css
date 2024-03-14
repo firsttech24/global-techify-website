@@ -1,0 +1,47 @@
+.Hero {
+  /* border: 1px solid #fff; */
+  padding: 4vw;
+  display: flex;
+  height: 38vw;
+  .leftContainer {
+    /* border: 1px solid #fff; */
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    .top {
+      display: flex;
+      flex-direction: column;
+      gap: 2vw;
+      .animatedText {
+        font-size: 4vw;
+        color: var(--themeColor);
+        animation: fade 1s infinite alternate;
+      }
+    }
+    .btn {
+      width: 77%;
+      margin-right: auto;
+    }
+  }
+  .rightContainer {
+    /* border: 1px solid #fff; */
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .imgContainer {
+      width: 70%;
+    }
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
