@@ -1,6 +1,11 @@
 import React from "react";
 import styles from "./homePage.module.css";
-import { Hero, Count } from "../../components/home";
+import {
+  Hero,
+  Count,
+  WhyGlobalTechify,
+  JoinAsMentor,
+} from "../../components/home";
 
 export default function HomePage() {
   return (
@@ -10,6 +15,12 @@ export default function HomePage() {
 
       {/* count-up */}
       <Count />
+
+      {/* why-global-techify */}
+      <WhyGlobalTechify />
+
+      {/* join-as-mentor */}
+      <JoinAsMentor />
     </div>
   );
 }

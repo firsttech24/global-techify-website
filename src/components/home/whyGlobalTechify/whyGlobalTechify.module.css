@@ -1,0 +1,55 @@
+.WhyGlobalTechify {
+  border: 1px solid #fff;
+  margin-top: 4vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+  .heading {
+    /* color: var(--themeColor); */
+  }
+  .container {
+    /* border: 1px solid #fff; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4vw;
+    flex-wrap: wrap;
+    .singleContainer {
+      border: 0.2vw solid var(--themeColor);
+      width: 40vw;
+      height: 30vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2vw;
+      padding: 2vw;
+      border-radius: 2vw;
+      .title {
+        text-align: center;
+      }
+      .bottom {
+        /* border: 1px solid #fff; */
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2vw;
+        .imgContainer {
+          width: 50%;
+          img {
+            border-radius: 2vw;
+          }
+        }
+        .des {
+          /* border: 1px solid #fff; */
+          width: 50%;
+          /* text-align: justify; */
+          font-size: 1.1vw;
+        }
+      }
+    }
+  }
+}
