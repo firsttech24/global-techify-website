@@ -9,12 +9,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #fff;
   font-family: "Poppins", sans-serif;
 }
 
 a {
   text-decoration: none;
+  color: #fff;
 }
 
 li {
@@ -57,18 +57,48 @@ input {
 .bigText {
   font-size: 2vw;
 }
+
+.normalText {
+  font-size: 1.5vw;
+}
+
+.minorText {
+  font-size: 1.3vw;
+  color: #aaa;
+}
+
 .bigOutlineBtn {
   font-size: 1.5vw;
   padding: 1.5vw 2vw;
   background-color: transparent;
-  outline: none;
   border: 0.1vw solid #fff;
   border-radius: 10px;
   cursor: pointer;
-  transition: background ease 0.5s;
+  transition: background ease 0.2s;
 }
 .bigOutlineBtn:hover {
   background-color: #525ceb;
+}
+
+button {
+  border: none;
+  outline: none;
+  color: #fff;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn1 {
+  background-color: var(--themeColor);
+  padding: 1vw 2vw;
+  border-radius: 1vw;
+  font-size: 1.5vw;
+  font-weight: 600;
+  border: 0.2vw solid var(--themeColor);
+  transition: background ease 0.2s;
+}
+.btn1:hover {
+  background-color: transparent;
 }
 
 @media all and (max-width: 480px) {
