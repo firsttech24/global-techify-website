@@ -1,0 +1,23 @@
+.swiper {
+  border: 1px solid #fff;
+  width: 100vw;
+  .swiperSlide {
+    border: 1px solid #fff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .leftContainer {
+      .title {
+        font-size: 4vw;
+        .span {
+          color: var(--themeColor);
+          font-weight: 600;
+        }
+      }
+    }
+    .imgContainer {
+      width: 20vw;
+    }
+  }
+}

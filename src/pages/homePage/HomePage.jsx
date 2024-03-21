@@ -5,6 +5,7 @@ import {
   Count,
   WhyGlobalTechify,
   JoinAsMentor,
+  Slider,
 } from "../../components/home";
 
 export default function HomePage() {
@@ -21,6 +22,9 @@ export default function HomePage() {
 
       {/* join-as-mentor */}
       <JoinAsMentor />
+
+      {/* slider */}
+      <Slider />
     </div>
   );
 }
