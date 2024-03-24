@@ -24,6 +24,9 @@ export default function DesktopNavbar() {
         <Link to={"/"}>
           <li>Contact</li>
         </Link>
+        <Link to={"/auth"}>
+          <li>Signin</li>
+        </Link>
       </ul>
     </nav>
   );

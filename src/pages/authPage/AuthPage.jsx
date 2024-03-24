@@ -1,0 +1,42 @@
+import React, { useState } from "react";
+import styles from "./authPage.module.css";
+
+import StudentAuth from "../../components/auth/studentAuth/StudentAuth";
+
+export default function AuthPage() {
+  const [selectAuth, setSelectAuth] = useState("student");
+  return (
+    <div className={styles.AuthPage}>
+      <div className={styles.selectAuth}>
+        <button
+          onClick={() => setSelectAuth("student")}
+          className={`${styles.btn} ${
+            selectAuth === "student" ? styles.selectedAuth : ""
+          }`}
+        >
+          STUDENT
+        </button>
+        <button
+          onClick={() => setSelectAuth("mentor")}
+          className={`${styles.btn} ${
+            selectAuth === "mentor" ? styles.selectedAuth : ""
+          }`}
+        >
+          MENTOR
+        </button>
+        <button
+          onClick={() => setSelectAuth("college")}
+          className={`${styles.btn} ${
+            selectAuth === "college" ? styles.selectedAuth : ""
+          }`}
+        >
+          COLLEGE
+        </button>
+      </div>
+
+      <div className={styles.auth}>
+        {selectAuth === "student" && <StudentAuth />}
+      </div>
+    </div>
+  );
+}
