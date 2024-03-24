@@ -1,15 +1,19 @@
 .swiper {
   border: 1px solid #fff;
   width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .swiperSlide {
-    border: 1px solid #fff;
-    width: 100%;
+    border: 1px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
     .leftContainer {
+      width: 50%;
       .title {
         font-size: 4vw;
+        width: 60%;
         .span {
           color: var(--themeColor);
           font-weight: 600;
