@@ -1,14 +1,15 @@
 .swiper {
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   .swiperSlide {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     .leftContainer {
       width: 50%;
       .title {
@@ -22,6 +23,24 @@
     }
     .imgContainer {
       width: 20vw;
+    }
+    .btnOne {
+      position: absolute;
+      left: 4%;
+      font-size: 3vw;
+      transition: all ease 0.2s;
+      &:hover {
+        color: var(--themeColor);
+      }
+    }
+    .btnTwo {
+      position: absolute;
+      right: 5%;
+      font-size: 3vw;
+      transition: all ease 0.2s;
+      &:hover {
+        color: var(--themeColor);
+      }
     }
   }
 }
