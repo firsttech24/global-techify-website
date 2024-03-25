@@ -1,13 +1,13 @@
 .Header {
   width: 100vw;
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
   padding: 2vw 4vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   .imgContainer {
     /* border: 1px solid black; */
-    width: 5vw;
+    width: 20vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,14 +15,22 @@
     place-items: center;
   }
   .searchContainer {
-    border: 0.15vw solid #fff;
+    border: 0.15vw solid var(--themeColor);
     display: flex;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
     border-radius: 50px;
-    width: 30vw;
+    padding: 1vw 1vw;
+    cursor: pointer;
     .input {
-      /* border: 1px solid red; */
-      padding: 1vw;
+      width: 0;
+      border: none !important;
+      padding: 0 1vw;
+      transition: width 0.2s ease;
+    }
+
+    svg {
+      font-size: 2vw;
     }
   }
   .navbarContainer {

@@ -1,6 +1,6 @@
 .Footer {
   /* border: 1px solid #fff; */
-  padding: 3vw;
+  padding: 4vw;
   .footerOne {
     display: flex;
     justify-content: space-between;
@@ -96,6 +96,7 @@
             font-size: 3vw;
             color: var(--themeColor);
             cursor: pointer;
+            transition: all ease 0.2s;
             &:hover {
               color: #fff;
             }
@@ -106,6 +107,7 @@
   }
   .footerThree {
     text-align: center;
+    font-size: 1vw;
     a {
       color: var(--themeColor);
     }

@@ -6,10 +6,16 @@ import { whyGlobalTechifyArr } from "../../../data/home/whyGlobalTechify";
 export default function WhyGlobalTechify() {
   return (
     <div className={styles.WhyGlobalTechify}>
-      <h1 className={styles.heading}>Why Global Techify</h1>
+      <h1 data-aos="fade-up" className={styles.heading}>
+        Why Global Techify
+      </h1>
       <div className={styles.container}>
         {whyGlobalTechifyArr?.map((item, index) => (
-          <div className={styles.singleContainer} key={index}>
+          <div
+            data-aos="zoom-in"
+            className={styles.singleContainer}
+            key={index}
+          >
             <h2 className={styles.title}>{item.title}</h2>
             <div className={styles.bottom}>
               <div className={styles.imgContainer}>
