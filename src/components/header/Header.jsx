@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./header.module.css";
-import logo from "./../../assets/logo.jpeg";
+
+import { Link } from "react-router-dom";
+import { FaBarsStaggered } from "react-icons/fa6";
+import { FaSearch } from "react-icons/fa";
 import DesktopNavbar from "./desktopNavbar/DesktopNavbar";
 import MobileNavbar from "./mobileNavbar/MobileNavbar";
-import { FaBarsStaggered } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import logo from "./../../assets/logo.png";
 
 export default function Header() {
   const [isShowSidebar, setIsShowSidebar] = useState(false);
+  const searchRef = useRef(null);
+
+  const handleMouseHover = e => {
+    searchRef.current.setAttribute("style", "width: 20vw");
+  };
+
+  const handleMouseOut = () => {
+    setTimeout(() => {
+      searchRef.current.setAttribute("style", "width: 0");
+    }, 5000);
+  };
 
   return (
     <div className={styles.Header}>
@@ -19,8 +32,18 @@ export default function Header() {
       </Link>
 
       {/* search */}
-      <div className={styles.searchContainer}>
-        <input type="text" className={styles.input} placeholder="Search..." />
+      <div
+        className={styles.searchContainer}
+        onMouseOver={handleMouseHover}
+        onMouseOut={handleMouseOut}
+      >
+        <input
+          ref={searchRef}
+          type="text"
+          className={styles.input}
+          placeholder="Search..."
+        />
+        <FaSearch />
       </div>
 
       <div className={styles.navbarContainer}>

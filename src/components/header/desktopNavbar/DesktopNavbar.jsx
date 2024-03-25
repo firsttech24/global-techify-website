@@ -9,7 +9,7 @@ export default function DesktopNavbar() {
         <Link to={"/"}>
           <li>Home</li>
         </Link>
-        <Link to={"/"}>
+        <Link to={"/about"}>
           <li>About</li>
         </Link>
         <Link to={"/"}>
@@ -23,6 +23,9 @@ export default function DesktopNavbar() {
         </Link>
         <Link to={"/"}>
           <li>Contact</li>
+        </Link>
+        <Link to={"/auth"}>
+          <li>Signin</li>
         </Link>
       </ul>
     </nav>

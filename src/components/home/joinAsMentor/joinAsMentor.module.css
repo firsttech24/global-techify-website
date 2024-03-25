@@ -1,3 +1,46 @@
 .JoinAsMentor {
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3vw;
+  .leftContainer {
+    /* border: 1px solid #fff; */
+    display: flex;
+    flex-direction: column;
+    gap: 4vw;
+    width: 50%;
+    .headingContainer {
+      .heading {
+        .span {
+          color: var(--themeColor);
+        }
+      }
+    }
+    .listContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 1vw;
+      .list {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1vw;
+        svg {
+          padding: 0.3vw;
+          font-size: 2vw;
+          background-color: var(--themeColor);
+          border-radius: 50%;
+          border: 0.1vw solid #fff;
+        }
+      }
+    }
+    .btn {
+      width: 50%;
+    }
+  }
+  .rightContainer {
+    width: 45%;
+    /* border: 1px solid #fff; */
+  }
 }
