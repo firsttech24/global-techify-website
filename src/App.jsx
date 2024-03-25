@@ -1,12 +1,13 @@
 /** @format */
 
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import Header from "./components/header/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import MentorSignUp from "./pages/login/MentorSignup";
+import UserProfile from "./pages/login/UserProfile";
 
 export default function App() {
   useEffect(() => {
@@ -25,6 +26,10 @@ export default function App() {
         <Route
           path="/mentor/signup"
           element={<MentorSignUp />}
+        />
+        <Route
+          path="/user/profile"
+          element={< UserProfile/>}
         />
       </Routes>
     </BrowserRouter>
