@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { HomePage, AuthPage } from "./pages";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import { HomePage, AboutPage, AuthPage } from "./pages";
 
 export default function App() {
   useEffect(() => {
@@ -17,7 +17,13 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Routes>
+        {/* home page */}
         <Route path={"/"} element={<HomePage />} />
+
+        {/* about page */}
+        <Route path={"/about"} element={<AboutPage />} />
+
+        {/* auth page */}
         <Route path={"/auth"} element={<AuthPage />} />
       </Routes>
       <Footer />

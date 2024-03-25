@@ -28,6 +28,11 @@
       gap: 2vw;
       padding: 2vw;
       border-radius: 2vw;
+      transition: all ease 0.2s;
+      &:hover {
+        background-color: #000;
+        border-color: #fff;
+      }
       .title {
         text-align: center;
       }
