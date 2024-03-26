@@ -1,5 +1,6 @@
 .AuthPage {
   border: 1px solid #fff;
+  margin-top: 6vw;
   .selectAuth {
     display: flex;
     justify-content: center;

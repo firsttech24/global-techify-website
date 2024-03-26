@@ -5,7 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-import { HomePage, AboutPage, AuthPage } from "./pages";
+import { HomePage, AboutPage, ContactPage, AuthPage } from "./pages";
 
 export default function App() {
   useEffect(() => {
@@ -22,6 +22,9 @@ export default function App() {
 
         {/* about page */}
         <Route path={"/about"} element={<AboutPage />} />
+
+        {/* contact page */}
+        <Route path={"/contact"} element={<ContactPage />} />
 
         {/* auth page */}
         <Route path={"/auth"} element={<AuthPage />} />

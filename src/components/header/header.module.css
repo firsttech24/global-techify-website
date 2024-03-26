@@ -5,6 +5,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  background-color: #212121;
+  z-index: 1000;
   .imgContainer {
     /* border: 1px solid black; */
     width: 20vw;
