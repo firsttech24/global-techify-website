@@ -5,6 +5,7 @@ import styles from "./MentorSignUp.module.css";
 import { Send } from "@mui/icons-material";
 
 const UserProfile = () => {
+  const [id, setId] = useState("6601d7428970d237c6afb025");
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -63,7 +64,39 @@ const UserProfile = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(userData);
+    updateUser()
+      .then((data) => {
+        console.log("Student registered successfully:", data);
+      })
+      .catch((error) => {
+        console.error("Failed to register student:", error);
+      });
   };
+  const updateUser = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_HOST_API}/user/update/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to register student");
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error registering student:", error);
+      throw error;
+    }
+  };
+
 
   return (
     <div className={styles.page}>
