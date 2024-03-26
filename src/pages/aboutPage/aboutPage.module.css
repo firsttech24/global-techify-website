@@ -9,7 +9,7 @@
     .left {
       width: 41%;
       h1 {
-        color: var(--themeColor);
+        /* color: var(--themeColor); */
       }
       p {
         text-align: justify;
