@@ -11,6 +11,7 @@ import {
   ServicesPage,
   ContactPage,
   AuthPage,
+  OurTeamPage,
 } from "./pages";
 
 export default function App() {
@@ -31,6 +32,10 @@ export default function App() {
 
         {/* services page */}
         <Route path={"/services"} element={<ServicesPage />} />
+
+        {/* our team page */}
+        <Route path={"/team"} element={<OurTeamPage />} />
+
         {/* contact page */}
         <Route path={"/contact"} element={<ContactPage />} />
 

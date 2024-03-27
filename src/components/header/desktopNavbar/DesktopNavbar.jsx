@@ -18,7 +18,7 @@ export default function DesktopNavbar() {
         <Link to={"/services"}>
           <li>Services</li>
         </Link>
-        <Link to={"/"}>
+        <Link to={"/team"}>
           <li>Our Team</li>
         </Link>
         <Link to={"/contact"}>
