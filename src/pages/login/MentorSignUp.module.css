@@ -33,7 +33,7 @@
     font-size: 1rem;
   }
   input {
-    border: 0.4px solid #feefff;
+    border: 0.4px solid #feefff !important;
     padding: 0.7rem 1rem;
     border-radius: 3px;
     font-size: 1rem;
@@ -140,7 +140,7 @@
     flex-direction: column;
     gap: 1rem;
     .paymentInputs {
-      border: 0.4px solid #feefff;
+      border: 0.4px solid #feefff !important;
       padding: 0.7rem 1rem;
       border-radius: 3px;
       font-size: 1rem;

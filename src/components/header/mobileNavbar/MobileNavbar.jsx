@@ -20,13 +20,13 @@ export default function MobileNavbar({ setIsShowSidebar, isShowSidebar }) {
         <Link to={"/"} onClick={() => setIsShowSidebar(false)}>
           <li>Mentor</li>
         </Link>
-        <Link to={"/"} onClick={() => setIsShowSidebar(false)}>
+        <Link to={"/services"} onClick={() => setIsShowSidebar(false)}>
           <li>Services</li>
         </Link>
         <Link to={"/"} onClick={() => setIsShowSidebar(false)}>
           <li>Our Team</li>
         </Link>
-        <Link to={"/"} onClick={() => setIsShowSidebar(false)}>
+        <Link to={"/contact"} onClick={() => setIsShowSidebar(false)}>
           <li>Contact</li>
         </Link>
         <IoIosCloseCircle

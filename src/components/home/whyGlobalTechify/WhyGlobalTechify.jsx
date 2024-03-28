@@ -9,15 +9,13 @@ export default function WhyGlobalTechify() {
       <h1 data-aos="fade-up" className={styles.heading}>
         Why Global Techify
       </h1>
-      <div className={styles.container}>
+      <div data-aos="zoom-out" className={styles.container}>
         {whyGlobalTechifyArr?.map((item, index) => (
-          <div
-            data-aos="zoom-in"
-            className={styles.singleContainer}
-            key={index}
-          >
-            <h2 className={styles.title}>{item.title}</h2>
-            <div className={styles.bottom}>
+          <div className={styles.singleContainer} key={index}>
+            <h2 data-aos="zoom-out" className={styles.title}>
+              {item.title}
+            </h2>
+            <div data-aos="zoom-out" className={styles.bottom}>
               <div className={styles.imgContainer}>
                 <img src={item.img} alt={item.title} className={styles.img} />
               </div>

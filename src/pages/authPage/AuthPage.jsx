@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./authPage.module.css";
 
 import StudentAuth from "../../components/auth/studentAuth/StudentAuth";
+import MentorAuth from "../../components/auth/mentorAuth/MentorAuth";
 
 export default function AuthPage() {
   const [selectAuth, setSelectAuth] = useState("student");
@@ -36,6 +37,8 @@ export default function AuthPage() {
 
       <div className={styles.auth}>
         {selectAuth === "student" && <StudentAuth />}
+
+        {selectAuth === "mentor" && <MentorAuth />}
       </div>
     </div>
   );

@@ -38,13 +38,13 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <div className={styles.bottomContainer}>
+      <div
+        data-aos="zoom-out"
+        data-aos-delay={0}
+        className={styles.bottomContainer}
+      >
         {missionVisionArr?.map((item, index) => (
-          <div
-            data-aos="zoom-in"
-            className={styles.singleContainer}
-            key={index}
-          >
+          <div className={styles.singleContainer} key={index}>
             <h2 className={styles.title}>{item.title}</h2>
             <div className={styles.bottom}>
               <div className={styles.imgContainer}>

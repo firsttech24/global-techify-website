@@ -1,12 +1,13 @@
-.AuthPage {
+.MentorAuth {
   border: 1px solid #fff;
-  margin-top: 10vw;
+  .authContainer {
+    border: 1px solid #fff;
+  }
   .selectAuth {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5vw;
-
     .btn {
       padding: 1vw 2vw;
       border-radius: 1vw;
@@ -18,8 +19,5 @@
     .selectedAuth {
       background-color: var(--themeColor);
     }
-  }
-  .auth {
-    border: 1px solid #fff;
   }
 }
