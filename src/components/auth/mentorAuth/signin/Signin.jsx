@@ -17,7 +17,40 @@ export default function Signin() {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
+    login()
+      .then((data) => {
+        console.log("Student registered successfully:", data);
+      })
+      .catch((error) => {
+        console.error("Failed to register student:", error);
+      });
   };
+
+  const login = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_HOST_API}/auth/mentor/get`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to register student");
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error registering student:", error);
+      throw error;
+    }
+  };
+
 
   return (
     <div className={styles.Signin}>

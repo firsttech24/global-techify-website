@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./signup.module.css";
 
 export default function Signup() {
@@ -31,7 +31,42 @@ export default function Signup() {
     console.log("Signup submitted with:", formData);
     setFormData(initialState);
     setPasswordMatchError("");
+    registerStudent()
+      .then((data) => {
+        console.log("Student registered successfully:", data);
+      })
+      .catch((error) => {
+        console.error("Failed to register student:", error);
+      });
   };
+
+
+  const registerStudent = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_HOST_API}/auth/user/set`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to register student");
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error registering student:", error);
+      throw error;
+    }
+  };
+
+
 
   return (
     <div className={styles.Signup}>
