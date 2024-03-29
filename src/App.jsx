@@ -8,6 +8,7 @@ import Footer from "./components/footer/Footer";
 import {
   HomePage,
   AboutPage,
+  MentorPage,
   ServicesPage,
   ContactPage,
   AuthPage,
@@ -29,6 +30,9 @@ export default function App() {
 
         {/* about page */}
         <Route path={"/about"} element={<AboutPage />} />
+
+        {/* mentor page */}
+        <Route path={"/mentor"} element={<MentorPage />} />
 
         {/* services page */}
         <Route path={"/services"} element={<ServicesPage />} />

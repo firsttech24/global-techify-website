@@ -17,7 +17,7 @@ export default function MobileNavbar({ setIsShowSidebar, isShowSidebar }) {
         <Link to={"/about"} onClick={() => setIsShowSidebar(false)}>
           <li>About</li>
         </Link>
-        <Link to={"/"} onClick={() => setIsShowSidebar(false)}>
+        <Link to={"/mentor"} onClick={() => setIsShowSidebar(false)}>
           <li>Mentor</li>
         </Link>
         <Link to={"/services"} onClick={() => setIsShowSidebar(false)}>

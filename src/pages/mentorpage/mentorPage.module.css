@@ -1,0 +1,32 @@
+.MentorPage {
+  border: 1px solid #fff;
+  margin-top: 10vw;
+  padding: 4vw;
+  display: flex;
+  justify-content: space-between;
+  gap: 2vw;
+  .leftContainer {
+    border: 1px solid #fff;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    .heading {
+      display: flex;
+      gap: 1vw;
+      justify-content: center;
+      align-items: flex-start;
+      svg {
+        font-size: 2vw;
+        /* color: var(--themeColor); */
+      }
+    }
+    .search {
+    }
+  }
+  .rightContainer {
+    border: 1px solid #fff;
+    width: 70%;
+  }
+}
