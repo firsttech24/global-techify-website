@@ -1,19 +1,23 @@
+/** @format */
+
 import { useState } from "react";
 import styles from "./signup.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const initialState = {
-    username: "",
+    name: "",
     email: "",
-    phone: "",
+    wnumber: "",
     password: "",
     confirmPassword: "",
   };
 
   const [formData, setFormData] = useState(initialState);
   const [passwordMatchError, setPasswordMatchError] = useState("");
+  const navigate = useNavigate();
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -21,7 +25,7 @@ export default function Signup() {
     });
   };
 
-  const handleSignup = e => {
+  const handleSignup = (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       setPasswordMatchError("Passwords do not match");
@@ -31,6 +35,8 @@ export default function Signup() {
       .then((data) => {
         console.log("mentor registered successfully:", data);
         // console.log("Signup submitted with:", formData);
+        localStorage.setItem("gtechify!#", data.user._id);
+        navigate("/mentor/profile");
         setFormData(initialState);
         setPasswordMatchError("");
       })
@@ -67,14 +73,16 @@ export default function Signup() {
   return (
     <div className={styles.Signup}>
       <h2>Create an Account</h2>
-      <form className={styles.form} onSubmit={handleSignup}>
+      <form
+        className={styles.form}
+        onSubmit={handleSignup}>
         <div className={styles.formGroup}>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="name">user Name</label>
           <input
             type="text"
-            id="username"
-            name="username"
-            value={formData.username}
+            id="name"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             required
           />
@@ -91,12 +99,12 @@ export default function Signup() {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="phone">Phone Number</label>
+          <label htmlFor="wnumber">Whatsapp Number</label>
           <input
             type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
+            id="wnumber"
+            name="wnumber"
+            value={formData.wnumber}
             onChange={handleChange}
             required
           />
@@ -126,7 +134,9 @@ export default function Signup() {
         {passwordMatchError && (
           <p style={{ color: "red" }}>{passwordMatchError}</p>
         )}
-        <button type="submit" className={styles.signupButton}>
+        <button
+          type="submit"
+          className={styles.signupButton}>
           Sign Up
         </button>
       </form>

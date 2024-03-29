@@ -13,6 +13,7 @@ import {
   ServicesPage,
   ContactPage,
   AuthPage,
+  OurTeamPage,
 } from "./pages";
 import MentorSignUp from "./pages/login/MentorSignup";
 import UserProfile from "./pages/login/UserProfile";
@@ -38,6 +39,16 @@ export default function App() {
           path={"/about"}
           element={<AboutPage />}
         />
+        <Route path={"/about"} element={<AboutPage />} />
+
+        {/* services page */}
+        <Route path={"/services"} element={<ServicesPage />} />
+
+        {/* our team page */}
+        <Route path={"/team"} element={<OurTeamPage />} />
+
+        {/* contact page */}
+        <Route path={"/contact"} element={<ContactPage />} />
 
         {/* auth page */}
         <Route

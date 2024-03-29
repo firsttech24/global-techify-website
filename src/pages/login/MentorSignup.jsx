@@ -5,7 +5,7 @@ import styles from "./MentorSignUp.module.css";
 import SendIcon from "@mui/icons-material/Send";
 
 const MentorSignUp = () => {
-  const [id, setId] = useState("6602f2f4560d63cd9b929fa8");
+  const [id, setId] = useState("");
   const [mentorData, setMentorData] = useState({
     name: "",
     email: "",
@@ -47,6 +47,52 @@ const MentorSignUp = () => {
     department: "",
     specialisation: "",
   });
+
+  useState(() => {
+    const item = localStorage.getItem("gtechify!#");
+    setId(item);
+    fetch(`${import.meta.env.VITE_HOST_API}/mentor/get/${item}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.name)
+          setMentorData((prevData) => ({ ...prevData, name: data.name }));
+        if (data.email)
+          setMentorData((prevData) => ({ ...prevData, email: data.email }));
+        if (data.wnumber)
+          setMentorData((prevData) => ({ ...prevData, wnumber: data.wnumber }));
+        if (data.bio)
+          setMentorData((prevData) => ({ ...prevData, bio: data.bio }));
+        if (data.currentCompany)
+          setMentorData((prevData) => ({
+            ...prevData,
+            currentCompany: data.currentCompany,
+          }));
+
+        if (data.experience)
+          setMentorData((prevData) => ({
+            ...prevData,
+            experience: data.experience,
+          }));
+        if (data.education)
+          setMentorData((prevData) => ({
+            ...prevData,
+            education: data.education,
+          }));
+        if (data.socials)
+          setMentorData((prevData) => ({
+            ...prevData,
+            socials: data.socials,
+          }));
+        if (data.pmt)
+          setMentorData((prevData) => ({
+            ...prevData,
+            pmt: data.pmt,
+          }));
+      })
+      .catch((error) => {
+        console.error("Error fetching mentor data:", error);
+      });
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -105,7 +151,6 @@ const MentorSignUp = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(mentorData);
     updateMentor()
       .then((data) => {
         console.log("Student registered successfully:", data);
@@ -118,7 +163,7 @@ const MentorSignUp = () => {
   const updateMentor = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_HOST_API}/user/update/${id}`,
+        `${import.meta.env.VITE_HOST_API}/mentor/update/${id}`,
         {
           method: "POST",
           headers: {
@@ -139,7 +184,6 @@ const MentorSignUp = () => {
       throw error;
     }
   };
-
 
   return (
     <div className={styles.page}>

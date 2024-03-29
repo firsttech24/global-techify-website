@@ -1,0 +1,80 @@
+.OurTeamPage {
+  /* border: 1px solid #fff; */
+  margin-top: 9vw;
+  padding: 0 4vw 4vw 4vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+  .heading {
+    width: 100%;
+    /* border: 1px solid #fff; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .left {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 1vw;
+      p {
+        text-align: justify;
+      }
+    }
+    .right {
+      width: 40%;
+    }
+  }
+
+  .btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    .btn {
+      width: 15vw;
+      font-size: 2vw;
+      padding: 0.1vw 2vw;
+      border-radius: 0.5vw;
+    }
+    .filledBtn {
+      border: 0.1vw solid #fff;
+      background-color: var(--themeColor);
+    }
+  }
+  .teamContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5vw;
+    .singleContainer {
+      /* border: 1px solid #fff; */
+      width: 20vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5vw;
+      .imgContainer {
+        border: 0.2vw solid var(--themeColor);
+        border-radius: 50%;
+        width: 11vw;
+        overflow: hidden;
+        img {
+          transform: scale(1.06);
+        }
+      }
+      .name {
+        font-size: 2vw;
+      }
+      .position {
+        font-size: 1.2vw;
+      }
+      .contactInfo {
+        font-size: 1vw;
+        color: var(--themeColor);
+      }
+    }
+  }
+}
