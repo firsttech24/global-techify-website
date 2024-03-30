@@ -3,9 +3,11 @@
 import { useState } from "react";
 import styles from "./MentorSignUp.module.css";
 import { Send } from "@mui/icons-material";
+import { store } from "../../config/firebase";
+import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 
 const UserProfile = () => {
-  const [id, setId] = useState("6601d7428970d237c6afb025");
+  const [id, setId] = useState("");
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -28,6 +30,63 @@ const UserProfile = () => {
     department: "",
     specialisation: "",
   });
+
+  useState(() => {
+    const item = localStorage.getItem("gtechify!#");
+    setId(item);
+    fetch(`${import.meta.env.VITE_HOST_API}/user/get/${item}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.name)
+          setUserData((prevData) => ({ ...prevData, name: data.name }));
+        if (data.email)
+          setUserData((prevData) => ({ ...prevData, email: data.email }));
+        if (data.wnumber)
+          setUserData((prevData) => ({ ...prevData, wnumber: data.wnumber }));
+        if (data.resume)
+          setUserData((prevData) => ({ ...prevData, resume: data.resume }));
+
+        if (data.experience)
+          setUserData((prevData) => ({
+            ...prevData,
+            experience: data.experience,
+          }));
+        if (data.education)
+          setUserData((prevData) => ({
+            ...prevData,
+            education: data.education,
+          }));
+        if (data.socials)
+          setUserData((prevData) => ({
+            ...prevData,
+            socials: data.socials,
+          }));
+      })
+      .catch((error) => {
+        console.error("Error fetching mentor data:", error);
+      });
+  }, []);
+
+  const handleProfileChange = async (e) => {
+    let imageRef = ref(store, "users/profilePics");
+    await uploadBytes(imageRef, e.target.files[0]);
+    const imageUrl = await getDownloadURL(imageRef);
+    console.log(imageUrl);
+    setUserData({
+      ...userData,
+      profilePhoto: imageUrl,
+    });
+  };
+  const handleResumeChange = async (e) => {
+    let resumeRef = ref(store, "users/resume");
+    await uploadBytes(resumeRef, e.target.files[0]);
+    const resumeUrl = await getDownloadURL(resumeRef);
+    console.log(resumeUrl);
+    setUserData({
+      ...userData,
+      resume: resumeUrl,
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -97,7 +156,6 @@ const UserProfile = () => {
     }
   };
 
-
   return (
     <div className={styles.page}>
       <h1>Profile | Student</h1>
@@ -110,7 +168,23 @@ const UserProfile = () => {
           <input
             type="file"
             name="profile"
-            value={userData.profile}
+            value={""}
+            onChange={handleProfileChange}
+          />
+          <img
+            src={userData.profilePhoto}
+            className={styles.profileImage}
+            alt=""
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <span>Resume : </span>
+          🔗
+          <input
+            type="file"
+            name="profile"
+            value={""}
+            onChange={handleResumeChange}
           />
         </div>
         <div className={styles.formGroup}>

@@ -3,6 +3,8 @@
 import { useState } from "react";
 import styles from "./MentorSignUp.module.css";
 import SendIcon from "@mui/icons-material/Send";
+import { store } from "../../config/firebase";
+import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 
 const MentorSignUp = () => {
   const [id, setId] = useState("");
@@ -93,6 +95,17 @@ const MentorSignUp = () => {
         console.error("Error fetching mentor data:", error);
       });
   }, []);
+
+  const handleProfileChange = async (e) => {
+    let imageRef = ref(store, "mentors/profilePics");
+    await uploadBytes(imageRef, e.target.files[0]);
+    const imageUrl = await getDownloadURL(imageRef);
+    console.log(imageUrl);
+    setMentorData({
+      ...mentorData,
+      profile: imageUrl,
+    });
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -197,8 +210,12 @@ const MentorSignUp = () => {
           <input
             type="file"
             name="profile"
-            value={mentorData.profile}
-            onChange={handleChange}
+            onChange={handleProfileChange}
+          />
+          <img
+            src={mentorData.profile}
+            className={styles.profileImage}
+            alt=""
           />
         </div>
 
