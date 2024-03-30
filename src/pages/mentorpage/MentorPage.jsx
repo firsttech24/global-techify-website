@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from "./mentorPage.module.css";
 import { TbFilterEdit } from "react-icons/tb";
+import { ThemeChanger } from "../../components/themeChanger/ThemeChanger";
+
+import { FaSearch } from "react-icons/fa";
 
 export default function MentorPage() {
   const [mentors, setMentors] = useState([]);
@@ -36,29 +39,6 @@ export default function MentorPage() {
     setSelectedProfile(event.target.value);
   };
 
-  // Filter mentors based on search query
-  /*  const filteredMentors = mentors.filter(mentor =>
-    mentor.name.toLowerCase().includes(searchQuery.toLowerCase())
-  ); */
-
-  /* // Filter mentors based on search query and selected company
-  const filteredMentors = mentors.filter(
-    mentor =>
-      mentor.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (selectedCompany === "" ||
-        mentor.company.toLowerCase() === selectedCompany.toLowerCase())
-  ); */
-
-  /*   // Filter mentors based on search query, selected company, and selected profile
-  const filteredMentors = mentors.filter(
-    mentor =>
-      mentor.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (selectedCompany === "" ||
-        mentor.currentCompany.company.toLowerCase() ===
-          selectedCompany.toLowerCase()) &&
-      (selectedProfile === "" ||
-        mentor.areasOfInterest.toLowerCase() === selectedProfile.toLowerCase())
-  ); */
   // Filter mentors based on search query, selected company, and selected profile
   const filteredMentors = mentors.filter(
     mentor =>
@@ -77,7 +57,7 @@ export default function MentorPage() {
   return (
     <div className={styles.MentorPage}>
       <div className={styles.leftContainer}>
-        <div className={styles.heading}>
+        <div className={`normalText ${styles.heading}`}>
           <TbFilterEdit />
           Filters
         </div>
@@ -88,6 +68,7 @@ export default function MentorPage() {
             value={searchQuery}
             onChange={handleSearchChange}
           />
+          <FaSearch />
         </div>
         <div className={styles.filters}>
           <div className={styles.filterByCompanyName}>
@@ -112,12 +93,12 @@ export default function MentorPage() {
         </div>
       </div>
       <div className={styles.rightContainer}>
-        {/*   {filteredMentors.map(mentor => (
-          <div key={mentor.id}>{mentor.name}</div>
-        ))} */}
         {filteredMentors?.map(mentor => (
-          <div key={mentor.id}>
-            {mentor.name} - {mentor.company} - {mentor.profile}
+          <div className={styles.singleContainer} key={mentor.id}>
+            <div className={styles.imgContainer}>
+              <img src={mentor.profile} alt="profile-picture" />
+            </div>
+            <p className={`normalText ${styles.name}`}>{mentor.name}</p>
           </div>
         ))}
       </div>

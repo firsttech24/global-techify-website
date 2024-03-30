@@ -1,25 +1,23 @@
 .AuthPage {
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
   margin-top: 10vw;
-  .selectAuth {
+  .btns {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5vw;
-
+    gap: 2vw;
     .btn {
-      padding: 1vw 2vw;
-      border-radius: 1vw;
-      font-size: 1.5vw;
-      font-weight: 600;
-      border: 0.2vw solid var(--themeColor);
-      transition: background ease 0.2s;
+      width: 15vw;
+      font-size: 2vw;
+      padding: 0.1vw 2vw;
+      border-radius: 0.5vw;
     }
-    .selectedAuth {
+    .filledBtn {
+      border: 0.1vw solid #fff;
       background-color: var(--themeColor);
     }
   }
-  .auth {
-    border: 1px solid #fff;
-  }
+}
+.auth {
+  /* border: 1px solid #fff; */
 }

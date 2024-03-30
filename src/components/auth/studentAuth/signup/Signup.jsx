@@ -17,7 +17,7 @@ export default function Signup() {
   const [passwordMatchError, setPasswordMatchError] = useState("");
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -25,7 +25,7 @@ export default function Signup() {
     });
   };
 
-  const handleSignup = (e) => {
+  const handleSignup = e => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       setPasswordMatchError("Passwords do not match");
@@ -36,12 +36,12 @@ export default function Signup() {
     setFormData(initialState);
     setPasswordMatchError("");
     registerStudent()
-      .then((data) => {
+      .then(data => {
         console.log("Student registered successfully:", data);
-         localStorage.setItem("gtechify!#", data._id);
+        localStorage.setItem("gtechify!#", data._id);
         navigate("/user/profile");
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Failed to register student:", error);
       });
   };
@@ -72,75 +72,60 @@ export default function Signup() {
   };
 
   return (
-    <div className={styles.Signup}>
-      <h2>Create an Account</h2>
-      <form
-        className={styles.form}
-        onSubmit={handleSignup}>
-        <div className={styles.formGroup}>
-          <label htmlFor="name">User Name</label>
+    <form onSubmit={handleSignup} className={styles.form}>
+      <p className={`bigText ${styles.title}`}>Sign Up | Student</p>
+      <div className={styles.formBody}>
+        <div className={styles.formRow}>
           <input
             type="text"
-            id="name"
             name="name"
+            placeholder="Name"
             value={formData.name}
             onChange={handleChange}
             required
           />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="email">Email</label>
           <input
             type="email"
-            id="email"
             name="email"
+            placeholder="Email"
             value={formData.email}
             onChange={handleChange}
             required
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="wnumber">Whatsapp Number</label>
+        <div>
           <input
             type="tel"
-            id="wnumber"
             name="wnumber"
+            placeholder="Whatsapp No."
             value={formData.wnumber}
             onChange={handleChange}
             required
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="password">Password</label>
+        <div className={styles.formRow}>
           <input
             type="password"
-            id="password"
             name="password"
+            placeholder="Password"
             value={formData.password}
             onChange={handleChange}
             required
           />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             type="password"
             id="confirmPassword"
             name="confirmPassword"
+            placeholder="Confirm password"
             value={formData.confirmPassword}
             onChange={handleChange}
             required
           />
         </div>
-        {passwordMatchError && (
-          <p style={{ color: "red" }}>{passwordMatchError}</p>
-        )}
-        <button
-          type="submit"
-          className={styles.signupButton}>
+        <button type="submit" className={`btn1 ${styles.btn}`}>
           Sign Up
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }

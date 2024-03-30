@@ -73,7 +73,7 @@ export default function Signup() {
 
   return (
     <form onSubmit={handleSignup} className={styles.form}>
-      <p className={`bigText ${styles.title}`}>Sign Up | Mentor</p>
+      <p className={`bigText ${styles.title}`}>Sign Up | College</p>
       <div className={styles.formBody}>
         <div className={styles.formRow}>
           <input

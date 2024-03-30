@@ -3,35 +3,37 @@ import styles from "./authPage.module.css";
 
 import StudentAuth from "../../components/auth/studentAuth/StudentAuth";
 import MentorAuth from "../../components/auth/mentorAuth/MentorAuth";
+import CollegeAuth from "../../components/auth/collegeAuth/CollegeAuth";
 
 export default function AuthPage() {
   const [selectAuth, setSelectAuth] = useState("student");
   return (
     <div className={styles.AuthPage}>
-      <div className={styles.selectAuth}>
+      {/* categories */}
+      <div data-aos="fade-up" className={styles.btns}>
         <button
           onClick={() => setSelectAuth("student")}
           className={`${styles.btn} ${
-            selectAuth === "student" ? styles.selectedAuth : ""
+            selectAuth === "student" ? styles.filledBtn : ""
           }`}
         >
-          STUDENT
+          Student
         </button>
         <button
           onClick={() => setSelectAuth("mentor")}
           className={`${styles.btn} ${
-            selectAuth === "mentor" ? styles.selectedAuth : ""
+            selectAuth === "mentor" ? styles.filledBtn : ""
           }`}
         >
-          MENTOR
+          Mentor
         </button>
         <button
           onClick={() => setSelectAuth("college")}
           className={`${styles.btn} ${
-            selectAuth === "college" ? styles.selectedAuth : ""
+            selectAuth === "college" ? styles.filledBtn : ""
           }`}
         >
-          COLLEGE
+          College
         </button>
       </div>
 
@@ -39,6 +41,8 @@ export default function AuthPage() {
         {selectAuth === "student" && <StudentAuth />}
 
         {selectAuth === "mentor" && <MentorAuth />}
+
+        {selectAuth === "college" && <CollegeAuth />}
       </div>
     </div>
   );

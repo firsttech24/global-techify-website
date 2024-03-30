@@ -1,48 +1,27 @@
-.Signin {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .form {
-  background-color: #000;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.title {
-  text-align: center;
-}
-
-.inputGroup {
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 4px;
-  border: 0.2vw solid #fff !important;
-  color: #fff;
-}
-
-.submitButton {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.submitButton:hover {
-  background-color: #0056b3;
+  /* border: 1px solid #fff; */
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+  .title {
+    font-weight: 500;
+  }
+  .formBody {
+    display: flex;
+    flex-direction: column;
+    gap: 3vw;
+    input {
+      border-bottom: 0.15vw solid #fff !important;
+      padding: 1vw 0;
+      transition: all ease 0.2s;
+      &:hover {
+        border-bottom: 0.15vw solid var(--themeColor) !important;
+      }
+    }
+    .btn {
+      margin-top: 2vw;
+      padding: 0.5vw 1vw;
+      border-radius: 1vw;
+    }
+  }
 }

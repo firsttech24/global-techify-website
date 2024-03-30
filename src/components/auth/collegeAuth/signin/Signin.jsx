@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useState } from "react";
 import styles from "./signin.module.css";
 
@@ -19,7 +17,6 @@ export default function Signin() {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
-
     login()
       .then(data => {
         console.log("Student registered successfully:", data);
@@ -32,7 +29,7 @@ export default function Signin() {
   const login = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_HOST_API}/auth/user/get`,
+        `${import.meta.env.VITE_HOST_API}/auth/mentor/get`,
         {
           method: "POST",
           headers: {
@@ -56,7 +53,7 @@ export default function Signin() {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <p className={`bigText ${styles.title}`}>Sign In | Student</p>
+      <p className={`bigText ${styles.title}`}>Sign In | College</p>
       <div className={styles.formBody}>
         <div>
           <input

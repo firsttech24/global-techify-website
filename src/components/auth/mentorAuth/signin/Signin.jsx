@@ -18,10 +18,10 @@ export default function Signin() {
     console.log("Email:", email);
     console.log("Password:", password);
     login()
-      .then((data) => {
+      .then(data => {
         console.log("Student registered successfully:", data);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Failed to register student:", error);
       });
   };
@@ -51,24 +51,22 @@ export default function Signin() {
     }
   };
 
-
   return (
-    <div className={styles.Signin}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <h2 className={styles.title}>Sign In</h2>
-        <div className={styles.inputGroup}>
-          <label htmlFor="email">Email</label>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <p className={`bigText ${styles.title}`}>Sign In | Mentor</p>
+      <div className={styles.formBody}>
+        <div>
           <input
             type="email"
-            id="email"
+            placeholder="Email"
             value={email}
             onChange={handleEmailChange}
             required
           />
         </div>
-        <div className={styles.inputGroup}>
-          <label htmlFor="password">Password</label>
+        <div>
           <input
+            placeholder="Password"
             type="password"
             id="password"
             value={password}
@@ -76,10 +74,10 @@ export default function Signin() {
             required
           />
         </div>
-        <button type="submit" className={styles.submitButton}>
-          Sign In
+        <button type="submit" className={`btn1 ${styles.btn}`}>
+          Submit
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }
