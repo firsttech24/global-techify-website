@@ -1,0 +1,44 @@
+/** @format */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20vw;
+  padding: 1vw;
+  gap: 0.6vw;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #1e1e1e, #232323);
+  box-shadow: 7px 7px 14px #111111, -7px -7px 14px #313131;
+}
+.imageInSidebar {
+  width: 8vw;
+  height: 8vw;
+  border-radius: 50%;margin-top: 3vw;
+
+}
+
+.profileButton {
+  padding: 0.5vw 1vw;
+  font-size: 1.3vw;
+  color: aliceblue;
+  background-color: var(--themeColor);
+}
+
+.navlist {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2vw;
+  width: 100%;
+  .activeButton {
+    background-color: var(--themeColor);
+    font-size: 1.2vw;
+    width: 100%;
+    padding: 0.5vw;
+  }
+  .inActiveButton {
+    font-size: 1vw;
+    width: 100%;
+    padding: 0.5vw;
+  }
+}
