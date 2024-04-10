@@ -5,7 +5,7 @@ import "aos/dist/aos.css";
 
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-import MentorPage from "./pages/mentorPage/MentorPage";
+import MentorPage from "./pages/mentorpage/MentorPage";
 import {
   HomePage,
   AboutPage,
