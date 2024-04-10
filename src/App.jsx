@@ -18,6 +18,11 @@ import {
 } from "./pages";
 import MentorSignUp from "./pages/login/MentorSignup";
 import UserProfile from "./pages/login/UserProfile";
+import MentorDashboard from "./mentorPanel/mentorDashboard";
+import AcceptedRequests from "./mentorPanel/AcceptedRequests";
+import RequestPage from "./mentorPanel/requestPage";
+import UpcomingSessions from "./mentorPanel/UpcomingSessions";
+import CompletedSessions from "./mentorPanel/CompletedSessions";
 
 export default function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
@@ -58,8 +63,19 @@ export default function App() {
 
         {/* auth page */}
         <Route path={"/auth"} element={<AuthPage />} />
+
         <Route path="/user/profile" element={<UserProfile />} />
         <Route path={"/mentor/profile"} element={<MentorSignUp />} />
+        <Route path={"/auth"} element={<AuthPage />} />
+        <Route path="/user/profile" element={<UserProfile />} />
+        <Route path={"/mentor/profile"} element={<MentorSignUp />} />
+
+        <Route path="/mentor" element={<MentorDashboard />}>
+          <Route path="meetrequests" element={<RequestPage />} />
+          <Route path="acceptedrequests" element={<AcceptedRequests />} />
+          <Route path="upcomingsessions" element={<UpcomingSessions />} />
+          <Route path="completedsessions" element={<CompletedSessions />} />
+        </Route>
       </Routes>
       <Footer />
     </BrowserRouter>

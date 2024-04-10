@@ -4,7 +4,7 @@
 }
 
 .dark_mode_label {
-  border: 0.2vw solid var(--themeColor);
+  border: 0.2vw solid var(--themeColor1);
   width: 65px;
   height: 35px;
   position: relative;
