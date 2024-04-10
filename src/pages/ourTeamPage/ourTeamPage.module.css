@@ -18,6 +18,9 @@
       display: flex;
       flex-direction: column;
       gap: 1vw;
+      h1 {
+        color: var(--themeColor1);
+      }
       p {
         text-align: justify;
       }

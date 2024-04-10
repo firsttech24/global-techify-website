@@ -13,7 +13,7 @@
     .headingContainer {
       .heading {
         .span {
-          color: var(--themeColor);
+          color: var(--themeColor1);
         }
       }
     }
@@ -29,11 +29,15 @@
         svg {
           padding: 0.3vw;
           font-size: 2vw;
-          background-color: var(--themeColor);
+          color: var(--themeColor1);
+          background-color: var(--themeColor3);
           border-radius: 50%;
-          border: 0.1vw solid #fff;
+          border: 0.1vw solid var(--themeColor1);
         }
       }
+    }
+    a {
+      width: 100%;
     }
     .btn {
       width: 50%;

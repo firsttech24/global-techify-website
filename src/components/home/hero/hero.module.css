@@ -1,24 +1,31 @@
 .Hero {
-  /* border: 1px solid #fff; */
   padding: 4vw;
   display: flex;
-  /* height: 28vw; */
+  position: relative;
+  .switchTheme {
+    position: absolute;
+    top: 2vw;
+    right: 4vw;
+  }
   .leftContainer {
-    /* border: 1px solid #fff; */
     width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
+    gap: 7vw;
     .top {
       display: flex;
       flex-direction: column;
       gap: 2vw;
       .animatedText {
         font-size: 4vw;
-        color: var(--themeColor);
+        color: var(--themeColor1);
         animation: fade 1s infinite alternate;
       }
+    }
+    a {
+      width: 100%;
     }
     .btn {
       width: 77%;
@@ -26,7 +33,6 @@
     }
   }
   .rightContainer {
-    /* border: 1px solid #fff; */
     width: 50%;
     display: flex;
     justify-content: center;

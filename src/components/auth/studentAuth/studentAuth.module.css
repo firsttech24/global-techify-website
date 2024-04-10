@@ -18,7 +18,7 @@
     transform: translateX(111%);
   }
   .selectAuth {
-    background-color: var(--themeColor);
+    background-color: var(--themeColor1);
     /* background-color: #fff; */
     margin-bottom: auto;
     border-radius: 2vw;
@@ -30,22 +30,21 @@
     justify-content: center;
     align-items: center;
     gap: 5vw;
-    color: #000;
+    color: var(--themeColor4);
     transition: all ease 0.5s;
     .title {
       font-weight: 500;
       text-align: start;
-      color: #fff;
-      /* margin-right: auto; */
+      color: var(--themeColor3);
     }
     .btn {
-      border-color: #fff;
+      border-color: var(--themeColor3);
       background-color: transparent;
-      color: #fff;
+      color: var(--themeColor3);
       /* margin-right: auto; */
       &:hover {
-        background-color: #fff;
-        color: var(--themeColor);
+        background-color: var(--themeColor3);
+        color: var(--themeColor1);
       }
     }
     .selectedAuth {

@@ -50,17 +50,26 @@ export default function Footer() {
           <div className={styles.leftDown}>
             <p className={`normalText`}>Follow us</p>
             <ul className={styles.socialContainer}>
-              <a href="/">
+              <a
+                href="https://twitter.com/GlobalTechify?t=7itLOm-jLsje--ejqLqXtg&s=08"
+                target="_blank"
+              >
                 <li>
                   <FaSquareXTwitter />
                 </li>
               </a>
-              <a href="/">
+              <a
+                href="https://www.facebook.com/profile.php?id=100093936788890&mibextid=ZbWKwL"
+                target="_blank"
+              >
                 <li>
                   <FaFacebookSquare />
                 </li>
               </a>
-              <a href="/">
+              <a
+                href="https://instagram.com/globaltechify?igshid=MzNlNGNkZWQ4Mg=="
+                target="_blank"
+              >
                 <li>
                   <FaInstagramSquare />
                 </li>
@@ -75,21 +84,21 @@ export default function Footer() {
               <Link to={"/"} className={`minorText`}>
                 Home
               </Link>
-              <Link to={"/"} className={`minorText`}>
+              <Link to={"/about"} className={`minorText`}>
                 About
               </Link>
-              <Link to={"/"} className={`minorText`}>
+              <Link to={"/services"} className={`minorText`}>
                 Services
               </Link>
             </div>
             <div className={styles.linksTwo}>
-              <Link to={"/"} className={`minorText`}>
+              <Link to={"/mentor"} className={`minorText`}>
                 Mentor
               </Link>
-              <Link to={"/"} className={`minorText`}>
+              <Link to={"/contact"} className={`minorText`}>
                 Contact
               </Link>
-              <Link to={"/"} className={`minorText`}>
+              <Link to={"/team"} className={`minorText`}>
                 Our team
               </Link>
             </div>

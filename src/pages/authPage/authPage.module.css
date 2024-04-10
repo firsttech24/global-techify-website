@@ -11,10 +11,13 @@
       font-size: 2vw;
       padding: 0.1vw 2vw;
       border-radius: 0.5vw;
+      color: var(--themeColor4);
+      border: 0.2vw solid transparent;
     }
     .filledBtn {
-      border: 0.1vw solid #fff;
-      background-color: var(--themeColor);
+      border: 0.2vw solid var(--themeColor4);
+      background-color: var(--themeColor1);
+      color: var(--themeColor3);
     }
   }
 }

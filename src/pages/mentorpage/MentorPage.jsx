@@ -52,56 +52,86 @@ export default function MentorPage() {
           .includes(selectedProfile.toLowerCase()))
   );
 
-  selectedCompany && console.log(selectedCompany);
+  // Function to capitalize the first letter of each word in a string
+  function capitalizeName(name) {
+    return name
+      .split(" ")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
 
   return (
-    <div className={styles.MentorPage}>
-      <div className={styles.leftContainer}>
-        <div className={`normalText ${styles.heading}`}>
-          <TbFilterEdit />
-          Filters
-        </div>
-        <div className={styles.search}>
-          <input
-            type="text"
-            placeholder="Search mentors by name"
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-          <FaSearch />
-        </div>
-        <div className={styles.filters}>
-          <div className={styles.filterByCompanyName}>
-            <select value={selectedCompany} onChange={handleCompanyChange}>
-              <option value="">All Companies</option>
-              <option value="amazon">Amazon</option>
-              <option value="techkilla">Techkilla</option>
-              <option value="google">Google</option>
-              {/* Add more options as needed */}
-            </select>
-          </div>
-          <div className={styles.filterByProfileName}>
-            <select value={selectedProfile} onChange={handleProfileChange}>
-              <option value="">All Profiles</option>
-              <option value="analytics">analytics</option>
-              <option value="python developer">Python Developer</option>
-              <option value="full stack developer">Full Stack Developer</option>
-              <option value="Chemical Engineering">Chemical Engineering</option>
-              {/* Add more options as needed */}
-            </select>
-          </div>
-        </div>
-      </div>
-      <div className={styles.rightContainer}>
-        {filteredMentors?.map(mentor => (
-          <div className={styles.singleContainer} key={mentor.id}>
-            <div className={styles.imgContainer}>
-              <img src={mentor.profile} alt="profile-picture" />
+    <div>
+      {!filteredMentors && <h1 style={{ marginBottom: "auto" }}>Loading...</h1>}
+
+      {filteredMentors && (
+        <div className={styles.MentorPage}>
+          <div data-aos="fade-up" className={styles.leftContainer}>
+            <div className={`normalText ${styles.heading}`}>
+              <TbFilterEdit />
+              Filters
             </div>
-            <p className={`normalText ${styles.name}`}>{mentor.name}</p>
+            <div className={styles.search}>
+              <input
+                type="text"
+                placeholder="Search mentors by name"
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
+              <FaSearch />
+            </div>
+            <div className={styles.filters}>
+              <div className={styles.filterByCompanyName}>
+                <select value={selectedCompany} onChange={handleCompanyChange}>
+                  <option value="">All Companies</option>
+                  <option value="amazon">Amazon</option>
+                  <option value="techkilla">Techkilla</option>
+                  <option value="google">Google</option>
+                  {/* Add more options as needed */}
+                </select>
+              </div>
+              <div className={styles.filterByProfileName}>
+                <select value={selectedProfile} onChange={handleProfileChange}>
+                  <option value="">All Profiles</option>
+                  <option value="analytics">analytics</option>
+                  <option value="python developer">Python Developer</option>
+                  <option value="full stack developer">
+                    Full Stack Developer
+                  </option>
+                  <option value="Chemical Engineering">
+                    Chemical Engineering
+                  </option>
+                  {/* Add more options as needed */}
+                </select>
+              </div>
+              <span
+                onClick={() => {
+                  setSearchQuery("");
+                  setSelectedCompany("");
+                  setSelectedProfile("");
+                }}
+                className={styles.clear}
+              >
+                Clear filters
+              </span>
+            </div>
           </div>
-        ))}
-      </div>
+          <div data-aos="fade-up" className={styles.rightContainer}>
+            {filteredMentors?.map(mentor => (
+              <div className={styles.singleContainer} key={mentor.id}>
+                <div className={styles.imgContainer}>
+                  <img src={mentor.profile} alt="profile-picture" />
+                </div>
+                <p className={`normalText ${styles.name}`}>
+                  {capitalizeName(mentor.name)}
+                </p>
+                <div className={styles.line}></div>
+                <p className={styles.bio}>{mentor.bio.substring(0, 91)}...</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

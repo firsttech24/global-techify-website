@@ -6,12 +6,30 @@
     justify-content: space-between;
     align-items: center;
     gap: 5vw;
-    border-bottom: 0.15vw solid rgba(255, 255, 255, 0.3);
+    border-bottom: 0.11vw solid var(--themeColor1);
     padding: 2vw 0;
+    p {
+      font-weight: 500;
+    }
     .left,
     .middle,
     .right {
       width: 30%;
+      a {
+        transition: all ease-in-out 0.2s;
+        &:hover {
+          text-decoration: underline;
+          text-decoration-color: var(--themeColor1);
+        }
+      }
+      address {
+        transition: all ease-in-out 0.2s;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+          text-decoration-color: var(--themeColor1);
+        }
+      }
     }
   }
   .footerTwo {
@@ -29,21 +47,29 @@
       .leftTop {
         .logo {
           font-size: 2.5vw;
-          color: var(--themeColor);
+          color: var(--themeColor1);
           font-weight: 600;
         }
       }
       .leftDown {
         display: flex;
         flex-direction: column;
+        p {
+          font-weight: 500;
+        }
         .socialContainer {
           /* border: 1px solid #fff; */
           display: flex;
           justify-content: flex-start;
           align-items: center;
           gap: 1vw;
+
           svg {
             font-size: 2vw;
+            color: var(--themeColor1);
+            &:hover {
+              color: var(--themeColor4);
+            }
           }
         }
       }
@@ -65,7 +91,7 @@
           flex-direction: column;
           gap: 1vw;
           a:hover {
-            color: var(--themeColor);
+            color: var(--themeColor1);
           }
         }
       }
@@ -81,7 +107,7 @@
         flex-direction: column;
         gap: 1vw;
         .searchContainer {
-          border: 0.15vw solid var(--themeColor);
+          border: 0.15vw solid var(--themeColor1);
           display: flex;
           place-items: center;
           border-radius: 50px;
@@ -94,11 +120,11 @@
           }
           svg {
             font-size: 3vw;
-            color: var(--themeColor);
+            color: var(--themeColor1);
             cursor: pointer;
             transition: all ease 0.2s;
             &:hover {
-              color: #fff;
+              color: var(--themeColor4);
             }
           }
         }
@@ -109,13 +135,19 @@
     text-align: center;
     font-size: 1vw;
     a {
-      color: var(--themeColor);
+      color: var(--themeColor1);
+      transition: all ease-in-out 0.2s;
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: var(--themeColor1);
+      }
     }
   }
 }
 
 .heading {
   position: relative;
+  font-weight: 500;
 }
 .heading::after {
   content: "";
@@ -124,7 +156,7 @@
   left: 0;
   width: 3.5vw;
   height: 0.2vw;
-  background-color: var(--themeColor);
+  background-color: var(--themeColor1);
   transition: all ease 0.2s;
 }
 .heading:hover::after {

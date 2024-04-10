@@ -7,6 +7,7 @@
   gap: 3vw;
   h1 {
     margin: 0 auto;
+    color: var(--themeColor1);
   }
   .container {
     display: flex;
@@ -15,7 +16,7 @@
     flex-wrap: wrap;
     gap: 5vw;
     .singleContainer {
-      border: 0.2vw solid var(--themeColor);
+      border: 0.2vw solid var(--themeColor1);
       width: 25vw;
       height: 25vw;
       display: flex;
@@ -26,8 +27,9 @@
       border-radius: 2vw;
       transition: all ease 0.2s;
       &:hover {
-        background-color: #000;
-        border-color: #fff;
+        background-color: var(--themeColor3);
+        border-color: var(--themeColor4);
+        box-shadow: 0.3vw 0.3vw 0.9vw var(--box-shadow-color);
       }
       &:hover .top {
         transform: translateY(-100%);

@@ -6,11 +6,12 @@
     a {
       text-decoration: none;
       li {
-        font-size: 1.2vw;
+        font-size: 1.5vw;
         transition: color ease 0.2s;
-        /* font-weight: bold; */
+        font-weight: 500;
+        color: var(--themeColor4);
         &:hover {
-          color: #525ceb;
+          color: var(--themeColor1);
         }
       }
     }

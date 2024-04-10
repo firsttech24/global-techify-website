@@ -1,11 +1,13 @@
 import React from "react";
 import styles from "./aboutPage.module.css";
 
-import about from "./../../assets/about/about.png";
+import aboutWhite from "./../../assets/about/aboutWhite.png";
+import aboutblack from "./../../assets/about/aboutBlack.png";
+
 import mission from "./../../assets/about/mission.svg";
 import vision from "./../../assets/about/vision.svg";
 
-export default function AboutPage() {
+export default function AboutPage({ isDarkTheme }) {
   const missionVisionArr = [
     {
       title: "Mission",
@@ -34,7 +36,7 @@ export default function AboutPage() {
           </p>
         </div>
         <div data-aos="fade-left" className={styles.imgContainer}>
-          <img src={about} alt="about" />
+          <img src={isDarkTheme ? aboutWhite : aboutblack} alt="about" />
         </div>
       </div>
 

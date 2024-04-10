@@ -5,17 +5,22 @@
   gap: 2vw;
   .title {
     font-weight: 500;
+    color: var(--themeColor1);
   }
   .formBody {
     display: flex;
     flex-direction: column;
     gap: 3vw;
     input {
-      border-bottom: 0.15vw solid #fff !important;
+      border-bottom: 0.15vw solid var(--themeColor4) !important;
       padding: 1vw 0;
       transition: all ease 0.2s;
+      color: var(--themeColor1);
+      &::placeholder {
+        color: var(--minor-text-color);
+      }
       &:hover {
-        border-bottom: 0.15vw solid var(--themeColor) !important;
+        border-bottom: 0.15vw solid var(--themeColor1) !important;
       }
     }
     .btn {

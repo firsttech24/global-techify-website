@@ -1,7 +1,5 @@
-/** @format */
-
 import { useState } from "react";
-import styles from "./signup.module.css";
+import styles from "./../../studentAuth/signup/signup.module.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
@@ -123,7 +121,7 @@ export default function Signup() {
           />
         </div>
         <button type="submit" className={`btn1 ${styles.btn}`}>
-          Sign Up
+          Submit
         </button>
       </div>
     </form>

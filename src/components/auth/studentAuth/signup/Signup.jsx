@@ -123,7 +123,7 @@ export default function Signup() {
           />
         </div>
         <button type="submit" className={`btn1 ${styles.btn}`}>
-          Sign Up
+          Submit
         </button>
       </div>
     </form>

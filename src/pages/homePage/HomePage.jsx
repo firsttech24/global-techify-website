@@ -8,11 +8,11 @@ import {
   Slider,
 } from "../../components/home";
 
-export default function HomePage() {
+export default function HomePage({ setIsDarkTheme }) {
   return (
     <div className={styles.HomePage}>
       {/* hero */}
-      <Hero />
+      <Hero setIsDarkTheme={setIsDarkTheme} />
 
       {/* count-up */}
       <Count />

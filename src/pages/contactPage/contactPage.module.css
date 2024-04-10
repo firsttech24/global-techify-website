@@ -16,21 +16,28 @@
     display: flex;
     flex-direction: column;
     gap: 1vw;
+    h1 {
+      color: var(--themeColor1);
+    }
     input {
-      border-bottom: 0.15vw solid #fff !important;
+      border-bottom: 0.15vw solid var(--themeColor4) !important;
       padding: 1vw 0;
       transition: all ease 0.2s;
+      &::placeholder {
+        color: var(--minor-text-color);
+      }
       &:hover {
-        border-bottom: 0.15vw solid var(--themeColor) !important;
+        border-bottom: 0.15vw solid var(--themeColor1) !important;
+        color: var(--themeColor1);
       }
     }
     textarea {
-      border-bottom: 0.15vw solid #fff;
+      border-bottom: 0.15vw solid var(--themeColor4) !important;
       resize: none;
       padding: 1vw 0;
       transition: all ease 0.2s;
       &:hover {
-        border-bottom: 0.15vw solid var(--themeColor) !important;
+        border-bottom: 0.15vw solid var(--themeColor1) !important;
       }
     }
   }

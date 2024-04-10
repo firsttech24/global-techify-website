@@ -3,14 +3,14 @@ import styles from "./header.module.css";
 
 import { Link } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
-import { FaSearch } from "react-icons/fa";
+// import { FaSearch } from "react-icons/fa";
 import DesktopNavbar from "./desktopNavbar/DesktopNavbar";
 import MobileNavbar from "./mobileNavbar/MobileNavbar";
-import logo from "./../../assets/logo.png";
+import logo from "./../../assets/logo.svg";
 
 export default function Header() {
   const [isShowSidebar, setIsShowSidebar] = useState(false);
-  const searchRef = useRef(null);
+  /*   const searchRef = useRef(null);
 
   const handleMouseHover = e => {
     searchRef.current.setAttribute("style", "width: 20vw");
@@ -20,7 +20,7 @@ export default function Header() {
     setTimeout(() => {
       searchRef.current.setAttribute("style", "width: 0");
     }, 5000);
-  };
+  }; */
 
   return (
     <div className={styles.Header}>
@@ -29,10 +29,11 @@ export default function Header() {
         <div className={styles.imgContainer}>
           <img src={logo} alt="logo" />
         </div>
+        <span>Global Techify</span>
       </Link>
 
       {/* search */}
-      <div
+      {/*  <div
         className={styles.searchContainer}
         onMouseOver={handleMouseHover}
         onMouseOut={handleMouseOut}
@@ -44,7 +45,7 @@ export default function Header() {
           placeholder="Search..."
         />
         <FaSearch />
-      </div>
+      </div> */}
 
       <div className={styles.navbarContainer}>
         <div className={styles.desktopNavbar}>

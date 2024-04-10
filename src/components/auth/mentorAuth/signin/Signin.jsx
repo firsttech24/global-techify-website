@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./signin.module.css";
+import styles from "./../../studentAuth/signin/signin.module.css";
 
 export default function Signin() {
   const [email, setEmail] = useState("");

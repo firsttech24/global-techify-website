@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import styles from "./collegeAuth.module.css";
+import styles from "./../studentAuth/studentAuth.module.css";
 import Signin from "./signin/Signin";
 import Signup from "./signup/Signup";
 
 export default function CollegeAuth() {
   const [isSignin, setIsSignin] = useState(true);
   return (
-    <div data-aos="fade-up" className={`${styles.CollegeAuth} `}>
+    <div data-aos="fade-up" className={`${styles.StudentAuth} `}>
       {/* left container */}
       <div
         className={` ${styles.authContainer} ${

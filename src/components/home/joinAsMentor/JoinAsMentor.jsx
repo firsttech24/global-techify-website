@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./joinAsMentor.module.css";
 import { FaRegLightbulb } from "react-icons/fa";
 import { IoPricetagOutline, IoBuildOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 import mentorIcon from "./../../../assets/home/joinAsMentor/mentorIcon.svg";
 
@@ -35,9 +36,11 @@ export default function JoinAsMentor() {
             <span className="normalText">Build your own personal brand</span>
           </li>
         </ul>
-        <button data-aos="fade-up" className={`btn1 ${styles.btn}`}>
-          Become a Mentor
-        </button>
+        <Link to={"/mentor"}>
+          <button data-aos="fade-up" className={`btn1 ${styles.btn}`}>
+            Become a Mentor
+          </button>
+        </Link>
       </div>
       <div data-aos="fade-left" className={styles.rightContainer}>
         <img src={mentorIcon} alt="mentor" />

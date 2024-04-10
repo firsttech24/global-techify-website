@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   gap: 2vw;
-  background-color: var(--themeColor);
+  background-color: var(--themeColor1);
   padding: 2vw;
 }
 .countContainer {
@@ -22,9 +22,11 @@
   gap: 1vw;
 }
 .count {
+  color: var(--bg);
   font-size: 3vw;
   font-weight: 600;
 }
 .title {
+  color: var(--bg);
   font-size: 2vw;
 }
