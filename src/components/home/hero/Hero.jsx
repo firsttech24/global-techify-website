@@ -3,15 +3,9 @@ import styles from "./hero.module.css";
 import heroIcon from "./../../../assets/home/hero/heroIcon.png";
 import { Link } from "react-router-dom";
 
-import { SwitchTheme } from "../../switchTheme/SwitchTheme";
-
-export default function Hero({ setIsDarkTheme }) {
+export default function Hero() {
   return (
     <div className={styles.Hero}>
-      <div className={styles.switchTheme}>
-        <SwitchTheme setIsDarkTheme={setIsDarkTheme} />
-      </div>
-
       <div className={styles.leftContainer}>
         <div className={styles.top}>
           <h1 data-aos="fade-up">

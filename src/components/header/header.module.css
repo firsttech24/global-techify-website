@@ -8,6 +8,7 @@
   position: fixed;
   background-color: var(--bg);
   z-index: 1000;
+
   a {
     display: flex;
     justify-content: center;
@@ -46,6 +47,10 @@
     }
   } */
   .navbarContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
     .desktopNavbar {
       display: flex;
     }

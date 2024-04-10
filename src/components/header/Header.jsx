@@ -1,14 +1,16 @@
 import React, { useState, useRef } from "react";
 import styles from "./header.module.css";
-
 import { Link } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
+
+import { SwitchTheme } from "./../switchTheme/SwitchTheme";
+
 // import { FaSearch } from "react-icons/fa";
 import DesktopNavbar from "./desktopNavbar/DesktopNavbar";
 import MobileNavbar from "./mobileNavbar/MobileNavbar";
 import logo from "./../../assets/logo.svg";
 
-export default function Header() {
+export default function Header({ setIsDarkTheme }) {
   const [isShowSidebar, setIsShowSidebar] = useState(false);
   /*   const searchRef = useRef(null);
 
@@ -58,6 +60,11 @@ export default function Header() {
             isShowSidebar={isShowSidebar}
           />
         </div>
+
+        <div className={styles.switchTheme}>
+          <SwitchTheme setIsDarkTheme={setIsDarkTheme} />
+        </div>
+
         <FaBarsStaggered onClick={() => setIsShowSidebar(true)} />
       </div>
     </div>

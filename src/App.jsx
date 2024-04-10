@@ -34,14 +34,11 @@ export default function App() {
   }, []);
   return (
     <BrowserRouter>
-      <Header />
+      <Header setIsDarkTheme={setIsDarkTheme} />
 
       <Routes>
         {/* home page */}
-        <Route
-          path={"/"}
-          element={<HomePage setIsDarkTheme={setIsDarkTheme} />}
-        />
+        <Route path={"/"} element={<HomePage />} />
 
         {/* about page */}
         <Route
