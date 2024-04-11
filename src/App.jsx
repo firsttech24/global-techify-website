@@ -61,7 +61,6 @@ export default function App() {
 
         <Route path="/user/profile" element={<UserProfile />} />
         <Route path={"/mentor/profile"} element={<MentorSignUp />} />
-        <Route path={"/auth"} element={<AuthPage />} />
         <Route path="/user/profile" element={<UserProfile />} />
         <Route path={"/mentor/profile"} element={<MentorSignUp />} />
 

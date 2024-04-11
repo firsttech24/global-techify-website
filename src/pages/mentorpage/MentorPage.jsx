@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from "./mentorPage.module.css";
-import { TbFilterEdit } from "react-icons/tb";
-import { ThemeChanger } from "../../components/themeChanger/ThemeChanger";
 
+import Loader from "../../components/loader/Loader";
+
+import { TbFilterEdit } from "react-icons/tb";
 import { FaSearch } from "react-icons/fa";
 
 export default function MentorPage() {
@@ -60,78 +61,91 @@ export default function MentorPage() {
       .join(" ");
   }
 
-  return (
-    <div>
-      {!filteredMentors && <h1 style={{ marginBottom: "auto" }}>Loading...</h1>}
+  filteredMentors && console.log(filteredMentors);
 
-      {filteredMentors && (
-        <div className={styles.MentorPage}>
-          <div data-aos="fade-up" className={styles.leftContainer}>
-            <div className={`normalText ${styles.heading}`}>
-              <TbFilterEdit />
-              Filters
-            </div>
-            <div className={styles.search}>
-              <input
-                type="text"
-                placeholder="Search mentors by name"
-                value={searchQuery}
-                onChange={handleSearchChange}
-              />
-              <FaSearch />
-            </div>
-            <div className={styles.filters}>
-              <div className={styles.filterByCompanyName}>
-                <select value={selectedCompany} onChange={handleCompanyChange}>
-                  <option value="">All Companies</option>
-                  <option value="amazon">Amazon</option>
-                  <option value="techkilla">Techkilla</option>
-                  <option value="google">Google</option>
-                  {/* Add more options as needed */}
-                </select>
-              </div>
-              <div className={styles.filterByProfileName}>
-                <select value={selectedProfile} onChange={handleProfileChange}>
-                  <option value="">All Profiles</option>
-                  <option value="analytics">analytics</option>
-                  <option value="python developer">Python Developer</option>
-                  <option value="full stack developer">
-                    Full Stack Developer
-                  </option>
-                  <option value="Chemical Engineering">
-                    Chemical Engineering
-                  </option>
-                  {/* Add more options as needed */}
-                </select>
-              </div>
-              <span
-                onClick={() => {
-                  setSearchQuery("");
-                  setSelectedCompany("");
-                  setSelectedProfile("");
-                }}
-                className={styles.clear}
-              >
-                Clear filters
-              </span>
-            </div>
+  return (
+    <div className={styles.MentorPage}>
+      {/*   <div data-aos="fade-up" className={styles.leftContainer}>
+        <div className={`normalText ${styles.heading}`}>
+          <TbFilterEdit />
+          Filters
+        </div>
+        <div className={styles.search}>
+          <input
+            type="text"
+            placeholder="Search mentors by name"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+          <FaSearch />
+        </div>
+        <div className={styles.filters}>
+          <div className={styles.filterByCompanyName}>
+            <select value={selectedCompany} onChange={handleCompanyChange}>
+              <option value="">All Companies</option>
+              <option value="amazon">Amazon</option>
+              <option value="techkilla">Techkilla</option>
+              <option value="google">Google</option>
+            </select>
           </div>
-          <div data-aos="fade-up" className={styles.rightContainer}>
-            {filteredMentors?.map(mentor => (
-              <div className={styles.singleContainer} key={mentor.id}>
+          <div className={styles.filterByProfileName}>
+            <select value={selectedProfile} onChange={handleProfileChange}>
+              <option value="">All Profiles</option>
+              <option value="analytics">analytics</option>
+              <option value="python developer">Python Developer</option>
+              <option value="full stack developer">Full Stack Developer</option>
+              <option value="Chemical Engineering">Chemical Engineering</option>
+            </select>
+          </div>
+          <span
+            onClick={() => {
+              setSearchQuery("");
+              setSelectedCompany("");
+              setSelectedProfile("");
+            }}
+            className={styles.clear}
+          >
+            Clear filters
+          </span>
+        </div>
+      </div> */}
+      <div /* data-aos="fade-up" */ className={styles.rightContainer}>
+        {!mentors && <Loader />}
+
+        {filteredMentors &&
+          filteredMentors.map(mentor => (
+            <div className={styles.singleContainer} key={mentor.id}>
+              <div className={styles.top}>
                 <div className={styles.imgContainer}>
                   <img src={mentor.profile} alt="profile-picture" />
                 </div>
                 <p className={`normalText ${styles.name}`}>
                   {capitalizeName(mentor.name)}
                 </p>
-                <div className={styles.line}></div>
-                <p className={styles.bio}>{mentor.bio.substring(0, 91)}...</p>
               </div>
-            ))}
-          </div>
-        </div>
-      )}
+              <div className={styles.line}></div>
+              <p className={styles.bio}>{mentor.bio.substring(0, 91)}...</p>
+              {mentor.areasOfInterest.map((item, idx) => (
+                <span key={idx}>{item}</span>
+              ))}
+
+              <p>{mentor.currentCompany.company}</p>
+              <p>{mentor.currentCompany.position}</p>
+            </div>
+          ))}
+      </div>
+
+      <button className={`btn1`}>See All</button>
     </div>
   );
 }
+
+/* 
+.profile => image
+.name => string
+.bio => string 
+.areasOfInterest => array of strings
+.currentCompany => object
+    .currentCompany.company => string
+    .currentCompany.position => string
+*/
