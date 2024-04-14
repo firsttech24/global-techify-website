@@ -3,8 +3,12 @@ import styles from "./studentAuth.module.css";
 import Signin from "./signin/Signin";
 import Signup from "./signup/Signup";
 
+import { ColorRing } from "react-loader-spinner";
+
 export default function StudentAuth() {
   const [isSignin, setIsSignin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <div data-aos="fade-up" className={`${styles.StudentAuth} `}>
       {/* left container */}

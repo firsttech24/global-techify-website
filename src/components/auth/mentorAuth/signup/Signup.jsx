@@ -2,6 +2,8 @@ import { useState } from "react";
 import styles from "./../../studentAuth/signup/signup.module.css";
 import { useNavigate } from "react-router-dom";
 
+import { ColorRing } from "react-loader-spinner";
+
 export default function Signup() {
   const initialState = {
     name: "",
@@ -11,9 +13,10 @@ export default function Signup() {
     confirmPassword: "",
   };
 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(initialState);
   const [passwordMatchError, setPasswordMatchError] = useState("");
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -25,16 +28,18 @@ export default function Signup() {
 
   const handleSignup = e => {
     e.preventDefault();
+    setIsLoading(true);
+
     if (formData.password !== formData.confirmPassword) {
       setPasswordMatchError("Passwords do not match");
       return;
     }
-
     registerMentor()
       .then(data => {
         console.log("mentor registered successfully:", data);
         // console.log("Signup submitted with:", formData);
         localStorage.setItem("gtechify!#", data.user._id);
+        setIsLoading(false);
         navigate("/mentor/profile");
         setFormData(initialState);
         setPasswordMatchError("");
@@ -93,7 +98,7 @@ export default function Signup() {
         </div>
         <div>
           <input
-            type="tel"
+            type="number"
             name="wnumber"
             placeholder="Whatsapp No."
             value={formData.wnumber}
@@ -120,8 +125,23 @@ export default function Signup() {
             required
           />
         </div>
-        <button type="submit" className={`btn1 ${styles.btn}`}>
-          Submit
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={`btn1 ${styles.btn}`}
+        >
+          {!isLoading && " Submit"}
+          {isLoading && (
+            <ColorRing
+              visible={true}
+              height="30"
+              width="30"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+            />
+          )}
         </button>
       </div>
     </form>

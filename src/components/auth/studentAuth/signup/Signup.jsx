@@ -4,6 +4,8 @@ import { useState } from "react";
 import styles from "./signup.module.css";
 import { useNavigate } from "react-router-dom";
 
+import { ColorRing } from "react-loader-spinner";
+
 export default function Signup() {
   const initialState = {
     name: "",
@@ -16,6 +18,7 @@ export default function Signup() {
   const [formData, setFormData] = useState(initialState);
   const [passwordMatchError, setPasswordMatchError] = useState("");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -27,6 +30,7 @@ export default function Signup() {
 
   const handleSignup = e => {
     e.preventDefault();
+    setIsLoading(true);
     if (formData.password !== formData.confirmPassword) {
       setPasswordMatchError("Passwords do not match");
       return;
@@ -39,6 +43,7 @@ export default function Signup() {
       .then(data => {
         console.log("Student registered successfully:", data);
         localStorage.setItem("gtechify!#", data._id);
+        setIsLoading(false);
         navigate("/user/profile");
       })
       .catch(error => {
@@ -123,7 +128,18 @@ export default function Signup() {
           />
         </div>
         <button type="submit" className={`btn1 ${styles.btn}`}>
-          Submit
+          {!isLoading && "Submit"}
+          {isLoading && (
+            <ColorRing
+              visible={true}
+              height="30"
+              width="30"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+            />
+          )}
         </button>
       </div>
     </form>
