@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./mentorPage.module.css";
+import { Link } from "react-router-dom";
 
 import Loader from "../../components/loader/Loader";
 
@@ -109,6 +110,7 @@ export default function MentorPage() {
           </span>
         </div>
       </div> */}
+
       <div /* data-aos="fade-up" */ className={styles.rightContainer}>
         {!mentors && <Loader />}
 
@@ -125,8 +127,12 @@ export default function MentorPage() {
               </div>
               <div className={styles.line}></div>
               <p className={styles.bio}>{mentor.bio.substring(0, 91)}...</p>
+
+              {/* areas of interest */}
               {mentor.areasOfInterest.map((item, idx) => (
-                <span key={idx}>{item}</span>
+                <span key={idx} className={styles.interest}>
+                  {item}
+                </span>
               ))}
 
               <p>{mentor.currentCompany.company}</p>
@@ -135,7 +141,9 @@ export default function MentorPage() {
           ))}
       </div>
 
-      <button className={`btn1`}>See All</button>
+      <Link to={"/"}>
+        <button className={`btn1 ${styles.btn}`}>See All</button>
+      </Link>
     </div>
   );
 }

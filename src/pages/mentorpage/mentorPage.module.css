@@ -1,14 +1,13 @@
 .MentorPage {
-  /* border: 1px solid #000; */
+  border: 1px solid #fff;
   margin-top: 10vw;
   padding: 0 4vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2vw;
-  height: 100vh;
-  .leftContainer {
+  gap: 5vw;
+  /*  .leftContainer {
     border: 0.2vw solid var(--themeColor1);
     background-color: #000;
     padding: 2vw;
@@ -18,16 +17,13 @@
     flex-direction: column;
     align-items: center;
     gap: 2vw;
-    /* justify-content: center; */
     .heading {
-      /* border: 1px solid #fff; */
       display: flex;
       gap: 1vw;
       justify-content: center;
       align-items: flex-start;
       svg {
         font-size: 2vw;
-        /* color: var(--themeColor); */
       }
     }
     .search {
@@ -44,7 +40,6 @@
       }
     }
     .filters {
-      /* border: 0.1vw solid #fff; */
       display: flex;
       flex-direction: column;
       gap: 2vw;
@@ -68,7 +63,7 @@
       text-decoration: underline;
       cursor: pointer;
     }
-  }
+  } */
   .rightContainer {
     /* border: 1px solid #000; */
     background-color: var(--bg);
@@ -138,6 +133,18 @@
       .bio {
         text-align: justify;
         font-size: 1vw;
+      }
+      .interest {
+        background-color: var(--themeColor1);
+        display: inline;
+        margin-right: auto;
+        color: var(--themeColor3);
+        padding: 0.5vw 1vw;
+      }
+      .btn {
+        border: 1px solid #fff;
+        display: block;
+        margin: auto;
       }
     }
   }
