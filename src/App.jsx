@@ -13,8 +13,8 @@ import {
   ContactPage,
   AuthPage,
   OurTeamPage,
+  MentorProfile,
 } from "./pages";
-import MentorSignUp from "./pages/login/MentorSignup";
 import UserProfile from "./pages/login/UserProfile";
 import MentorDashboard from "./mentorPanel/mentorDashboard";
 import AcceptedRequests from "./mentorPanel/AcceptedRequests";
@@ -59,10 +59,10 @@ export default function App() {
         {/* auth page */}
         <Route path={"/auth"} element={<AuthPage />} />
 
+        {/* mentor profile */}
+        <Route path={"/mentor-profile"} element={<MentorProfile />} />
+
         <Route path="/user/profile" element={<UserProfile />} />
-        <Route path={"/mentor/profile"} element={<MentorSignUp />} />
-        <Route path="/user/profile" element={<UserProfile />} />
-        <Route path={"/mentor/profile"} element={<MentorSignUp />} />
 
         <Route path="/mentor" element={<MentorDashboard />}>
           <Route path="meetrequests" element={<RequestPage />} />

@@ -4,6 +4,7 @@ import ServicesPage from "./servicesPage/ServicesPage";
 import OurTeamPage from "./ourTeamPage/OurTeamPage";
 import ContactPage from "./contactPage/ContactPage";
 import AuthPage from "./authPage/AuthPage";
+import MentorProfile from "./profile/mentorProfile/MentorProfile";
 
 export {
   HomePage,
@@ -12,4 +13,5 @@ export {
   OurTeamPage,
   ContactPage,
   AuthPage,
+  MentorProfile,
 };

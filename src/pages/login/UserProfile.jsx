@@ -1,5 +1,3 @@
-/** @format */
-
 import { useState } from "react";
 import styles from "./MentorSignUp.module.css";
 import { IoSend } from "react-icons/io5";
@@ -35,39 +33,39 @@ const UserProfile = () => {
     const item = localStorage.getItem("gtechify!#");
     setId(item);
     fetch(`${import.meta.env.VITE_HOST_API}/user/get/${item}`)
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
         if (data.name)
-          setUserData((prevData) => ({ ...prevData, name: data.name }));
+          setUserData(prevData => ({ ...prevData, name: data.name }));
         if (data.email)
-          setUserData((prevData) => ({ ...prevData, email: data.email }));
+          setUserData(prevData => ({ ...prevData, email: data.email }));
         if (data.wnumber)
-          setUserData((prevData) => ({ ...prevData, wnumber: data.wnumber }));
+          setUserData(prevData => ({ ...prevData, wnumber: data.wnumber }));
         if (data.resume)
-          setUserData((prevData) => ({ ...prevData, resume: data.resume }));
+          setUserData(prevData => ({ ...prevData, resume: data.resume }));
 
         if (data.experience)
-          setUserData((prevData) => ({
+          setUserData(prevData => ({
             ...prevData,
             experience: data.experience,
           }));
         if (data.education)
-          setUserData((prevData) => ({
+          setUserData(prevData => ({
             ...prevData,
             education: data.education,
           }));
         if (data.socials)
-          setUserData((prevData) => ({
+          setUserData(prevData => ({
             ...prevData,
             socials: data.socials,
           }));
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Error fetching mentor data:", error);
       });
   }, []);
 
-  const handleProfileChange = async (e) => {
+  const handleProfileChange = async e => {
     let imageRef = ref(store, "users/profilePics");
     await uploadBytes(imageRef, e.target.files[0]);
     const imageUrl = await getDownloadURL(imageRef);
@@ -77,7 +75,7 @@ const UserProfile = () => {
       profilePhoto: imageUrl,
     });
   };
-  const handleResumeChange = async (e) => {
+  const handleResumeChange = async e => {
     let resumeRef = ref(store, "users/resume");
     await uploadBytes(resumeRef, e.target.files[0]);
     const resumeUrl = await getDownloadURL(resumeRef);
@@ -88,7 +86,7 @@ const UserProfile = () => {
     });
   };
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setUserData({
       ...userData,
@@ -96,7 +94,7 @@ const UserProfile = () => {
     });
   };
 
-  const handleEduChange = (event) => {
+  const handleEduChange = event => {
     const { name, value } = event.target;
     console.log(name, value);
     setDummyEdu({
@@ -120,14 +118,14 @@ const UserProfile = () => {
       education: newEducation,
     });
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     console.log(userData);
     updateUser()
-      .then((data) => {
+      .then(data => {
         console.log("Student registered successfully:", data);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Failed to register student:", error);
       });
   };
@@ -159,9 +157,7 @@ const UserProfile = () => {
   return (
     <div className={styles.page}>
       <h1>Profile | Student</h1>
-      <form
-        action=""
-        className={styles.mentorSignUpForm}>
+      <form action="" className={styles.mentorSignUpForm}>
         <div className={styles.formGroup}>
           <span>Profile Photo : </span>
           🔗
@@ -279,7 +275,7 @@ const UserProfile = () => {
               <select
                 name="nonCoreAreasOfInterest"
                 value={userData.areasOfInterest}
-                onChange={(event) =>
+                onChange={event =>
                   setUserData({
                     ...userData,
                     areasOfInterest: [
@@ -287,7 +283,8 @@ const UserProfile = () => {
                       event.target.value,
                     ],
                   })
-                }>
+                }
+              >
                 <option value="Data Science">Data Science</option>
                 <option value="Software">Software</option>
                 <option value="Banking and Finance">Banking and Finance</option>
@@ -310,7 +307,7 @@ const UserProfile = () => {
               <select
                 name="coreAreasOfInterest"
                 value={userData.areasOfInterest}
-                onChange={(event) =>
+                onChange={event =>
                   setUserData({
                     ...userData,
                     areasOfInterest: [
@@ -318,7 +315,8 @@ const UserProfile = () => {
                       event.target.value,
                     ],
                   })
-                }>
+                }
+              >
                 <option value="Aerospace Engineering">
                   Aerospace Engineering
                 </option>
@@ -370,7 +368,7 @@ const UserProfile = () => {
                 name="socials.linkedin"
                 placeholder="Linkedin"
                 value={userData.socials.linkedin}
-                onChange={(e) =>
+                onChange={e =>
                   setUserData({
                     ...userData,
                     socials: {
@@ -387,7 +385,7 @@ const UserProfile = () => {
                 name="socials.github"
                 placeholder="Github"
                 value={userData.socials.github}
-                onChange={(e) =>
+                onChange={e =>
                   setUserData({
                     ...userData,
                     socials: {
@@ -404,7 +402,7 @@ const UserProfile = () => {
                 name="socials.twitter"
                 placeholder="Twitter"
                 value={userData.socials.twitter}
-                onChange={(e) =>
+                onChange={e =>
                   setUserData({
                     ...userData,
                     socials: {
@@ -420,7 +418,8 @@ const UserProfile = () => {
         <button
           type="submit"
           className={styles.submitButton}
-          onClick={handleSubmit}>
+          onClick={handleSubmit}
+        >
           {" "}
           Submit{" "}
         </button>

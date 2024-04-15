@@ -1,103 +1,122 @@
-/** @format */
-
-import { useState } from "react";
-import styles from "./MentorSignUp.module.css";
-
+import React, { useEffect, useState } from "react";
+import styles from "./mentorProfile.module.css";
 import { IoSend } from "react-icons/io5";
-import { store } from "../../config/firebase";
+import { store } from "../../../config/firebase";
 import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 
-const MentorSignUp = () => {
-  const [id, setId] = useState("");
-  const [mentorData, setMentorData] = useState({
-    name: "",
-    email: "",
-    wnumber: "",
-    bio: "",
-    profile: "",
-    areasOfInterest: [],
-    currentCompany: {
-      company: "",
-      position: "",
-    },
-    experience: [],
-    education: [],
-    socials: {
-      linkedin: "",
-      github: "",
-      twitter: "",
-    },
-    pmt: {
-      acn: "",
-      acno: "",
-      ic: "",
-      nb: "",
-      bc: "",
-      ui: "",
-    },
-  });
-
-  const [dummyExp, setDummyExp] = useState({
+const EMPTY_MENTOR_DATA = {
+  name: "",
+  email: "",
+  wnumber: "",
+  bio: "",
+  profile: "",
+  areasOfInterest: [],
+  currentCompany: {
     company: "",
     position: "",
-    startDate: "",
-    endDate: "",
-  });
-  const [dummyEdu, setDummyEdu] = useState({
-    institute: "",
-    passingYear: "",
-    degree: "",
-    department: "",
-    specialisation: "",
-  });
+  },
+  experience: [],
+  education: [],
+  socials: {
+    linkedin: "",
+    github: "",
+    twitter: "",
+  },
+  pmt: {
+    acn: "",
+    acno: "",
+    ic: "",
+    nb: "",
+    bc: "",
+    ui: "",
+  },
+};
 
-  useState(() => {
+const EMPTY_EXPERIENCE_DATA = {
+  company: "",
+  position: "",
+  startDate: "",
+  endDate: "",
+};
+
+const EMPTY_EDUCATION_DATA = {
+  institute: "",
+  passingYear: "",
+  degree: "",
+  department: "",
+  specialisation: "",
+};
+
+export default function MentorProfile() {
+  const [id, setId] = useState("");
+  const [mentorData, setMentorData] = useState(EMPTY_MENTOR_DATA);
+  const [dummyExp, setDummyExp] = useState(EMPTY_EXPERIENCE_DATA);
+  const [dummyEdu, setDummyEdu] = useState(EMPTY_EDUCATION_DATA);
+
+  // fetching old saved mentor data
+  useEffect(() => {
     const item = localStorage.getItem("gtechify!#");
     setId(item);
     fetch(`${import.meta.env.VITE_HOST_API}/mentor/get/${item}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.name)
-          setMentorData((prevData) => ({ ...prevData, name: data.name }));
-        if (data.email)
-          setMentorData((prevData) => ({ ...prevData, email: data.email }));
-        if (data.wnumber)
-          setMentorData((prevData) => ({ ...prevData, wnumber: data.wnumber }));
-        if (data.bio)
-          setMentorData((prevData) => ({ ...prevData, bio: data.bio }));
-        if (data.currentCompany)
-          setMentorData((prevData) => ({
-            ...prevData,
-            currentCompany: data.currentCompany,
-          }));
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        /*    if (data.name)
+        setMentorData((prevData) => ({ ...prevData, name: data.name }));
+      if (data.email)
+        setMentorData((prevData) => ({ ...prevData, email: data.email }));
+      if (data.wnumber)
+        setMentorData((prevData) => ({ ...prevData, wnumber: data.wnumber }));
+      if (data.bio)
+        setMentorData((prevData) => ({ ...prevData, bio: data.bio }));
+      if (data.currentCompany)
+        setMentorData((prevData) => ({
+          ...prevData,
+          currentCompany: data.currentCompany,
+        }));
 
-        if (data.experience)
-          setMentorData((prevData) => ({
-            ...prevData,
+      if (data.experience)
+        setMentorData((prevData) => ({
+          ...prevData,
+          experience: data.experience,
+        }));
+      if (data.education)
+        setMentorData((prevData) => ({
+          ...prevData,
+          education: data.education,
+        }));
+      if (data.socials)
+        setMentorData((prevData) => ({
+          ...prevData,
+          socials: data.socials,
+        }));
+      if (data.pmt)
+        setMentorData((prevData) => ({
+          ...prevData,
+          pmt: data.pmt,
+        })); */
+
+        data &&
+          setMentorData({
+            name: data.name,
+            email: data.email,
+            wnumber: data.wnumber,
+            bio: data.bio,
+            profile: data.profile,
+            areasOfInterest: data.areasOfInterest,
+            currentCompany: data.currentCompany,
             experience: data.experience,
-          }));
-        if (data.education)
-          setMentorData((prevData) => ({
-            ...prevData,
             education: data.education,
-          }));
-        if (data.socials)
-          setMentorData((prevData) => ({
-            ...prevData,
             socials: data.socials,
-          }));
-        if (data.pmt)
-          setMentorData((prevData) => ({
-            ...prevData,
             pmt: data.pmt,
-          }));
+          });
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Error fetching mentor data:", error);
       });
   }, []);
 
-  const handleProfileChange = async (e) => {
+  const handleProfileChange = async e => {
     let imageRef = ref(store, "mentors/profilePics");
     await uploadBytes(imageRef, e.target.files[0]);
     const imageUrl = await getDownloadURL(imageRef);
@@ -108,7 +127,7 @@ const MentorSignUp = () => {
     });
   };
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     const { name, value } = event.target;
     console.log(name, value);
     setMentorData({
@@ -116,7 +135,7 @@ const MentorSignUp = () => {
       [name]: value,
     });
   };
-  const handleExpChange = (event) => {
+  const handleExpChange = event => {
     const { name, value } = event.target;
     console.log(name, value);
     setDummyExp({
@@ -124,7 +143,7 @@ const MentorSignUp = () => {
       [name]: value,
     });
   };
-  const handleEduChange = (event) => {
+  const handleEduChange = event => {
     const { name, value } = event.target;
     console.log(name, value);
     setDummyEdu({
@@ -163,13 +182,13 @@ const MentorSignUp = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     updateMentor()
-      .then((data) => {
+      .then(data => {
         console.log("Student registered successfully:", data);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Failed to register student:", error);
       });
   };
@@ -198,21 +217,14 @@ const MentorSignUp = () => {
       throw error;
     }
   };
-
   return (
-    <div className={styles.page}>
+    <div className={styles.MentorProfile}>
       <h1>Profile | Mentor</h1>
-      <form
-        onSubmit={handleSubmit}
-        className={styles.mentorSignUpForm}>
+      <form onSubmit={handleSubmit} className={styles.mentorSignUpForm}>
         <div className={styles.formGroup}>
           <span>Profile:</span>
           🔗
-          <input
-            type="file"
-            name="profile"
-            onChange={handleProfileChange}
-          />
+          <input type="file" name="profile" onChange={handleProfileChange} />
           <img
             src={mentorData.profile}
             className={styles.profileImage}
@@ -243,7 +255,7 @@ const MentorSignUp = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <span>WhatsApp Number:</span>
+          <span>--WhatsApp Number:</span>
           🔗
           <input
             type="number"
@@ -272,7 +284,7 @@ const MentorSignUp = () => {
               <select
                 name="nonCoreAreasOfInterest"
                 value={mentorData.areasOfInterest}
-                onChange={(event) =>
+                onChange={event =>
                   setMentorData({
                     ...mentorData,
                     areasOfInterest: [
@@ -280,7 +292,8 @@ const MentorSignUp = () => {
                       event.target.value,
                     ],
                   })
-                }>
+                }
+              >
                 <option value="Data Science">Data Science</option>
                 <option value="Software">Software</option>
                 <option value="Banking and Finance">Banking and Finance</option>
@@ -303,7 +316,7 @@ const MentorSignUp = () => {
               <select
                 name="coreAreasOfInterest"
                 value={mentorData.areasOfInterest}
-                onChange={(event) =>
+                onChange={event =>
                   setMentorData({
                     ...mentorData,
                     areasOfInterest: [
@@ -311,7 +324,8 @@ const MentorSignUp = () => {
                       event.target.value,
                     ],
                   })
-                }>
+                }
+              >
                 <option value="Aerospace Engineering">
                   Aerospace Engineering
                 </option>
@@ -361,7 +375,7 @@ const MentorSignUp = () => {
             name="currentCompany.company"
             value={mentorData.currentCompany.company}
             placeholder="Current Company"
-            onChange={(e) =>
+            onChange={e =>
               setMentorData({
                 ...mentorData,
                 currentCompany: {
@@ -376,7 +390,7 @@ const MentorSignUp = () => {
             name="currentCompany.position"
             placeholder="Current Position"
             value={mentorData.currentCompany.position}
-            onChange={(e) =>
+            onChange={e =>
               setMentorData({
                 ...mentorData,
                 currentCompany: {
@@ -504,7 +518,7 @@ const MentorSignUp = () => {
                 name="socials.linkedin"
                 placeholder="Linkedin"
                 value={mentorData.socials.linkedin}
-                onChange={(e) =>
+                onChange={e =>
                   setMentorData({
                     ...mentorData,
                     socials: {
@@ -521,7 +535,7 @@ const MentorSignUp = () => {
                 name="socials.github"
                 placeholder="Github"
                 value={mentorData.socials.github}
-                onChange={(e) =>
+                onChange={e =>
                   setMentorData({
                     ...mentorData,
                     socials: {
@@ -538,7 +552,7 @@ const MentorSignUp = () => {
                 name="socials.twitter"
                 placeholder="Twitter"
                 value={mentorData.socials.twitter}
-                onChange={(e) =>
+                onChange={e =>
                   setMentorData({
                     ...mentorData,
                     socials: {
@@ -561,7 +575,7 @@ const MentorSignUp = () => {
               className={styles.paymentInputs}
               placeholder="Account Name"
               value={mentorData.pmt.acn}
-              onChange={(e) =>
+              onChange={e =>
                 setMentorData({
                   ...mentorData,
                   pmt: {
@@ -577,7 +591,7 @@ const MentorSignUp = () => {
               className={styles.paymentInputs}
               placeholder="Account Number"
               value={mentorData.pmt.acno}
-              onChange={(e) =>
+              onChange={e =>
                 setMentorData({
                   ...mentorData,
                   pmt: {
@@ -593,7 +607,7 @@ const MentorSignUp = () => {
               className={styles.paymentInputs}
               placeholder="IFSC Code"
               value={mentorData.pmt.ic}
-              onChange={(e) =>
+              onChange={e =>
                 setMentorData({
                   ...mentorData,
                   pmt: {
@@ -609,7 +623,7 @@ const MentorSignUp = () => {
               placeholder="Branch Name"
               className={styles.paymentInputs}
               value={mentorData.pmt.nb}
-              onChange={(e) =>
+              onChange={e =>
                 setMentorData({
                   ...mentorData,
                   pmt: {
@@ -625,7 +639,7 @@ const MentorSignUp = () => {
               placeholder="Branch Code"
               className={styles.paymentInputs}
               value={mentorData.pmt.bc}
-              onChange={(e) =>
+              onChange={e =>
                 setMentorData({
                   ...mentorData,
                   pmt: {
@@ -641,7 +655,7 @@ const MentorSignUp = () => {
               placeholder="UPI"
               className={styles.paymentInputs}
               value={mentorData.pmt.ui}
-              onChange={(e) =>
+              onChange={e =>
                 setMentorData({
                   ...mentorData,
                   pmt: {
@@ -656,12 +670,11 @@ const MentorSignUp = () => {
         <button
           type="submit"
           className={styles.submitButton}
-          onClick={handleSubmit}>
+          onClick={handleSubmit}
+        >
           Submit
         </button>
       </form>
     </div>
   );
-};
-
-export default MentorSignUp;
+}
