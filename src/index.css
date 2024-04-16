@@ -101,7 +101,7 @@ textarea {
   background-color: transparent;
   border: 0.2vw solid var(--themeColor1);
   color: var(--themeColor1);
-  border-radius: 10px;
+  border-radius: 1vw;
   cursor: pointer;
   transition: background ease 0.2s;
 }
@@ -133,8 +133,93 @@ button {
   color: var(--themeColor1);
 }
 
+@media all and (max-width: 991px) {
+  h1 {
+    font-size: 5vw;
+  }
+  .bigText {
+    font-size: 3vw;
+  }
+  .bigOutlineBtn {
+    font-size: 2.2vw;
+    padding: 2.2vw 3vw;
+    border: 0.3vw solid var(--themeColor1);
+    border-radius: 1.5vw;
+  }
+}
+
 @media all and (max-width: 480px) {
+  h1 {
+    font-size: 6vw;
+  }
+
+  h2 {
+    font-size: 2vw;
+    font-weight: 500;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
   input {
     font-size: 2.4vw;
+  }
+  textarea {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 1.2vw;
+    font-weight: 500;
+    width: 100%;
+    color: #fff;
+  }
+
+  .bigText {
+    font-size: 4vw;
+  }
+
+  .normalText {
+    font-size: 1.5vw;
+  }
+
+  .minorText {
+    font-size: 1.3vw;
+    color: var(--minor-text-color);
+  }
+
+  .bigOutlineBtn {
+    font-size: 3vw;
+    padding: 3vw 4vw;
+    border: 0.4vw solid var(--themeColor1);
+    border-radius: 2vw;
+  }
+  .bigOutlineBtn:hover {
+    background-color: var(--themeColor1);
+    color: var(--bg);
+  }
+
+  button {
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .btn1 {
+    background-color: var(--themeColor1);
+    padding: 1vw 2vw;
+    border-radius: 1vw;
+    font-size: 1.5vw;
+    font-weight: 600;
+    border: 0.2vw solid var(--themeColor1);
+    transition: background ease 0.2s;
+    color: var(--themeColor3);
+  }
+  .btn1:hover {
+    background-color: transparent;
+    color: var(--themeColor1);
   }
 }

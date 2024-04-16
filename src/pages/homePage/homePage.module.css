@@ -2,3 +2,9 @@
   /* border: 1px solid #fff; */
   margin-top: 6vw;
 }
+
+@media all and (max-width: 480px) {
+  .HomePage {
+    margin-top: 12vw;
+  }
+}

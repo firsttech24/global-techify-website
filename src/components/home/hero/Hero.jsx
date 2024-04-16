@@ -22,8 +22,8 @@ export default function Hero() {
           </button>
         </Link>
       </div>
-      <div className={styles.rightContainer}>
-        <div data-aos="fade-left" className={styles.imgContainer}>
+      <div data-aos="fade-left" className={styles.rightContainer}>
+        <div className={styles.imgContainer}>
           <img src={heroIcon} alt="hero-icon" />
         </div>
       </div>

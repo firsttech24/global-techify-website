@@ -2,11 +2,6 @@
   padding: 4vw;
   display: flex;
   position: relative;
-  .switchTheme {
-    position: absolute;
-    top: 2vw;
-    right: 4vw;
-  }
   .leftContainer {
     width: 50%;
     display: flex;
@@ -49,5 +44,65 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media all and (max-width: 991px) {
+  .Hero {
+    padding: 6vw;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 3vw;
+    .leftContainer {
+      width: 100%;
+      gap: 5vw;
+      .top {
+        gap: 3vw;
+        .animatedText {
+          font-size: 6vw;
+        }
+      }
+      .btn {
+        width: 100%;
+        margin: auto;
+      }
+    }
+    .rightContainer {
+      width: 100%;
+      .imgContainer {
+        width: 80%;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .Hero {
+    padding: 8vw;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5vw;
+    .leftContainer {
+      width: 100%;
+      gap: 7vw;
+      .top {
+        gap: 4vw;
+        .animatedText {
+          font-size: 8vw;
+        }
+      }
+      .btn {
+        width: 100%;
+        margin: auto;
+      }
+    }
+    .rightContainer {
+      width: 100%;
+      .imgContainer {
+        width: 100%;
+      }
+    }
   }
 }
