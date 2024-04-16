@@ -36,9 +36,10 @@
   .CountUp {
     gap: 6vw;
     padding: 3vw;
-    flex-direction: column;
+    flex-wrap: wrap;
   }
   .countContainer {
+    width: 28vw;
     gap: 1.5vw;
   }
   .count {
