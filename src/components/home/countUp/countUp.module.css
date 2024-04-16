@@ -29,4 +29,39 @@
 .title {
   color: var(--bg);
   font-size: 2vw;
+  font-weight: 400;
+}
+
+@media all and (max-width: 991px) {
+  .CountUp {
+    gap: 6vw;
+    padding: 3vw;
+    flex-direction: column;
+  }
+  .countContainer {
+    gap: 1.5vw;
+  }
+  .count {
+    font-size: 6vw;
+  }
+  .title {
+    font-size: 4vw;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .CountUp {
+    gap: 8vw;
+    padding: 4vw;
+    flex-direction: column;
+  }
+  .countContainer {
+    gap: 2vw;
+  }
+  .count {
+    font-size: 8vw;
+  }
+  .title {
+    font-size: 6vw;
+  }
 }
