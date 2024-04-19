@@ -36,10 +36,8 @@ export default function JoinAsMentor() {
             <span className="normalText">Build your own personal brand</span>
           </li>
         </ul>
-        <Link to={"/mentor"}>
-          <button data-aos="fade-up" className={`btn1 ${styles.btn}`}>
-            Become a Mentor
-          </button>
+        <Link data-aos="fade-up" to={"/mentor"}>
+          <button className={`btn1 ${styles.btn}`}>Become a Mentor</button>
         </Link>
       </div>
       <div data-aos="fade-left" className={styles.rightContainer}>
