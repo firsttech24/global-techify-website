@@ -50,3 +50,55 @@
     }
   }
 }
+
+@media all and (max-width: 991px) {
+  .swiper {
+    margin-top: 1vw;
+    .swiperSlide {
+      .leftContainer {
+        .title {
+          font-size: 5.25vw;
+          .span {
+          }
+        }
+      }
+      .imgContainer {
+        width: 25vw;
+        border: 0.6vw solid #ccc;
+        border-radius: 4.5vw;
+      }
+      .btnOne {
+        display: none;
+      }
+      .btnTwo {
+        display: none;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .swiper {
+    margin-top: 2vw;
+    .swiperSlide {
+      .leftContainer {
+        .title {
+          font-size: 6.5vw;
+          .span {
+          }
+        }
+      }
+      .imgContainer {
+        width: 30vw;
+        border: 0.8vw solid #ccc;
+        border-radius: 5.2vw;
+      }
+      .btnOne {
+        display: none;
+      }
+      .btnTwo {
+        display: none;
+      }
+    }
+  }
+}
