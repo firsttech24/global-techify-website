@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ourTeamPage.module.css";
 
-import leader01 from "./../../assets/ourTeam/leader01.png";
-import leader02 from "./../../assets/ourTeam/leader02.png";
-import leader03 from "./../../assets/ourTeam/leader03.png";
-import member01 from "./../../assets/ourTeam/member01.png";
-import member02 from "./../../assets/ourTeam/member02.png";
-import advisor01 from "./../../assets/ourTeam/advisor01.png";
 import ourTeam from "./../../assets/ourTeam/ourTeam.png";
 
-const leadersArr = [
+/* const leadersArr = [
   {
     img: leader01,
     name: "Amisha Prajapati",
@@ -28,9 +22,9 @@ const leadersArr = [
     position: "Technical Executive",
     contactInfo: "https://www.linkedin.com/in/vineet-soni-00997222a/",
   },
-];
+]; */
 
-const membersArr = [
+/* const membersArr = [
   {
     img: member01,
     name: "Apoorv Dubey",
@@ -43,22 +37,22 @@ const membersArr = [
     position: "Technical Executive",
     contactInfo: "https://www.linkedin.com/in/abhishek-shukla-350713255/",
   },
-];
+]; */
 
-const advisorArr = [
+/* const advisorArr = [
   {
     img: advisor01,
     name: "Swatantra Soni",
     position: "Technical Executive",
     contactInfo: "#",
   },
-];
+]; */
 
 export default function OurTeamPage() {
-  const [category, setCategory] = useState("leaders");
-  const [team, setTeam] = useState(leadersArr);
+  // const [category, setCategory] = useState("leaders");
+  const [team, setTeam] = useState();
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (category === "leaders") {
       setTeam(leadersArr);
     } else if (category === "members") {
@@ -66,7 +60,20 @@ export default function OurTeamPage() {
     } else {
       setTeam(advisorArr);
     }
-  }, [category]);
+  }, [category]); */
+
+  const fetchAllTeam = () => {
+    fetch(`${import.meta.env.VITE_HOST_API}/portal/get`)
+      .then(response => response.json())
+      .then(data => {
+        // console.log(data);
+        setTeam(data[0].team);
+      });
+  };
+
+  useEffect(() => {
+    fetchAllTeam();
+  }, []);
 
   return (
     <div className={styles.OurTeamPage}>
@@ -90,39 +97,18 @@ export default function OurTeamPage() {
       </div>
 
       {/* categories */}
-      <div data-aos="fade-up" className={styles.btns}>
-        <button
-          onClick={() => setCategory("leaders")}
-          className={`${styles.btn} ${
-            category === "leaders" ? styles.filledBtn : ""
-          }`}
-        >
-          Leaders
-        </button>
-        <button
-          onClick={() => setCategory("members")}
-          className={`${styles.btn} ${
-            category === "members" ? styles.filledBtn : ""
-          }`}
-        >
-          Members
-        </button>
-        <button
-          onClick={() => setCategory("advisors")}
-          className={`${styles.btn} ${
-            category === "advisors" ? styles.filledBtn : ""
-          }`}
-        >
-          Advisors
-        </button>
-      </div>
+      {/* <div data-aos="fade-up" className={styles.btns}>
+        <button onClick={() => setCategory("leaders")}>Leaders</button>
+        <button onClick={() => setCategory("members")}>Members</button>
+        <button onClick={() => setCategory("advisors")}>Advisors</button>
+      </div> */}
 
       {/* team */}
       <div data-aos="fade-up" className={styles.teamContainer}>
         {team?.map((item, index) => (
           <div className={styles.singleContainer} key={index}>
             <div className={styles.imgContainer}>
-              <img src={item.img} alt="team" />
+              <img src={item.photo} alt="team" />
             </div>
             <p className={styles.name}>{item.name}</p>
             <p className={styles.position}>{item.position}</p>

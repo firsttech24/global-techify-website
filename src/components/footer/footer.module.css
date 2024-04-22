@@ -162,3 +162,169 @@
 .heading:hover::after {
   width: 7vw;
 }
+
+@media all and (max-width: 991px) {
+  .Footer {
+    padding: 6vw;
+    .footerOne {
+      flex-direction: column;
+      align-items: flex-start;
+      border-bottom: 0.16vw solid var(--themeColor1);
+      padding: 3vw 0;
+      .left,
+      .middle,
+      .right {
+        width: 100%;
+      }
+    }
+    .footerTwo {
+      flex-direction: column;
+      padding: 3vw 0;
+      .left {
+        width: 100%;
+        gap: 1.5vw;
+        .leftTop {
+          .logo {
+            font-size: 4vw;
+          }
+        }
+        .leftDown {
+          p {
+          }
+          .socialContainer {
+            gap: 1.5vw;
+            svg {
+              font-size: 3vw;
+            }
+          }
+        }
+      }
+      .middle {
+        width: 100%;
+        gap: 3vw;
+        .linksContainer {
+          gap: 13vw;
+          .linksOne,
+          .linksTwo {
+            gap: 1.5vw;
+          }
+        }
+      }
+      .right {
+        width: 100%;
+        gap: 3vw;
+        .container {
+          gap: 1.5vw;
+          .searchContainer {
+            border: 0.2vw solid var(--themeColor1);
+            width: 100%;
+            padding: 0 1.5vw;
+            .input {
+              padding: 1.5vw;
+            }
+            svg {
+              font-size: 4.5vw;
+            }
+          }
+        }
+      }
+    }
+    .footerThree {
+      font-size: 1.5vw;
+    }
+  }
+
+  .heading::after {
+    content: "";
+    position: absolute;
+    bottom: -0.15vw;
+    width: 5vw;
+    height: 0.3vw;
+  }
+  .heading:hover::after {
+    width: 11vw;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .Footer {
+    padding: 8vw;
+    .footerOne {
+      flex-direction: column;
+      align-items: flex-start;
+      border-bottom: 0.22vw solid var(--themeColor1);
+      padding: 4vw 0;
+      .left,
+      .middle,
+      .right {
+        width: 100%;
+      }
+    }
+    .footerTwo {
+      flex-direction: column;
+      padding: 4vw 0;
+      .left {
+        width: 100%;
+        gap: 2vw;
+        .leftTop {
+          .logo {
+            font-size: 5vw;
+          }
+        }
+        .leftDown {
+          p {
+          }
+          .socialContainer {
+            gap: 2vw;
+            svg {
+              font-size: 4vw;
+            }
+          }
+        }
+      }
+      .middle {
+        width: 100%;
+        gap: 4vw;
+        .linksContainer {
+          gap: 16vw;
+          .linksOne,
+          .linksTwo {
+            gap: 2vw;
+          }
+        }
+      }
+      .right {
+        width: 100%;
+        gap: 4vw;
+        .container {
+          gap: 2vw;
+          .searchContainer {
+            border: 0.3vw solid var(--themeColor1);
+            width: 100%;
+            padding: 0 2vw;
+            .input {
+              padding: 2vw;
+            }
+            svg {
+              font-size: 6vw;
+            }
+          }
+        }
+      }
+    }
+    .footerThree {
+      font-size: 2vw;
+    }
+  }
+
+  .heading::after {
+    content: "";
+    position: absolute;
+    bottom: -0.2vw;
+    width: 7vw;
+    height: 0.4vw;
+  }
+  .heading:hover::after {
+    width: 14vw;
+  }
+}

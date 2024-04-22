@@ -151,6 +151,7 @@ button {
     font-size: 2vw;
     color: var(--minor-text-color);
   }
+
   .bigOutlineBtn {
     font-size: 2.2vw;
     padding: 2.2vw 3vw;
