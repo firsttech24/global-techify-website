@@ -12,17 +12,6 @@ import logo from "./../../assets/logo.svg";
 
 export default function Header({ setIsDarkTheme }) {
   const [isShowSidebar, setIsShowSidebar] = useState(false);
-  /*   const searchRef = useRef(null);
-
-  const handleMouseHover = e => {
-    searchRef.current.setAttribute("style", "width: 20vw");
-  };
-
-  const handleMouseOut = () => {
-    setTimeout(() => {
-      searchRef.current.setAttribute("style", "width: 0");
-    }, 5000);
-  }; */
 
   return (
     <div className={styles.Header}>
@@ -33,21 +22,6 @@ export default function Header({ setIsDarkTheme }) {
         </div>
         <span>Global Techify</span>
       </Link>
-
-      {/* search */}
-      {/*  <div
-        className={styles.searchContainer}
-        onMouseOver={handleMouseHover}
-        onMouseOut={handleMouseOut}
-      >
-        <input
-          ref={searchRef}
-          type="text"
-          className={styles.input}
-          placeholder="Search..."
-        />
-        <FaSearch />
-      </div> */}
 
       <div className={styles.navbarContainer}>
         <div className={styles.desktopNavbar}>
