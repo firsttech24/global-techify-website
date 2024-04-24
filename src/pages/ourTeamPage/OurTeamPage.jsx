@@ -104,6 +104,9 @@ export default function OurTeamPage() {
       </div> */}
 
       {/* team */}
+
+      <h1>Team Members</h1>
+
       <div data-aos="fade-up" className={styles.teamContainer}>
         {team?.map((item, index) => (
           <div className={styles.singleContainer} key={index}>

@@ -7,6 +7,8 @@
   justify-content: center;
   align-items: center;
   gap: 5vw;
+  max-width: 100vw;
+  overflow-x: hidden;
   .heading {
     width: 100%;
     /* border: 1px solid #fff; */
@@ -50,7 +52,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5vw;
+    gap: 2vw;
+    flex-wrap: wrap;
     .singleContainer {
       /* border: 1px solid #fff; */
       width: 20vw;
@@ -60,7 +63,7 @@
       align-items: center;
       gap: 0.5vw;
       .imgContainer {
-        border: 0.2vw solid var(--themeColor);
+        border: 0.2vw solid var(--themeColor1);
         border-radius: 50%;
         width: 11vw;
         height: 11vw;
@@ -68,13 +71,95 @@
       }
       .name {
         font-size: 2vw;
+        font-weight: 500;
       }
       .position {
         font-size: 1.2vw;
       }
       .contactInfo {
         font-size: 1vw;
-        color: var(--themeColor);
+        color: var(--themeColor1);
+      }
+    }
+  }
+}
+
+/* tablet responsive */
+@media all and (max-width: 991px) {
+  .OurTeamPage {
+    margin-top: 10vw;
+    padding: 6vw;
+    gap: 8vw;
+    .heading {
+      flex-direction: column-reverse;
+      .left {
+        width: 90%;
+        gap: 1.5vw;
+      }
+      .right {
+        width: 90%;
+      }
+    }
+    .teamContainer {
+      gap: 4vw;
+      .singleContainer {
+        width: 30vw;
+        gap: 0.8vw;
+        .imgContainer {
+          border: 0.3vw solid var(--themeColor1);
+          width: 18vw;
+          height: 18vw;
+        }
+        .name {
+          font-size: 3vw;
+        }
+        .position {
+          font-size: 2.2vw;
+        }
+        .contactInfo {
+          font-size: 1.8vw;
+        }
+      }
+    }
+  }
+}
+
+/* mobile responsive */
+@media all and (max-width: 480px) {
+  .OurTeamPage {
+    margin-top: 12vw;
+    padding: 8vw;
+    gap: 10vw;
+    .heading {
+      flex-direction: column-reverse;
+      .left {
+        width: 100%;
+        gap: 2vw;
+      }
+      .right {
+        width: 100%;
+      }
+    }
+
+    .teamContainer {
+      gap: 4vw;
+      .singleContainer {
+        width: 40vw;
+        gap: 1vw;
+        .imgContainer {
+          border: 0.4vw solid var(--themeColor1);
+          width: 22vw;
+          height: 22vw;
+        }
+        .name {
+          font-size: 4vw;
+        }
+        .position {
+          font-size: 2.6vw;
+        }
+        .contactInfo {
+          font-size: 2.2vw;
+        }
       }
     }
   }
