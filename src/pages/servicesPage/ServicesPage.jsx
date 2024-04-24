@@ -51,7 +51,7 @@ export default function ServicesPage() {
       <h1 data-aos="fade-up">Services</h1>
       <div data-aos="zoom-out" className={styles.container}>
         {servicesArr?.map((item, index) => (
-          <div className={styles.singleContainer}>
+          <div key={index} className={styles.singleContainer}>
             <div className={styles.top}>
               <div data-aos="zoom-out" className={styles.imgContainer}>
                 <img src={item.img} alt="icons" />

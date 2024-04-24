@@ -12,9 +12,9 @@ export default function DesktopNavbar() {
         <Link to={"/about"}>
           <li>About</li>
         </Link>
-        <Link to={"/mentor"}>
+        {/* <Link to={"/mentor"}>
           <li>Mentor</li>
-        </Link>
+        </Link> */}
         <Link to={"/services"}>
           <li>Services</li>
         </Link>

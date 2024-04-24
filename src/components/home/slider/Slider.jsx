@@ -31,8 +31,8 @@ export default function Slider() {
       navigation
       loop={true}
       autoplay={{ delay: 3000 }}
-      onSlideChange={() => console.log("chaning")}
-      onSwiper={swiper => console.log(swiper)}
+      // onSlideChange={() => console.log("chaning")}
+      // onSwiper={swiper => console.log(swiper)}
       className={styles.swiper}
     >
       {sliderArr?.map((item, index) => (
