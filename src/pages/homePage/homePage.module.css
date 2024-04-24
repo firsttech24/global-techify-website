@@ -1,6 +1,8 @@
 .HomePage {
   /* border: 1px solid #fff; */
   margin-top: 6vw;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 @media all and (max-width: 480px) {
