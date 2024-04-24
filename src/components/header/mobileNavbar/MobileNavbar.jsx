@@ -29,6 +29,9 @@ export default function MobileNavbar({ setIsShowSidebar, isShowSidebar }) {
         <Link to={"/contact"} onClick={() => setIsShowSidebar(false)}>
           <li>Contact</li>
         </Link>
+        <Link to={"/auth"} onClick={() => setIsShowSidebar(false)}>
+          <li>Signin</li>
+        </Link>
         <IoIosCloseCircle
           onClick={() => setIsShowSidebar(false)}
           className={styles.close}

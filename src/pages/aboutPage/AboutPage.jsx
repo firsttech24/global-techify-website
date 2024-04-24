@@ -20,12 +20,15 @@ export default function AboutPage({ isDarkTheme }) {
       img: vision,
     },
   ];
+  // data-aos="fade-up"
+  // data-aos="fade-up"
+  // data-aos="fade-left"
   return (
     <div className={styles.AboutPage}>
       <div className={styles.topContainer}>
         <div className={styles.left}>
-          <h1 data-aos="fade-up">About</h1>
-          <p data-aos="fade-up" className="normalText">
+          <h1>About</h1>
+          <p className="normalText">
             Global Techify is a startup that provides mentorship to students. We
             empower students to stay up-to-date with the latest advancements in
             technology and connect them with experts from leading companies. Our
@@ -35,16 +38,12 @@ export default function AboutPage({ isDarkTheme }) {
             generation of tech leaders.
           </p>
         </div>
-        <div data-aos="fade-left" className={styles.imgContainer}>
+        <div className={styles.imgContainer}>
           <img src={isDarkTheme ? aboutWhite : aboutblack} alt="about" />
         </div>
       </div>
 
-      <div
-        data-aos="zoom-out"
-        data-aos-delay={0}
-        className={styles.bottomContainer}
-      >
+      <div className={styles.bottomContainer}>
         {missionVisionArr?.map((item, index) => (
           <div className={styles.singleContainer} key={index}>
             <h2 className={styles.title}>{item.title}</h2>
@@ -60,3 +59,5 @@ export default function AboutPage({ isDarkTheme }) {
     </div>
   );
 }
+// data-aos="zoom-out"
+// data-aos-delay={0}
