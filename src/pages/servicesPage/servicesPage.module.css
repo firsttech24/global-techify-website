@@ -50,6 +50,7 @@
         transition: all ease 0.5s;
         .imgContainer {
           width: 15vw;
+          filter: drop-shadow(0 0.2vw 0.3vw var(--box-shadow-color));
         }
         p {
           font-weight: 600;
