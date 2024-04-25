@@ -10,6 +10,7 @@
     flex-direction: column;
     gap: 4vw;
     width: 50%;
+
     .headingContainer {
       .heading {
         .span {
@@ -46,6 +47,7 @@
   .rightContainer {
     width: 45%;
     /* border: 1px solid #fff; */
+    filter: drop-shadow(0 0.2vw 0.7vw var(--box-shadow-color));
   }
 }
 

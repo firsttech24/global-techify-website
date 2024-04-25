@@ -1,6 +1,8 @@
 .AboutPage {
   /* border: 1px solid #fff; */
   margin-top: 6vw;
+  max-width: 100vw;
+  overflow-x: hidden;
   .topContainer {
     display: flex;
     justify-content: space-between;
