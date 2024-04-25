@@ -25,11 +25,12 @@ export default function CollegeAuth() {
       >
         {isSignin ? (
           <p className={`bigText ${styles.title}`}>
-            Don't have an account ? Please sign up !
+            Don't have an account ?<br /> Please sign up !
           </p>
         ) : (
           <p className={`bigText ${styles.title}`}>
-            If you already have an account, Please sign in !
+            If you already have an account, <br />
+            Please sign in !
           </p>
         )}
         {!isSignin && (

@@ -41,3 +41,56 @@
     }
   }
 }
+
+/* tablet responsiveness */
+@media all and (max-width: 991px) {
+  .form {
+    gap: 3vw;
+    .formBody {
+      gap: 1.5vw;
+      .formRow {
+        gap: 3vw;
+      }
+      input {
+        border-bottom: 0.25vw solid var(--themeColor4) !important;
+        padding: 1.5vw 0;
+        &:hover {
+          border-bottom: 0.25vw solid var(--themeColor1) !important;
+        }
+      }
+      .btn {
+        margin-top: 1.5vw;
+        padding: 0.75vw 1.5vw;
+        border-radius: 1.5vw;
+        height: 6vw;
+      }
+    }
+  }
+}
+
+/* mobile responsiveness */
+@media all and (max-width: 480px) {
+  .form {
+    gap: 4vw;
+    .formBody {
+      gap: 2vw;
+      .formRow {
+        gap: 4vw;
+        flex-direction: column;
+      }
+      input {
+        border-bottom: 0.3vw solid var(--themeColor4) !important;
+        padding: 2vw 0;
+        &:hover {
+          border-bottom: 0.3vw solid var(--themeColor1) !important;
+        }
+      }
+      .btn {
+        margin-top: 2vw;
+        padding: 1vw 2vw;
+        border-radius: 2vw;
+        height: 8vw;
+      }
+    }
+  }
+}

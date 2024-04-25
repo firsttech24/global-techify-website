@@ -26,10 +26,32 @@
   /* border: 1px solid #fff; */
 }
 
+/* tablet responsiveness */
+@media all and (max-width: 991px) {
+  .AuthPage {
+    margin-top: 15vw;
+    .btns {
+      gap: 2.5vw;
+      .btn {
+        width: 25vw;
+        font-size: 3vw;
+        padding: 0.15vw 3vw;
+        border-radius: 0.75vw;
+        border: 0.3vw solid transparent;
+      }
+      .filledBtn {
+        border: 0.15vw solid var(--themeColor4);
+      }
+    }
+  }
+  .auth {
+    margin-top: 3vw;
+  }
+}
+
 /* mobile responsiveness */
 @media all and (max-width: 480px) {
   .AuthPage {
-    /* border: 1px solid #fff; */
     margin-top: 20vw;
     .btns {
       gap: 3vw;
@@ -47,6 +69,5 @@
   }
   .auth {
     margin-top: 4vw;
-    /* border: 1px solid #fff; */
   }
 }
