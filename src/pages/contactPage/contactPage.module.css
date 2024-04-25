@@ -42,3 +42,65 @@
     }
   }
 }
+
+/* tablet responsiveness */
+@media all and (max-width: 991px) {
+  .ContactPage {
+    margin-top: 10vw;
+    padding: 6vw;
+    flex-direction: column-reverse;
+    gap: 6vw;
+    .imgContainer {
+      width: 95%;
+    }
+    .form {
+      width: 95%;
+      gap: 1.5vw;
+      input {
+        border-bottom: 0.25vw solid var(--themeColor4) !important;
+        padding: 1.5vw 0;
+        &:hover {
+          border-bottom: 0.25vw solid var(--themeColor1) !important;
+        }
+      }
+      textarea {
+        border-bottom: 0.25vw solid var(--themeColor4) !important;
+        padding: 1.5vw 0;
+        &:hover {
+          border-bottom: 0.25vw solid var(--themeColor1) !important;
+        }
+      }
+    }
+  }
+}
+
+/* mobile responsiveness */
+@media all and (max-width: 480px) {
+  .ContactPage {
+    margin-top: 12vw;
+    padding: 8vw;
+    flex-direction: column-reverse;
+    gap: 8vw;
+    .imgContainer {
+      width: 100%;
+    }
+    .form {
+      width: 100%;
+      gap: 2vw;
+      input {
+        border-bottom: 0.3vw solid var(--themeColor4) !important;
+        padding: 2vw 0;
+        &:hover {
+          border-bottom: 0.3vw solid var(--themeColor1) !important;
+        }
+      }
+      textarea {
+        border-bottom: 0.3vw solid var(--themeColor4) !important;
+        padding: 2vw 0;
+        &:hover {
+          border-bottom: 0.3vw solid var(--themeColor1) !important;
+        }
+      }
+    }
+  }
+}

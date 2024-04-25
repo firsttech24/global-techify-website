@@ -143,6 +143,12 @@ button {
   h2 {
     font-size: 3vw;
   }
+  input {
+    font-size: 2.2vw;
+  }
+  textarea {
+    font-size: 2.2vw;
+  }
   .bigText {
     font-size: 3vw;
   }
@@ -187,13 +193,7 @@ button {
     font-size: 2.4vw;
   }
   textarea {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    font-size: 1.2vw;
-    font-weight: 500;
-    width: 100%;
-    color: #fff;
+    font-size: 2.4vw;
   }
 
   .bigText {
