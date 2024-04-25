@@ -26,10 +26,10 @@ export default function ContactPage() {
     e.preventDefault();
     console.log(formData);
   };
-  // data-aos="fade-up"
+
   return (
     <div className={styles.ContactPage}>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form data-aos="fade-up" onSubmit={handleSubmit} className={styles.form}>
         <h1>Contact</h1>
         <p className="normalText">Have any queries? We're Here To Help</p>
         <div>
@@ -76,10 +76,9 @@ export default function ContactPage() {
         </button>
       </form>
 
-      <div className={styles.imgContainer}>
+      <div data-aos="fade-left" className={styles.imgContainer}>
         <img src={contact} alt="contact" />
       </div>
     </div>
   );
 }
-// data-aos="fade-left"

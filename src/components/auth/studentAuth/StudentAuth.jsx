@@ -29,7 +29,7 @@ export default function StudentAuth() {
       >
         {isSignin ? (
           <p className={`bigText ${styles.title}`}>
-            Don't have an account ? Please &nbsp;&nbsp;&nbsp;&nbsp; sign up !
+            Don't have an account ? Please sign up !
           </p>
         ) : (
           <p className={`bigText ${styles.title}`}>

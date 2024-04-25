@@ -1,5 +1,5 @@
 .MobileNavbar {
-  width: 70%;
+  width: 60%;
   height: 100vh;
   background-color: var(--themeColor1);
   z-index: 1000;
@@ -10,11 +10,12 @@
   transition: transform ease-in-out 0.5s;
   ul {
     /* border: 1px solid black; */
+    padding-top: 30vw;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 10vw;
     position: relative;
     a {

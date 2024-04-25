@@ -10,7 +10,7 @@ export default function AuthPage() {
   return (
     <div className={styles.AuthPage}>
       {/* categories */}
-      <div data-aos="fade-up" className={styles.btns}>
+      <div /* data-aos="fade-up" */ className={styles.btns}>
         <button
           onClick={() => setSelectAuth("student")}
           className={`${styles.btn} ${

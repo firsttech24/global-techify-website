@@ -1,11 +1,11 @@
 .StudentAuth {
   /* border: 1px solid #fff; */
-  width: 100%;
+  width: 100vw;
   height: 70vh;
   padding: 4vw;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   gap: 5vw;
   transition: all ease 0.5s;
@@ -15,42 +15,43 @@
     transition: all ease 0.5s;
   }
   .signedIn {
-    transform: translateX(111%);
+    transform: translateX(100%);
   }
   .selectAuth {
-    background-color: var(--themeColor1);
-    /* background-color: #fff; */
+    width: 40%;
+    border: 0.2vw solid var(--themeColor1);
+    background-color: var(--themeColor3);
     margin-bottom: auto;
     border-radius: 2vw;
     padding: 3vw;
-    width: 50%;
     height: 25vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 5vw;
-    color: var(--themeColor4);
+    color: var(--themeColor1);
     transition: all ease 0.5s;
     .title {
       font-weight: 500;
-      text-align: start;
-      color: var(--themeColor3);
+      text-align: center;
+      color: var(--themeColor1);
+      font-size: 2vw;
     }
     .btn {
-      border-color: var(--themeColor3);
+      border-color: var(--themeColor1);
       background-color: transparent;
-      color: var(--themeColor3);
+      color: var(--themeColor1);
       /* margin-right: auto; */
       &:hover {
-        background-color: var(--themeColor3);
-        color: var(--themeColor1);
+        background-color: var(--themeColor1);
+        color: var(--themeColor3);
       }
     }
     .selectedAuth {
     }
   }
   .signedInTwo {
-    transform: translateX(-111%);
+    transform: translateX(-150%);
   }
 }
