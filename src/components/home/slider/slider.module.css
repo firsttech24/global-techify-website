@@ -27,6 +27,7 @@
       border-radius: 2.6vw;
       display: flex;
       align-items: center;
+      filter: drop-shadow(0 0.2vw 0.7vw var(--box-shadow-color));
     }
     .btnOne {
       position: absolute;
