@@ -5,15 +5,66 @@
     gap: 2vw;
     a {
       text-decoration: none;
-      li {
-        font-size: 1.5vw;
-        transition: color ease 0.2s;
-        font-weight: 500;
-        color: var(--themeColor4);
-        &:hover {
-          color: var(--themeColor1);
-        }
+    }
+    li {
+      font-size: 1.5vw;
+      transition: color ease 0.2s;
+      font-weight: 500;
+      color: var(--themeColor4);
+      &:hover {
+        color: var(--themeColor1);
       }
     }
   }
+}
+
+.products {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  .productsHoverContainer {
+    width: 17vw;
+    position: absolute;
+    top: 4vw;
+    right: -6vw;
+    z-index: 2000;
+    padding: 2vw;
+    background-color: var(--themeColor3);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1vw;
+    font-size: 1vw;
+    .parent {
+      gap: 0.6vw;
+      align-items: flex-start;
+    }
+    .list {
+      font-size: 1.2vw;
+      .dropDownIcon {
+        font-size: 2vw;
+
+        margin-right: auto;
+      }
+    }
+    .dropDownContainer {
+      padding-left: 0.5vw;
+      /* font-size: 0.9vw; */
+      font-weight: 600;
+      gap: 0.5vw;
+      align-items: flex-start;
+    }
+  }
+}
+.products:hover {
+  height: 4vw;
+}
+
+.products:hover .productsHoverContainer {
+  display: flex;
+}
+.productsHoverContainer:hover {
+  display: flex;
 }

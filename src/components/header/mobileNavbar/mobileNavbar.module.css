@@ -16,15 +16,24 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 10vw;
+    gap: 8vw;
     position: relative;
     a {
       text-decoration: none;
-      li {
-        list-style-type: none;
-        font-size: 6vw;
-        color: var(--themeColor3);
-        font-weight: 600;
+    }
+    li {
+      list-style-type: none;
+      font-size: 6vw;
+      color: var(--themeColor3);
+      font-weight: 600;
+      .name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .dropDownIcon {
+          font-size: 10vw;
+          color: var(--themeColor3);
+        }
       }
     }
   }
@@ -40,4 +49,16 @@
 
 .showSidebar {
   transform: translateX(0);
+}
+
+.dropDownContainer {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2vw;
+  li {
+    font-size: 5vw !important;
+  }
 }

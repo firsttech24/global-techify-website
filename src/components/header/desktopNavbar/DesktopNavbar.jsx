@@ -24,6 +24,21 @@ export default function DesktopNavbar() {
         <Link to={"/contact"}>
           <li>Contact</li>
         </Link>
+
+        {/* panels */}
+        <li className={`${styles.products}`}>
+          <span className={styles.span}>Panels</span>
+          <ul className={styles.productsHoverContainer}>
+            <Link href={"/mentor-panel"}>
+              <li className={styles.list}>Mentor Panel</li>
+            </Link>
+
+            <Link href={"/student-panel"}>
+              <li className={styles.list}>Student Panel</li>
+            </Link>
+          </ul>
+        </li>
+
         <Link to={"/auth"}>
           <li>Signin</li>
         </Link>
