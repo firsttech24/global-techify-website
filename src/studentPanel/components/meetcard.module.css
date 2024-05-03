@@ -51,10 +51,6 @@
   }
 }
 
-.linkBox{
-  display: flex;
-
-}
 
 .linkhref{
   font-size: 1vw;
@@ -63,6 +59,13 @@
   text-decoration: underline;
   color: var(--themeColor);
   cursor: pointer;
+}
+
+.meetLinkRequest{
+  font-size: 1vw;
+  padding: .4vw 1vw;
+  background-color: green;
+  color: #eee;
 }
 
 .buttonsContainer {

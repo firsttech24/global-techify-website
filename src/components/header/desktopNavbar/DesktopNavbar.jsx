@@ -29,11 +29,11 @@ export default function DesktopNavbar() {
         <li className={`${styles.products}`}>
           <span className={styles.span}>Panels</span>
           <ul className={styles.productsHoverContainer}>
-            <Link href={"/mentor-panel"}>
+            <Link to={"/mentor/meetrequests"}>
               <li className={styles.list}>Mentor Panel</li>
             </Link>
 
-            <Link href={"/student-panel"}>
+            <Link to={"/student/mentors"}>
               <li className={styles.list}>Student Panel</li>
             </Link>
           </ul>

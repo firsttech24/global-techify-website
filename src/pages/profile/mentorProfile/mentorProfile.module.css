@@ -1,7 +1,6 @@
 .MentorProfile {
-  border: 1px solid #fff;
-}
-.page {
+  margin-top: 6vw;
+  border: 10px solid white;
   display: flex;
   flex-direction: column;
   align-items: center;

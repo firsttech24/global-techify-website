@@ -1,0 +1,153 @@
+:root {
+  --themeColor: rgba(0, 128, 0, 0.715);
+  --semiTransparentColor: rgba(0, 0, 0, 0.9);
+  --shadowColor: rgba(0, 0, 0, 0.3);
+  --textColor: #777;
+  --backgroundColor: #212121;
+}
+
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--semiTransparentColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: var(--backgroundColor);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px var(--shadowColor);
+  max-width: 80%;
+  margin-top: 5vw;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.closeButton {
+  background-color: transparent;
+  border: none;
+  color: var(--textColor);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.modalBody {
+  display: flex;
+  gap: 4vw;
+  padding-left: 3vw;
+}
+
+.rightModal {
+  display: flex;
+  flex-direction: column;
+  min-width: 20vw;
+  gap: 1.4vw;
+}
+
+.profileRadio {
+  display: flex;
+  flex-direction: column;
+}
+
+.profileRadioOptionsBox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+  padding: 1vw 0;
+}
+
+.profileRadioOptions {
+  display: flex;
+  gap: 1vw;
+  input{
+    width: 30px;
+  }
+  label{
+    display: flex;
+  }
+}
+
+.durationRadio{
+  display: flex;
+}
+
+.durationRadioBox{
+  display: flex;
+  align-items: center;
+}
+
+.durationRadioItems{
+  margin: 10px;
+  margin-top: 0;
+}
+
+.slotRadio {
+  display: flex;
+  flex-direction: column;
+}
+
+.slotRadioOptionsBox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.slotRadioOption {
+  display: flex;
+  align-items: center;
+}
+
+.slotRadioOption input[type="radio"] {
+  margin-right: 5px;
+  width: 30px;
+}
+
+.slotRadioOption label {
+  cursor: pointer;
+}
+
+.typeRadio {
+  display: flex;
+  flex-direction: column;
+}
+
+.typeHeading {}
+
+.typeRow {
+  padding: 0.5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4vw;
+}
+
+.typeOptions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5vw;
+  input {
+    width: 20px;
+  }
+}
+
+.buttonRow {
+  display: flex;
+  justify-content: center;
+  padding: 1vw;
+}
+
+.buttonRow button {
+  background-color: var(--themeColor);
+  padding: 0.7vw 1.2vw;
+  border-radius: 2px;
+}

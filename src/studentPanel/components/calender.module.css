@@ -1,0 +1,59 @@
+/* calendermodel.module.css */
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: max-content;
+}
+
+.calendar {
+  width: 20vw;
+  max-width: 20vw;
+  border: 0.1vw solid #ccc;
+  border-radius: 0.5vw;
+  margin: 0 auto;
+  padding: .3vw;
+}
+
+.headerLista {
+  text-align: center;
+  font-weight: bold;
+  padding: 0.4vw 0;
+  display: flex;
+  width: 16vw;
+  justify-content: space-around;
+  color: #007bff;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 0.04vw solid #ccc; /* Adjusted to 0.04% of viewport width */
+}
+
+.weekdays > div {
+  padding: 0.4vw 0; /* Adjusted to 0.4% of viewport width */
+  text-align: center;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day {
+  padding: 0.4vw 0; /* Adjusted to 0.4% of viewport width */
+  text-align: center;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: #007bff; /* Blue color for selected day */
+  color: white;
+}
+
+.weekend {
+  color: green; /* Green color for weekend days */
+}

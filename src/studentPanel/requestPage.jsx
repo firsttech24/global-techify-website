@@ -1,29 +1,24 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import {useNavigate} from "react-router-dom";
-import UserCard from "./components/UserCard";
-// import { FaLeaf } from "react-icons/fa";
+import MeetCard from "./components/MeetCard";
 
-const RequestPage = () => {
-  const buttons = ["Accept", "Ignore"];
+const StudentRequestPage = () => {
   const [requests, setRequests] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    const mentorId = localStorage.getItem("gtechify!#");
-    if(!mentorId) navigate("/auth");
+    const studentId = localStorage.getItem("gtechify!#");
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_HOST_API}/meet/all/mentor/${mentorId}`
+          `${import.meta.env.VITE_HOST_API}/meet/all/student/${studentId}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-       const req = data.filter((item) => item.approval === false);
-       setRequests(req);
+        const req = data.filter((item) => item.approval === false);
+        setRequests(req);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -37,15 +32,15 @@ const RequestPage = () => {
     <div style={{ display: "flex", flexWrap: "wrap", gap: "1.5vw" }}>
       {requests.length
         ? requests?.map((item, key) => (
-            <UserCard
+            <MeetCard
               key={key}
-              buttons={buttons}
+              buttons={[]}
               item={item}
             />
           ))
-        : "loading......"}
+        : "no meet requests yet......"}
     </div>
   );
 };
 
-export default RequestPage;
+export default StudentRequestPage;

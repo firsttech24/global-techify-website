@@ -14,8 +14,15 @@ import {
   AuthPage,
   OurTeamPage,
   MentorProfile,
+  StudentProfile,
 } from "./pages";
-import UserProfile from "./pages/login/UserProfile";
+
+import StudentDashboard from "./studentPanel/studentDashboard";
+import Allmentors from "./studentPanel/Allmentors";
+import StudentAcceptedRequests from "./studentPanel/AcceptedRequests";
+import StudentUpcomingSessions from "./studentPanel/UpcomingSessions";
+import StudentRequestPage from "./studentPanel/requestPage";
+
 import MentorDashboard from "./mentorPanel/mentorDashboard";
 import AcceptedRequests from "./mentorPanel/AcceptedRequests";
 import RequestPage from "./mentorPanel/requestPage";
@@ -62,8 +69,23 @@ export default function App() {
         {/* mentor profile */}
         <Route path={"/mentor-profile"} element={<MentorProfile />} />
 
-        <Route path="/user/profile" element={<UserProfile />} />
+        <Route path="/student-profile" element={<StudentProfile />} />
 
+        {/* student panel */}
+        <Route path="/student" element={<StudentDashboard />}>
+          <Route path="mentors" element={<Allmentors />} />
+          <Route path="meetrequests" element={<StudentRequestPage />} />
+          <Route
+            path="acceptedrequests"
+            element={<StudentAcceptedRequests />}
+          />
+          <Route
+            path="upcomingsessions"
+            element={<StudentUpcomingSessions />}
+          />
+        </Route>
+
+        {/* mentor panel */}
         <Route path="/mentor" element={<MentorDashboard />}>
           <Route path="meetrequests" element={<RequestPage />} />
           <Route path="acceptedrequests" element={<AcceptedRequests />} />
