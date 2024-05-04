@@ -8,6 +8,7 @@ import { FaTrash } from "react-icons/fa";
 import { store } from "../../../config/firebase";
 import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 import PopUpScheduleHandler from "./PopUpScheduleHandler";
+import {useNavigate} from "react-router-dom";
 
 const timeSlots = [
   "00:00 AM",
@@ -162,6 +163,7 @@ const profiles = {
 
 const MentorProfile = () => {
   const [id, setId] = useState("");
+  const navigate = useNavigate();
   const [mentorData, setMentorData] = useState({
     name: "",
     email: "",
@@ -181,6 +183,12 @@ const MentorProfile = () => {
       twitter: "",
     },
     approved: false,
+    price : {
+      15 : "",
+      30 : "",
+      45 : "",
+      60 : ""
+    },
     schedule: {
       sunday: [],
       monday: [],
@@ -216,50 +224,13 @@ const MentorProfile = () => {
 
   useEffect(() => {
     const item = localStorage.getItem("gtechify!#");
+    if(!item) navigate("/auth");
     setId(item);
     if (!item) navigate("/auth");
     fetch(`${import.meta.env.VITE_HOST_API}/mentor/get/${item}`)
       .then(response => response.json())
       .then(data => {
-        if (data.name)
-          setMentorData(prevData => ({ ...prevData, name: data.name }));
-        if (data.email)
-          setMentorData(prevData => ({ ...prevData, email: data.email }));
-        if (data.wnumber)
-          setMentorData(prevData => ({ ...prevData, wnumber: data.wnumber }));
-        if (data.bio)
-          setMentorData(prevData => ({ ...prevData, bio: data.bio }));
-        if (data.approved)
-          setMentorData(prevData => ({
-            ...prevData,
-            approved: data.approved,
-          }));
-        if (data.currentCompany)
-          setMentorData(prevData => ({
-            ...prevData,
-            currentCompany: data.currentCompany,
-          }));
-
-        if (data.experience)
-          setMentorData(prevData => ({
-            ...prevData,
-            experience: data.experience,
-          }));
-        if (data.education)
-          setMentorData(prevData => ({
-            ...prevData,
-            education: data.education,
-          }));
-        if (data.socials)
-          setMentorData(prevData => ({
-            ...prevData,
-            socials: data.socials,
-          }));
-        if (data.pmt)
-          setMentorData(prevData => ({
-            ...prevData,
-            pmt: data.pmt,
-          }));
+          setMentorData(data);
       })
       .catch(error => {
         console.error("Error fetching mentor data:", error);
@@ -436,6 +407,11 @@ const MentorProfile = () => {
     });
   };
 
+  const priceChange = (time, value) => {
+     const newPrice = { ...mentorData.price, [time] : value};
+     setMentorData({...mentorData, price : newPrice});
+  }
+
   const handleSubmit = event => {
     event.preventDefault();
     updateMentor()
@@ -477,10 +453,10 @@ const MentorProfile = () => {
     <div className={styles.MentorProfile}>
       <form className={styles.mentorSignUpForm}>
         <div className={styles.formGroup}>
+          Profile Photo
           <input
             type="file"
             name="profile"
-            style={{ display: "none" }}
             onChange={handleProfileChange}
           />
           <button
@@ -841,6 +817,15 @@ const MentorProfile = () => {
               />
             </label>
           </div>
+        </div>
+        <div className={styles.formGroup}>
+          <span>Price : </span>
+          <span>
+            <label htmlFor=""> for 15 min (inr) : <input type="number" value={mentorData.price[15]} onChange={(e)=>priceChange(15, e.target.value)} /></label>
+            <label htmlFor=""> for 30 min (inr) : <input type="number" value={mentorData.price[30]} onChange={(e)=>priceChange(30, e.target.value)} /></label>
+            <label htmlFor=""> for 45 min (inr) : <input type="number" value={mentorData.price[45]} onChange={(e)=>priceChange(45, e.target.value)} /></label>
+            <label htmlFor=""> for 60 min (inr) : <input type="number" value={mentorData.price[60]} onChange={(e)=>priceChange(60, e.target.value)} /></label>
+          </span>
         </div>
         <div className={styles.formGroup}>
           <span>Schedule</span>
