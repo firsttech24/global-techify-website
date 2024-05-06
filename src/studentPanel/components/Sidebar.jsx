@@ -17,17 +17,14 @@ const Sidebar = ({mentors}) => {
     setActiveButton(buttonName);
   };
 
-  // Function to handle search query change
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
 
-  // Function to handle company filter change
   const handleCompanyChange = (event) => {
     setSelectedCompany(event.target.value);
   };
 
-  // Function to handle profile filter change
   const handleProfileChange = (event) => {
     setSelectedProfile(event.target.value);
   };
@@ -77,7 +74,6 @@ const Sidebar = ({mentors}) => {
               <option value="amazon">Amazon</option>
               <option value="techkilla">Techkilla</option>
               <option value="google">Google</option>
-              {/* Add more options as needed */}
             </select>
           </div>
           <div className={styles.filterByProfileName}>
@@ -89,13 +85,23 @@ const Sidebar = ({mentors}) => {
               <option value="python developer">Python Developer</option>
               <option value="full stack developer">Full Stack Developer</option>
               <option value="Chemical Engineering">Chemical Engineering</option>
-              {/* Add more options as needed */}
             </select>
           </div>
         </div>
       </div>
       <button className={styles.profileButton}>View profile</button>
       <div className={styles.navlist}>
+        <Link to={"/student/mentors"}>
+          <button
+            className={
+              activeButton === "mentors"
+                ? styles.activeButton
+                : styles.inActiveButton
+            }
+            onClick={() => handleButtonClick("mentors")}>
+            mentors
+          </button>
+        </Link>
         <Link to={"/student/meetrequests"}>
           <button
             className={
@@ -127,17 +133,6 @@ const Sidebar = ({mentors}) => {
             }
             onClick={() => handleButtonClick("upcomingsessions")}>
             Upcoming Sessions
-          </button>
-        </Link>
-        <Link to={"/student/completedsessions"}>
-          <button
-            className={
-              activeButton === "completedsessions"
-                ? styles.activeButton
-                : styles.inActiveButton
-            }
-            onClick={() => handleButtonClick("completedsessions")}>
-            Completed Sessions
           </button>
         </Link>
       </div>

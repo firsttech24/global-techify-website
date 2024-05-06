@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import styles from "./acceptedRequested.module.css"
-import {useNavigate} from "react-router-dom"
+/** @format */
+
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UserCard from "./components/UserCard";
+import loader from "./../assets/loader.svg";
 
 const AcceptedRequests = () => {
-  const buttons= [];
-  const linkRequires = true;
+  const buttons = [];
   const [meets, setMeets] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,6 +29,8 @@ const AcceptedRequests = () => {
         setMeets(req);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -35,18 +39,24 @@ const AcceptedRequests = () => {
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "1.5vw" }}>
-      {meets.length
-        ? meets?.map((item, key) => (
-            <UserCard
-              key={key}
-              buttons={buttons}
-              item={item}
-            />
-          ))
-        : "loading......"}
-      {/* <UserCard buttons={buttons}/> */}
+      {loading ? (
+        <img
+          src={loader}
+          alt="Loading..."
+        />
+      ) : meets.length ? (
+        meets.map((item, key) => (
+          <UserCard
+            key={key}
+            buttons={buttons}
+            item={item}
+          />
+        ))
+      ) : (
+        "No accepted requests..."
+      )}
     </div>
   );
-}
+};
 
-export default AcceptedRequests
+export default AcceptedRequests;

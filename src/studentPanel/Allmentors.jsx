@@ -2,15 +2,29 @@
 
 import React, { useEffect, useState } from "react";
 import MentorCard from "./components/MentorCard";
+import loader from "./../assets/loader.svg";
 
 const Allmentors = () => {
   const [mentors, setMentors] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const fetchAllMentors = () => {
+    setLoading(true);
     fetch(`${import.meta.env.VITE_HOST_API}/mentor/get/approved`)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((data) => {
-        console.log(data)
-        setMentors(data.all)
+        setMentors(data.all);
+      })
+      .catch((error) => {
+        console.error("Error fetching mentors:", error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -21,13 +35,19 @@ const Allmentors = () => {
   return (
     <>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "1.5vw" }}>
-        {mentors?.length &&
+        {loading ? (
+          <img
+            src={loader}
+            alt="Loading..."
+          />
+        ) : (
           mentors?.map((mentor, key) => (
             <MentorCard
               key={key}
               mentor={mentor}
             />
-          ))}
+          ))
+        )}
       </div>
     </>
   );

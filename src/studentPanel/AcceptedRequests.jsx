@@ -2,14 +2,17 @@
 
 import React, { useEffect, useState } from "react";
 import MeetCard from "./components/MeetCard";
+import loader from "./../assets/loader.svg"
 
 const StudentAcceptedRequests = () => {
   const buttons = ["pay"];
+  const [loading, setLoading] = useState(false);
   const [requests, setRequests] = useState([]);
 
   const studentId = localStorage.getItem("gtechify!#");
 
   useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -24,6 +27,7 @@ const StudentAcceptedRequests = () => {
         );
         console.log("aa",req);
         setRequests(req);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -35,15 +39,21 @@ const StudentAcceptedRequests = () => {
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "1.5vw" }}>
-      {requests.length
-        ? requests?.map((item, key) => (
+      {loading ? (
+        <img
+          src={loader}
+          alt="Loading..."
+        />)
+      :
+      ( requests.length
+        ? requests.map((item, key) => (
             <MeetCard
               key={key}
               buttons={buttons}
               item={item}
             />
           ))
-        : "No Approved meets yet......"}
+        : "No Approved meets yet......")}
     </div>
   );
 };

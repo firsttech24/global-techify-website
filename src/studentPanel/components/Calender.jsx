@@ -12,7 +12,7 @@ function CustomDatePicker({ schedule, handleDateChange, setSelectedDay }) {
     handleDateChange(date);
   };
 
-  
+
 
   const isWeekend = (dayIndex) => {
     if (dayIndex === 0 && schedule?.sunday?.length) {
@@ -90,13 +90,12 @@ function CustomDatePicker({ schedule, handleDateChange, setSelectedDay }) {
         <button onClick={handleNextMonth}>&gt;</button>
       </div>
       <div className={styles.calendar}>
-        <div className={styles.weekdays}>
+        {/* <div className={styles.weekdays}>
           {daysOfWeek.map((day) => (
             <div key={day} className={styles.day}>
-              {day}
             </div>
           ))}
-        </div>
+        </div> */}
         <div className={styles.days}>
           {getMonthDays(
             displayedMonth.getFullYear(),

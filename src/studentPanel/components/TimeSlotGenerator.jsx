@@ -10,22 +10,24 @@ function TimeSlotGenerator({ schedule, duration, setFormData }) {
     generateTimeSlots();
   }, [schedule, duration]);
 
-  const generateTimeSlots = () => {
-    if (!schedule.length) {
-      alert("No schedule available.");
-      return;
-    }
+const generateTimeSlots = () => {
+  if (!schedule.length) {
+    alert("No schedule available.");
+    return;
+  }
 
-    const slots = [];
-    schedule.forEach((slot) => {
-      const start = new Date(`01/01/2022 ${slot.startingTime}`);
-      const end = new Date(`01/01/2022 ${slot.endingTime}`);
-      const step = duration * 60 * 1000;
+  const slots = [];
+  schedule.forEach((slot) => {
+    const start = new Date(`01/01/2022 ${slot.startingTime}`);
+    const end = new Date(`01/01/2022 ${slot.endingTime}`);
+    const slotDuration = end - start;
 
+    if (slotDuration >= duration * 60 * 1000) {
       let currentTime = start.getTime();
-      while (currentTime < end.getTime()) {
+
+      while (currentTime + duration * 60 * 1000 <= end.getTime()) {
         const startTime = new Date(currentTime);
-        const endTime = new Date(currentTime + step);
+        const endTime = new Date(currentTime + duration * 60 * 1000);
 
         const startHours = startTime.getHours().toString().padStart(2, "0");
         const startMinutes = startTime.getMinutes().toString().padStart(2, "0");
@@ -44,12 +46,15 @@ function TimeSlotGenerator({ schedule, duration, setFormData }) {
           startTime: formattedStartTime,
           endTime: formattedEndTime,
         });
-        currentTime += step;
-      }
-    });
 
-    setTimeSlots(slots);
-  };
+        currentTime += duration * 60 * 1000;
+      }
+    }
+  });
+
+  setTimeSlots(slots);
+};
+
 
   const handleSlotClick = (slot, index) => {
     setSelectedSlot(index);
