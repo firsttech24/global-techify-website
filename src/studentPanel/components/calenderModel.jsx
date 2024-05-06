@@ -13,7 +13,6 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
 
   const [selectedDay, setSelectedDay] = useState("");
 
-  console.log(mentor);
   const [formData, setFormData] = useState({
     topic: "",
     type: "",
@@ -26,10 +25,6 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
     price : null,
   });
 
-  useEffect(() => {
-    if (selectedDay !== "")
-      console.log(mentor.schedule[selectedDay.toLowerCase()]);
-  }, [selectedDay]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,7 +51,6 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
 
   const handleRequestClick = (e) => {
     e.preventDefault();
-    console.log(formData);
 
     fetch(`${import.meta.env.VITE_HOST_API}/meet/initiate`, {
       method: "POST",
@@ -67,12 +61,14 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
     })
       .then((response) => {
         if (!response.ok) {
+          const message = response.json().message;
+          if(message) alert(message);
+          else alert("server error")
           throw new Error("Network response was not ok");
         }
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         setIsOpen(false);
       })
       .catch((error) => {

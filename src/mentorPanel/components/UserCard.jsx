@@ -12,38 +12,39 @@ import {
   FaTimesCircle,
   FaPlaneDeparture,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const UserCard = ({ buttons, item, linkRequired }) => {
   const [studentData, setStudentData] = useState({});
   const [meetId, setMeetId] = useState("");
+  const navigate = useNavigate();
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_HOST_API}/user/get/${item.student}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const jsonData = await response.json();
+      setStudentData(jsonData);
+      // setData(jsonData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_HOST_API}/user/get/${item.student}`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const jsonData = await response.json();
-        setStudentData(jsonData);
-        // setData(jsonData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchData();
   }, []);
 
   const sendLink = async () => {
-    console.log("send");
-
-    const url = `${import.meta.env.VITE_HOST_API}/meet/updatelink/${item._id}`;
-    const requestBody = {
-      meetingUrl: meetId,
-    };
+    try {
+      const url = `${import.meta.env.VITE_HOST_API}/meet/updatelink/${item._id}`;
+      const requestBody = {
+        meetingUrl: meetId,
+      };
 
     const response = await fetch(url, {
       method: "POST",
@@ -54,11 +55,17 @@ const UserCard = ({ buttons, item, linkRequired }) => {
     });
 
     if (!response.ok) {
+      alert(response.json().message);
       throw new Error("Failed to fetch data");
     }
 
     const jsonData = await response.json();
     console.log(jsonData);
+    navigate("/mentor/upcomingsessions");
+  } catch (error) {
+    console.log(error);
+  }
+
   };
 
   const approveMeet = async () => {
@@ -67,10 +74,12 @@ const UserCard = ({ buttons, item, linkRequired }) => {
         `${import.meta.env.VITE_HOST_API}/meet/approval/${item._id}`
       );
       if (!response.ok) {
+        alert(response.json().message);
         throw new Error("Failed to fetch data");
       }
       const jsonData = await response.json();
       console.log(jsonData);
+      navigate("/mentor/acceptedrequests");
     } catch (error) {
       console.log(error);
     }

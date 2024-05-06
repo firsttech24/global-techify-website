@@ -3,10 +3,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserCard from "./components/UserCard";
+import loader from "./../assets/loader.svg";
 
 const UpcomingSessions = () => {
   const buttons = [];
   const [sessions, setSessions] = useState([]);
+  const [loading, setLoading] = useState(true);
   const linkRequires = true;
   const navigate = useNavigate();
 
@@ -28,6 +30,8 @@ const UpcomingSessions = () => {
         setSessions(req);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -36,16 +40,23 @@ const UpcomingSessions = () => {
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "1.5vw" }}>
-      {sessions.length
-        ? sessions?.map((item, key) => (
-            <UserCard
-              key={key}
-              linkRequired={linkRequires}
-              buttons={buttons}
-              item={item}
-            />
-          ))
-        : "loading......"}
+      {loading ? (
+        <img
+          src={loader}
+          alt="Loading..."
+        />
+      ) : sessions.length ? (
+        sessions.map((item, key) => (
+          <UserCard
+            key={key}
+            linkRequired={linkRequires}
+            buttons={buttons}
+            item={item}
+          />
+        ))
+      ) : (
+        "No upcoming sessions..."
+      )}
     </div>
   );
 };

@@ -30,20 +30,47 @@ const MeetCard = ({ buttons, item, upcomingMeetCard }) => {
     }
   };
 
+const checkOutHandler = async (amount) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_HOST_API}/meet/paymentgateway`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ amount: 5000 }),
+    }
+  );
 
-   const makePayment = async () => {
-     try {
-       const response = await fetch(
-         `${import.meta.env.VITE_HOST_API}/meet/paymentgateway`
-       );
+  const order = await response.json(); // Parse response as JSON
+  const options = {
+    key: "rzp_test_BbdZCd9xvyEEFa",
+    amount: order.amount,
+    currency: "INR",
+    name: "6 Pack Programmer",
+    description: "Tutorial of RazorPay",
+    image: "https://avatars.githubusercontent.com/u/25058652?v=4",
+    order_id: order.id,
+    callback_url: `${import.meta.env.VITE_HOST_API}/meet/checkout`,
+    prefill: {
+      name: "Gaurav Kumar",
+      email: "gaurav.kumar@example.com",
+      contact: "9999999999",
+    },
+    notes: {
+      address: "Razorpay Corporate Office",
+    },
+    theme: {
+      color: "#121212",
+    },
+    payment_method: {
+      method: "upi",
+    },
+  };
+  const razor = new window.Razorpay(options);
+  razor.open();
+};
 
-       console.log(response.data)
-
-      //  window.location.href = response.data.short_url;
-     } catch (error) {
-      console.log(error)
-     }
-   };
 
   const approvePayMeet = async () => {
     try {
@@ -102,7 +129,7 @@ const MeetCard = ({ buttons, item, upcomingMeetCard }) => {
         <div className={styles.buttonsContainer}>
           <button
             className={styles.acceptButton}
-            onClick={approvePayMeet}>
+            onClick={checkOutHandler}>
             <FaCheckCircle className={styles.icon} />
             Pay ${item.price}
           </button>
