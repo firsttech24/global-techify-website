@@ -27,7 +27,6 @@ import MentorDashboard from "./mentorPanel/mentorDashboard";
 import AcceptedRequests from "./mentorPanel/AcceptedRequests";
 import RequestPage from "./mentorPanel/requestPage";
 import UpcomingSessions from "./mentorPanel/UpcomingSessions";
-import CompletedSessions from "./mentorPanel/CompletedSessions";
 
 export default function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
@@ -90,7 +89,6 @@ export default function App() {
           <Route path="meetrequests" element={<RequestPage />} />
           <Route path="acceptedrequests" element={<AcceptedRequests />} />
           <Route path="upcomingsessions" element={<UpcomingSessions />} />
-          <Route path="completedsessions" element={<CompletedSessions />} />
         </Route>
       </Routes>
       <Footer />

@@ -24,7 +24,6 @@ const Sidebar = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        console.log(data)
         setMentorData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -71,17 +70,6 @@ const Sidebar = () => {
             }
             onClick={() => handleButtonClick("upcomingsessions")}>
             Upcoming Sessions
-          </button>
-        </Link>
-        <Link to={"/mentor/completedsessions"}>
-          <button
-            className={
-              activeButton === "completedsessions"
-                ? styles.activeButton
-                : styles.inActiveButton
-            }
-            onClick={() => handleButtonClick("completedsessions")}>
-            Completed Sessions
           </button>
         </Link>
       </div>
