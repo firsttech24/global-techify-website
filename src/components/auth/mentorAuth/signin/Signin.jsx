@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styles from "./../../studentAuth/signin/signin.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleEmailChange = e => {
     setEmail(e.target.value);
@@ -20,6 +22,8 @@ export default function Signin() {
     login()
       .then(data => {
         console.log("Student registered successfully:", data);
+        localStorage.setItem("gtechify!#", data._id);
+        navigate("/mentor/meetrequests");
       })
       .catch(error => {
         console.error("Failed to register student:", error);

@@ -6,31 +6,34 @@ export default function DesktopNavbar() {
   const [panel, setPanel] = useState("");
   const [pic, setPic] = useState("");
   const navigate = useNavigate();
-  useEffect(()=> {
+  const [logId, setLogId] = useState();
+  useEffect(() => {
     const logid = localStorage.getItem("gtechify!#");
-    if(logid != ""){
-       fetch(`${import.meta.env.VITE_HOST_API}/mentor/get/${logid}`)
-         .then((response) => {
-           if(!response.ok) navigate('/')
-            else setPanel("mentor");
+    setLogId(logid);
+    if (logid != "") {
+      fetch(`${import.meta.env.VITE_HOST_API}/mentor/get/${logid}`)
+        .then(response => {
+          console.log(response.ok);
+          if (!response.ok) navigate("/");
+          else setPanel("mentor");
           return response.json();
-         })
-         .then(data => setPic(data.profile))
-         .catch((error) => {
-           console.error("Error fetching mentor data:", error);
-         });
-       fetch(`${import.meta.env.VITE_HOST_API}/user/get/${logid}`)
-         .then((response) => {
-          if(!response.ok) navigate('/');
+        })
+        .then(data => setPic(data.profile))
+        .catch(error => {
+          console.error("Error fetching mentor data:", error);
+        });
+      fetch(`${import.meta.env.VITE_HOST_API}/user/get/${logid}`)
+        .then(response => {
+          if (!response.ok) navigate("/");
           else setPanel("student");
           return response.json();
-         })
-         .then(data => setPic(data.profile))
-         .catch((error) => {
-           console.error("Error fetching mentor data:", error);
-         });
+        })
+        .then(data => setPic(data.profile))
+        .catch(error => {
+          console.error("Error fetching mentor data:", error);
+        });
     }
-  }, [])
+  }, []);
 
   return (
     <nav className={styles.DesktopNavbar}>
@@ -55,34 +58,50 @@ export default function DesktopNavbar() {
         </Link>
 
         {/* panels */}
-        {panel == "" && <li className={`${styles.products}`}>
-          <span className={styles.span}>Panels</span>
-          <ul className={styles.productsHoverContainer}>
-            <Link to={"/mentor/meetrequests"}>
-              <li className={styles.list}>Mentor Panel</li>
-            </Link>
+        {panel == "" && (
+          <li className={`${styles.products}`}>
+            <span className={styles.span}>Panels</span>
+            <ul className={styles.productsHoverContainer}>
+              <Link to={"/mentor/meetrequests"}>
+                <li className={styles.list}>Mentor Panel</li>
+              </Link>
 
-            <Link to={"/student/mentors"}>
-              <li className={styles.list}>Student Panel</li>
-            </Link>
-          </ul>
-        </li>}
-        {
-          panel == "student" && <Link to={"/student/mentors"}><li>Panel</li></Link>
-        }
-        {
-          panel == "mentor" && <Link to={"/mentor/meetrequests"}><li>Panel</li></Link>
-        }
+              <Link to={"/student/mentors"}>
+                <li className={styles.list}>Student Panel</li>
+              </Link>
+            </ul>
+          </li>
+        )}
+        {panel == "student" && (
+          <Link to={"/student/mentors"}>
+            <li>Panel</li>
+          </Link>
+        )}
+        {panel == "mentor" && (
+          <Link to={"/mentor/meetrequests"}>
+            <li>Panel</li>
+          </Link>
+        )}
 
-        {
-          pic == "" &&
+        {!logId && (
           <Link to={"/auth"}>
             <li>Signin</li>
           </Link>
-        }
-        {
-          pic != "" && <Link to={`${panel}-profile`}><img src={pic} style={{height:"40px", width : "40px", borderRadius: "50%", border : "2px solid var(--themeColor)"}}></img> </Link>
-        }
+        )}
+
+        {logId && (
+          <Link to={`${panel}-profile`}>
+            <img
+              src={pic}
+              style={{
+                height: "40px",
+                width: "40px",
+                borderRadius: "50%",
+                border: "2px solid var(--themeColor)",
+              }}
+            ></img>{" "}
+          </Link>
+        )}
       </ul>
     </nav>
   );
