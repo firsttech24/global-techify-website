@@ -15,7 +15,7 @@ export default function DesktopNavbar() {
       setLogId(true);
       fetch(`${import.meta.env.VITE_HOST_API}/mentor/get/${logid}`)
         .then(response => {
-          console.log(response.json().message);
+          console.log(response.ok);
           if (!response.ok) navigate("/");
           else setPanel("mentor");
           return response.json();

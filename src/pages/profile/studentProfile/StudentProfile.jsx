@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./studentProfile.module.css";
 import { IoSend } from "react-icons/io5";
 import { store } from "../../../config/firebase";
@@ -29,7 +29,7 @@ const StudentProfile = () => {
     specialisation: "",
   });
 
-  useState(() => {
+  useEffect(() => {
     const item = localStorage.getItem("gtechify!#");
     setId(item);
     fetch(`${import.meta.env.VITE_HOST_API}/user/get/${item}`)
@@ -155,123 +155,163 @@ const StudentProfile = () => {
   };
 
   return (
-    <div className={styles.page}>
-      <h1>Profile | Student</h1>
-      <form action="" className={styles.mentorSignUpForm}>
-        <div className={styles.formGroup}>
-          <span>Profile Photo : </span>
-          🔗
-          <input
-            type="file"
-            name="profile"
-            value={""}
-            onChange={handleProfileChange}
-          />
+    <form action="" className={`flex-col-center ${styles.StudentProfile}`}>
+      {/* profile */}
+      {/*  <div className={styles.profile}>
+        <div className={`flex-row-center ${styles.imgContainer}`}>
           <img
             src={userData.profilePhoto}
             className={styles.profileImage}
             alt=""
           />
         </div>
-        <div className={styles.formGroup}>
-          <span>Resume : </span>
-          🔗
-          <input
-            type="file"
-            name="profile"
-            value={""}
-            onChange={handleResumeChange}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <span>Name : </span>
-          🔗
-          <input
-            type="text"
-            name="name"
-            value={userData.name}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <span>Email : </span>🔗
-          <input
-            type="email"
-            name="email"
-            value={userData.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <span>WhatsApp Number : </span>
-          🔗
-          <input
-            type="number"
-            name="wnumber"
-            value={userData.wnumber}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <span>Education : </span>
-          🔗
-          <div className={styles.educationInputDetails}>
-            <div className={styles.educationStatements}>
-              {userData.education.map((item, key) => (
-                <div key={key}>
+        <input
+          type="file"
+          name="profile"
+          value={""}
+          onChange={handleProfileChange}
+        />
+        <button className={styles.removeProfileButton}>Remove</button>
+      </div> */}
+
+      {/* <div className={styles.formGroup}>
+        <span>Resume : </span>
+        <input
+          type="file"
+          name="profile"
+          value={""}
+          onChange={handleResumeChange}
+        />
+      </div> */}
+
+      {/* name */}
+      <div className={`flex-row-center ${styles.inputContainer}`}>
+        <span>Name:</span>
+        <input
+          type="text"
+          name="name"
+          value={userData.name}
+          onChange={handleChange}
+        />
+      </div>
+
+      {/* email */}
+      <div className={`flex-row-center ${styles.inputContainer}`}>
+        <span>Email:</span>
+        <input
+          type="email"
+          name="email"
+          value={userData.email}
+          onChange={handleChange}
+        />
+      </div>
+
+      {/* whatsapp */}
+      <div className={`flex-row-center ${styles.inputContainer}`}>
+        <span>WhatsApp No.:</span>
+        <input
+          type="number"
+          name="wnumber"
+          value={userData.wnumber}
+          onChange={handleChange}
+        />
+      </div>
+
+      {/* education */}
+      <div className={`flex-col-center ${styles.experienceContainer}`}>
+        <span>Education:</span>
+
+        <div className={`flex-col-center ${styles.experienceBox}`}>
+          <div className={`flex-col-center ${styles.top}`}>
+            {userData.education.map((item, key) => (
+              <div key={key} className={`flex-row-center ${styles.expListBox}`}>
+                <p className={styles.eduListItems}>
                   {item.degree} in {item.passingYear} at specialisation in{" "}
                   {item.specialisation} from {item.department}, {item.institute}
-                </div>
-              ))}
-            </div>
-            <input
-              type="text"
-              name="institute"
-              placeholder="Institute"
-              value={dummyEdu.institute}
-              onChange={handleEduChange}
-            />
-            <input
-              type="text"
-              name="passingYear"
-              placeholder="Passing year"
-              value={dummyEdu.passingYear}
-              onChange={handleEduChange}
-            />
-            <input
-              type="text"
-              name="degree"
-              placeholder="Degree"
-              value={dummyEdu.degree}
-              onChange={handleEduChange}
-            />
-            <input
-              type="text"
-              name="department"
-              placeholder="department"
-              value={dummyEdu.department}
-              onChange={handleEduChange}
-            />
-            <input
-              type="text"
-              name="specialisation"
-              placeholder="specialisation"
-              value={dummyEdu.specialisation}
-              onChange={handleEduChange}
-            />
-            <IoSend
-              className={styles.addEduButton}
-              onClick={handleEducationAddButton}
-            />
+                </p>
+
+                <FaTrash
+                /* onClick={() => {
+                    setMentorData({
+                      ...mentorData,
+                      education: mentorData.education.filter(
+                        ite => ite != item
+                      ),
+                    });
+                  }} */
+                />
+              </div>
+            ))}
           </div>
+
+          <div className={`flex-row-center ${styles.bottom}`}>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>Institute:</span>
+              <input
+                type="text"
+                name="institute"
+                placeholder="Institute"
+                value={dummyEdu.institute}
+                onChange={handleEduChange}
+              />
+            </div>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>Passing Year:</span>
+              <input
+                type="text"
+                name="passingYear"
+                placeholder="Passing year"
+                value={dummyEdu.passingYear}
+                onChange={handleEduChange}
+              />
+            </div>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>Degree:</span>
+              <input
+                type="text"
+                name="degree"
+                placeholder="Degree"
+                value={dummyEdu.degree}
+                onChange={handleEduChange}
+              />
+            </div>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>Department:</span>
+              <input
+                type="text"
+                name="department"
+                placeholder="Department"
+                value={dummyEdu.department}
+                onChange={handleEduChange}
+              />
+            </div>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>Specialisation:</span>
+              <input
+                type="text"
+                name="Specialisation"
+                placeholder="Specialisation"
+                value={dummyEdu.specialisation}
+                onChange={handleEduChange}
+              />
+            </div>
+          </div>
+
+          <IoSend
+            className={styles.addEduButton}
+            onClick={handleEducationAddButton}
+          />
         </div>
-        <div className={styles.formGroupSelect}>
-          <span>Profiles : </span>
-          🔗
-          <div>
-            <div>{userData.areasOfInterest.join(", ")}</div>
-            <label>
-              <span>Non-Core Profiles</span> :
+      </div>
+
+      {/* areas of interest */}
+      <div className={`flex-col-center ${styles.areasOfInterest}`}>
+        <span>Areas Of Interest:</span>
+        <div className={`flex-col-center ${styles.allProfilesContainer}`}>
+          {userData.areasOfInterest.join(", ")}
+          <div className={`flex-col-center ${styles.profileContainer}`}>
+            <label className={`flex-row-center ${styles.singleProfile}`}>
+              <span>Non-Core Profiles:</span>
               <select
                 name="nonCoreAreasOfInterest"
                 value={userData.areasOfInterest}
@@ -302,8 +342,9 @@ const StudentProfile = () => {
                 <option value="Logistics">Logistics</option>
               </select>
             </label>
-            <label>
-              <span> Core Profiles </span>:
+
+            <label className={`flex-row-center ${styles.singleProfile}`}>
+              <span> Core Profiles: </span>
               <select
                 name="coreAreasOfInterest"
                 value={userData.areasOfInterest}
@@ -358,73 +399,71 @@ const StudentProfile = () => {
             </label>
           </div>
         </div>
-        <div className={styles.formGroup}>
-          <span>Socials : </span>
-          🔗
-          <div className={styles.socailInputGroup}>
-            <label htmlFor="">
-              <input
-                type="text"
-                name="socials.linkedin"
-                placeholder="Linkedin"
-                value={userData.socials.linkedin}
-                onChange={e =>
-                  setUserData({
-                    ...userData,
-                    socials: {
-                      ...userData.socials,
-                      linkedin: e.target.value,
-                    },
-                  })
-                }
-              />
-            </label>
-            <label htmlFor="">
-              <input
-                type="text"
-                name="socials.github"
-                placeholder="Github"
-                value={userData.socials.github}
-                onChange={e =>
-                  setUserData({
-                    ...userData,
-                    socials: {
-                      ...userData.socials,
-                      github: e.target.value,
-                    },
-                  })
-                }
-              />
-            </label>
-            <label htmlFor="">
-              <input
-                type="text"
-                name="socials.twitter"
-                placeholder="Twitter"
-                value={userData.socials.twitter}
-                onChange={e =>
-                  setUserData({
-                    ...userData,
-                    socials: {
-                      ...userData.socials,
-                      twitter: e.target.value,
-                    },
-                  })
-                }
-              />
-            </label>
-          </div>
+      </div>
+
+      {/* socials */}
+      <div className={`flex-col-center ${styles.socialsContainer}`}>
+        <span>Socials:</span>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>Linkedin:</span>
+          <input
+            type="text"
+            name="socials.linkedin"
+            placeholder="Linkedin"
+            value={userData.socials.linkedin}
+            onChange={e =>
+              setUserData({
+                ...userData,
+                socials: {
+                  ...userData.socials,
+                  linkedin: e.target.value,
+                },
+              })
+            }
+          />
         </div>
-        <button
-          type="submit"
-          className={styles.submitButton}
-          onClick={handleSubmit}
-        >
-          {" "}
-          Submit{" "}
-        </button>
-      </form>
-    </div>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>Github:</span>
+          <input
+            type="text"
+            name="socials.github"
+            placeholder="Github"
+            value={userData.socials.github}
+            onChange={e =>
+              setUserData({
+                ...userData,
+                socials: {
+                  ...userData.socials,
+                  github: e.target.value,
+                },
+              })
+            }
+          />
+        </div>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>Twitter:</span>
+          <input
+            type="text"
+            name="socials.twitter"
+            placeholder="Twitter"
+            value={userData.socials.twitter}
+            onChange={e =>
+              setUserData({
+                ...userData,
+                socials: {
+                  ...userData.socials,
+                  twitter: e.target.value,
+                },
+              })
+            }
+          />
+        </div>
+      </div>
+
+      <button type="submit" className={`btn1`} onClick={handleSubmit}>
+        Submit
+      </button>
+    </form>
   );
 };
 
