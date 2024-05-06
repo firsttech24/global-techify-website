@@ -3,6 +3,7 @@ import styles from "./studentProfile.module.css";
 import { IoSend } from "react-icons/io5";
 import { store } from "../../../config/firebase";
 import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
+import { FaTrash } from "react-icons/fa";
 
 const StudentProfile = () => {
   const [id, setId] = useState("");
@@ -96,7 +97,6 @@ const StudentProfile = () => {
 
   const handleEduChange = event => {
     const { name, value } = event.target;
-    console.log(name, value);
     setDummyEdu({
       ...dummyEdu,
       [name]: value,
@@ -105,18 +105,29 @@ const StudentProfile = () => {
 
   const handleEducationAddButton = () => {
     const newEducation = userData.education;
-    newEducation.push(dummyEdu);
-    setDummyEdu({
-      institute: "",
-      passingYear: "",
-      degree: "",
-      department: "",
-      specialisation: "",
-    });
-    setUserData({
-      ...userData,
-      education: newEducation,
-    });
+    // console.log(dummyEdu);
+    if (
+      dummyEdu.institute === "" ||
+      dummyEdu.passingYear === "" ||
+      dummyEdu.degree === "" ||
+      dummyEdu.department === "" ||
+      dummyEdu.specialisation === ""
+    ) {
+      alert("Please fill all the fields");
+    } else {
+      newEducation.push(dummyEdu);
+      setDummyEdu({
+        institute: "",
+        passingYear: "",
+        degree: "",
+        department: "",
+        specialisation: "",
+      });
+      setUserData({
+        ...userData,
+        education: newEducation,
+      });
+    }
   };
   const handleSubmit = event => {
     event.preventDefault();
@@ -192,6 +203,8 @@ const StudentProfile = () => {
           name="name"
           value={userData.name}
           onChange={handleChange}
+          important
+          placeholder="Enter your name"
         />
       </div>
 
@@ -203,6 +216,8 @@ const StudentProfile = () => {
           name="email"
           value={userData.email}
           onChange={handleChange}
+          important
+          placeholder="Enter your email"
         />
       </div>
 
@@ -214,6 +229,8 @@ const StudentProfile = () => {
           name="wnumber"
           value={userData.wnumber}
           onChange={handleChange}
+          important
+          placeholder="Enter your whatsapp number"
         />
       </div>
 
@@ -225,21 +242,21 @@ const StudentProfile = () => {
           <div className={`flex-col-center ${styles.top}`}>
             {userData.education.map((item, key) => (
               <div key={key} className={`flex-row-center ${styles.expListBox}`}>
-                <p className={styles.eduListItems}>
+                <p className={styles.expListItems}>
                   {item.degree} in {item.passingYear} at specialisation in{" "}
                   {item.specialisation} from {item.department}, {item.institute}
                 </p>
 
-                <FaTrash
-                /* onClick={() => {
+                {/* <FaTrash
+                onClick={() => {
                     setMentorData({
                       ...mentorData,
                       education: mentorData.education.filter(
                         ite => ite != item
                       ),
                     });
-                  }} */
-                />
+                  }}
+                /> */}
               </div>
             ))}
           </div>
@@ -250,9 +267,10 @@ const StudentProfile = () => {
               <input
                 type="text"
                 name="institute"
-                placeholder="Institute"
+                placeholder="Institute *"
                 value={dummyEdu.institute}
                 onChange={handleEduChange}
+                important
               />
             </div>
             <div className={`flex-row-center ${styles.inputContainer}`}>
@@ -260,9 +278,10 @@ const StudentProfile = () => {
               <input
                 type="text"
                 name="passingYear"
-                placeholder="Passing year"
+                placeholder="Passing year *"
                 value={dummyEdu.passingYear}
                 onChange={handleEduChange}
+                important
               />
             </div>
             <div className={`flex-row-center ${styles.inputContainer}`}>
@@ -270,9 +289,10 @@ const StudentProfile = () => {
               <input
                 type="text"
                 name="degree"
-                placeholder="Degree"
+                placeholder="Degree *"
                 value={dummyEdu.degree}
                 onChange={handleEduChange}
+                important
               />
             </div>
             <div className={`flex-row-center ${styles.inputContainer}`}>
@@ -280,19 +300,21 @@ const StudentProfile = () => {
               <input
                 type="text"
                 name="department"
-                placeholder="Department"
+                placeholder="Department *"
                 value={dummyEdu.department}
                 onChange={handleEduChange}
+                important
               />
             </div>
             <div className={`flex-row-center ${styles.inputContainer}`}>
               <span>Specialisation:</span>
               <input
                 type="text"
-                name="Specialisation"
-                placeholder="Specialisation"
+                name="specialisation"
+                placeholder="Specialisation *"
                 value={dummyEdu.specialisation}
                 onChange={handleEduChange}
+                important
               />
             </div>
           </div>
