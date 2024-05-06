@@ -82,6 +82,7 @@ textarea {
   font-weight: 500;
   width: 100%;
   color: #fff;
+  resize: none;
 }
 
 .bigText {
@@ -134,6 +135,19 @@ button {
 .btn1:hover {
   background-color: transparent;
   color: var(--themeColor1);
+}
+
+.flex-row-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media all and (max-width: 991px) {
