@@ -6,14 +6,16 @@ export default function DesktopNavbar() {
   const [panel, setPanel] = useState("");
   const [pic, setPic] = useState("");
   const navigate = useNavigate();
-  const [logId, setLogId] = useState();
+  const [logId, setLogId] = useState(false);
+  console.log(logId);
   useEffect(() => {
     const logid = localStorage.getItem("gtechify!#");
-    setLogId(logid);
-    if (logid != "") {
+    console.log(logid);
+    if (logid) {
+      setLogId(true);
       fetch(`${import.meta.env.VITE_HOST_API}/mentor/get/${logid}`)
         .then(response => {
-          console.log(response.ok);
+          console.log(response.json().message);
           if (!response.ok) navigate("/");
           else setPanel("mentor");
           return response.json();
@@ -32,6 +34,8 @@ export default function DesktopNavbar() {
         .catch(error => {
           console.error("Error fetching mentor data:", error);
         });
+    } else {
+      setLogId(false);
     }
   }, []);
 
@@ -88,7 +92,6 @@ export default function DesktopNavbar() {
             <li>Signin</li>
           </Link>
         )}
-
         {logId && (
           <Link to={`${panel}-profile`}>
             <img
