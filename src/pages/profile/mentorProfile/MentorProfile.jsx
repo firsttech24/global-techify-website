@@ -1,5 +1,3 @@
-/** @format */
-
 import { useEffect, useState } from "react";
 import styles from "./mentorProfile.module.css";
 
@@ -8,7 +6,7 @@ import { FaTrash } from "react-icons/fa";
 import { store } from "../../../config/firebase";
 import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 import PopUpScheduleHandler from "./PopUpScheduleHandler";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const timeSlots = [
   "00:00 AM",
@@ -183,11 +181,11 @@ const MentorProfile = () => {
       twitter: "",
     },
     approved: false,
-    price : {
-      15 : "",
-      30 : "",
-      45 : "",
-      60 : ""
+    price: {
+      15: "",
+      30: "",
+      45: "",
+      60: "",
     },
     schedule: {
       sunday: [],
@@ -223,13 +221,13 @@ const MentorProfile = () => {
   });
 
   useEffect(() => {
-    const item = JSON.parse(localStorage.getItem("gtechify!#")).id;
-    if(!item) navigate("/auth");
+        const item = JSON.parse(localStorage.getItem("gtechify!#")).id;
+        if (!item) navigate("/auth");
     setId(item);
     fetch(`${import.meta.env.VITE_HOST_API}/mentor/get/${item}`)
       .then(response => response.json())
       .then(data => {
-          setMentorData(data);
+        setMentorData(data);
       })
       .catch(error => {
         console.error("Error fetching mentor data:", error);
@@ -407,9 +405,9 @@ const MentorProfile = () => {
   };
 
   const priceChange = (time, value) => {
-     const newPrice = { ...mentorData.price, [time] : value};
-     setMentorData({...mentorData, price : newPrice});
-  }
+    const newPrice = { ...mentorData.price, [time]: value };
+    setMentorData({ ...mentorData, price: newPrice });
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -449,98 +447,95 @@ const MentorProfile = () => {
   };
 
   return (
-    <div className={styles.MentorProfile}>
-      <form className={styles.mentorSignUpForm}>
-        <div className={styles.formGroup}>
-          Profile Photo
-          <input
-            type="file"
-            name="profile"
-            onChange={handleProfileChange}
-          />
-          <button
-            className={styles.uploadProfileButton}
-            onClick={handleProfileChange}
-          >
-            Upload
-          </button>
-          <button className={styles.removeProfileButton}>Remove</button>
+    <form className={`flex-col-center ${styles.MentorProfile}`}>
+      {/* <div className={styles.profile}>
+        <div className={`flex-row-center ${styles.imgContainer}`}>
           <img
             src={mentorData.profile}
             className={styles.profileImage}
-            alt=""
+            alt="profile image"
           />
         </div>
+        <input type="file" name="profile" onChange={handleProfileChange} />
+        <button className={styles.removeProfileButton}>Remove</button>
+      </div>
+ */}
+      {/* name */}
+      <div className={`flex-row-center ${styles.inputContainer}`}>
+        <span>Name:</span>
+        <input
+          type="text"
+          name="name"
+          value={mentorData.name}
+          onChange={handleChange}
+        />
+      </div>
 
-        <div className={styles.formGroup}>
-          <span>Name:</span>
+      {/* email */}
+      <div className={`flex-row-center ${styles.inputContainer}`}>
+        <span>Email:</span>
+        <input
+          type="email"
+          name="email"
+          value={mentorData.email}
+          onChange={handleChange}
+        />
+      </div>
 
-          <input
-            type="text"
-            name="name"
-            value={mentorData.name}
-            onChange={handleChange}
-          />
-        </div>
+      {/* whatsapp */}
+      <div className={`flex-row-center ${styles.inputContainer}`}>
+        <span>WhatsApp No.:</span>
+        <input
+          type="number"
+          name="wnumber"
+          value={mentorData.wnumber}
+          onChange={handleChange}
+        />
+      </div>
 
-        <div className={styles.formGroup}>
-          <span>Email:</span>
+      {/* bio */}
+      <div className={`flex-row-center ${styles.inputContainer}`}>
+        <span>Bio:</span>
+        <textarea
+          name="bio"
+          className={styles.biotextArea}
+          value={mentorData.bio}
+          onChange={handleChange}
+        />
+      </div>
 
-          <input
-            type="email"
-            name="email"
-            value={mentorData.email}
-            onChange={handleChange}
-          />
-        </div>
+      {/* areas of interest */}
+      <div className={`flex-col-center ${styles.areasOfInterest}`}>
+        <span>Areas Of Interest:</span>
 
-        <div className={styles.formGroup}>
-          <span>WhatsApp Number:</span>
+        <div className={`flex-col-center ${styles.allProfilesContainer}`}>
+          <div className={`flex-col-center ${styles.profilesBox}`}>
+            {mentorData.areasOfInterest.map((item, ind) => (
+              <div
+                key={ind}
+                className={`flex-row-center ${styles.profilesItem} ${styles.profilesItem}`}
+              >
+                <span className={styles.profileName}>{item}</span>
+                <span
+                  className={styles.trashIcon}
+                  onClick={() => {
+                    setMentorData({
+                      ...mentorData,
+                      areasOfInterest: mentorData.areasOfInterest.filter(
+                        ite => ite !== item
+                      ),
+                    });
+                  }}
+                >
+                  <FaTrash />
+                </span>{" "}
+              </div>
+            ))}
+          </div>
 
-          <input
-            type="number"
-            name="wnumber"
-            value={mentorData.wnumber}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <span>Bio/Description:</span>
-
-          <textarea
-            name="bio"
-            className={styles.biotextArea}
-            value={mentorData.bio}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={styles.formGroupSelect}>
-          <span>Areas Of Interest</span>
-
-          <div>
-            <div className={styles.profilesBox}>
-              {mentorData.areasOfInterest.map((item, ind) => (
-                <div key={ind} className={styles.profilesItem}>
-                  {" "}
-                  <span className={styles.profileName}>{item}</span>{" "}
-                  <span
-                    className={styles.trashIcon}
-                    onClick={() => {
-                      setMentorData({
-                        ...mentorData,
-                        areasOfInterest: mentorData.areasOfInterest.filter(
-                          ite => ite !== item
-                        ),
-                      });
-                    }}
-                  >
-                    <FaTrash />
-                  </span>{" "}
-                </div>
-              ))}
-            </div>
-            <label>
-              <span>Non-Core Profiles</span> :
+          <div className={`flex-col-center ${styles.profileContainer}`}>
+            <label className={`flex-row-center ${styles.singleProfile}`}>
+              <span>Non-Core Profiles:</span>
               <select
                 name="nonCoreAreasOfInterest"
                 value={mentorData.areasOfInterest}
@@ -562,8 +557,9 @@ const MentorProfile = () => {
                 ))}
               </select>
             </label>
-            <label>
-              <span> Core Profiles </span>:
+
+            <label className={`flex-row-center ${styles.singleProfile}`}>
+              <span> Core Profiles: </span>
               <select
                 name="coreAreasOfInterest"
                 value={mentorData.areasOfInterest}
@@ -587,8 +583,14 @@ const MentorProfile = () => {
             </label>
           </div>
         </div>
-        <div className={styles.formGroup}>
-          <span> Current Company: </span>
+      </div>
+
+      {/* company details */}
+      <div className={`flex-col-center ${styles.companyDetails}`}>
+        <span>Company Details:</span>
+
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>Current Company:</span>
 
           <input
             type="text"
@@ -605,6 +607,9 @@ const MentorProfile = () => {
               })
             }
           />
+        </div>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>Current Position:</span>
           <input
             type="text"
             name="currentCompany.position"
@@ -621,35 +626,36 @@ const MentorProfile = () => {
             }
           />
         </div>
-        <div className={styles.formGroup}>
-          <span>Experience:</span>
+      </div>
 
-          <span className={styles.experienceValueGroup}>
-            <div className={styles.experienceStatements}>
-              {mentorData.experience.map((item, key) => (
-                <div key={key} className={styles.expListBox}>
-                  <span className={styles.expListItems}>
-                    {item.position} at {item.company} ({item.startDate} -{" "}
-                    {item.endDate})
-                  </span>
-                  <span
-                    className={styles.expListTrash}
-                    onClick={() =>
-                      setMentorData({
-                        ...mentorData,
-                        experience: mentorData.experience.filter(
-                          ite => ite !== item
-                        ),
-                      })
-                    }
-                  >
-                    {" "}
-                    <FaTrash />
-                  </span>
-                </div>
-              ))}
-            </div>
-            <label>
+      {/* experience */}
+      <div className={`flex-col-center ${styles.experienceContainer}`}>
+        <span>Experience:</span>
+
+        <div className={`flex-col-center ${styles.experienceBox}`}>
+          <div className={`flex-col-center ${styles.top}`}>
+            {mentorData.experience.map((item, key) => (
+              <div key={key} className={`flex-row-center ${styles.expListBox}`}>
+                <p className={styles.expListItems}>
+                  {item.position} at {item.company} ({item.startDate} -{" "}
+                  {item.endDate})
+                </p>
+                <FaTrash
+                  onClick={() =>
+                    setMentorData({
+                      ...mentorData,
+                      experience: mentorData.experience.filter(
+                        ite => ite !== item
+                      ),
+                    })
+                  }
+                />
+              </div>
+            ))}
+          </div>
+          <div className={`flex-row-center ${styles.bottom}`}>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>Company:</span>
               <input
                 type="text"
                 name="company"
@@ -657,8 +663,9 @@ const MentorProfile = () => {
                 value={dummyExp.company}
                 onChange={handleExpChange}
               />
-            </label>
-            <label>
+            </div>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>Position: </span>
               <input
                 type="text"
                 name="position"
@@ -666,8 +673,9 @@ const MentorProfile = () => {
                 value={dummyExp.position}
                 onChange={handleExpChange}
               />
-            </label>
-            <label>
+            </div>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>Start Date:</span>
               <input
                 type="text"
                 name="startDate"
@@ -675,8 +683,9 @@ const MentorProfile = () => {
                 value={dummyExp.startDate}
                 onChange={handleExpChange}
               />
-            </label>{" "}
-            <label>
+            </div>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>End Date:</span>
               <input
                 type="text"
                 name="endDate"
@@ -684,311 +693,374 @@ const MentorProfile = () => {
                 value={dummyExp.endDate}
                 onChange={handleExpChange}
               />
-            </label>
-            <IoSend
-              className={styles.addEduButton}
-              onClick={handleExperienceAddButton}
-            />
-          </span>
-        </div>
-        <div className={styles.formGroup}>
-          <span>Education :</span>
-
-          <div className={styles.educationInputDetails}>
-            <div className={styles.educationStatements}>
-              {mentorData.education.map((item, key) => (
-                <div className={styles.eduListBox} key={key}>
-                  <span className={styles.eduListItems}>
-                    {item.degree} in {item.passingYear} at specialisation in{" "}
-                    {item.specialisation} from {item.department},{" "}
-                    {item.institute}
-                  </span>
-                  <span
-                    className={styles.eduListTrash}
-                    onClick={() => {
-                      setMentorData({
-                        ...mentorData,
-                        education: mentorData.education.filter(
-                          ite => ite != item
-                        ),
-                      });
-                    }}
-                  >
-                    <FaTrash />
-                  </span>
-                </div>
-              ))}
             </div>
-            <input
-              type="text"
-              name="institute"
-              placeholder="Institute"
-              value={dummyEdu.institute}
-              onChange={handleEduChange}
-            />
-            <input
-              type="text"
-              name="passingYear"
-              placeholder="Passing year"
-              value={dummyEdu.passingYear}
-              onChange={handleEduChange}
-            />
-            <input
-              type="text"
-              name="degree"
-              placeholder="Degree"
-              value={dummyEdu.degree}
-              onChange={handleEduChange}
-            />
-            <input
-              type="text"
-              name="department"
-              placeholder="department"
-              value={dummyEdu.department}
-              onChange={handleEduChange}
-            />
-            <input
-              type="text"
-              name="specialisation"
-              placeholder="specialisation"
-              value={dummyEdu.specialisation}
-              onChange={handleEduChange}
-            />
-            <IoSend
-              className={styles.addEduButton}
-              onClick={handleEducationAddButton}
-            />
           </div>
+          <IoSend onClick={handleExperienceAddButton} />
         </div>
-        <div className={styles.formGroup}>
-          <span>Socials:</span>
+      </div>
 
-          <div className={styles.socailInputGroup}>
-            <label htmlFor="">
-              <input
-                type="text"
-                name="socials.linkedin"
-                placeholder="Linkedin"
-                value={mentorData.socials.linkedin}
-                onChange={e =>
-                  setMentorData({
-                    ...mentorData,
-                    socials: {
-                      ...mentorData.socials,
-                      linkedin: e.target.value,
-                    },
-                  })
-                }
-              />
-            </label>
-            <label htmlFor="">
-              <input
-                type="text"
-                name="socials.github"
-                placeholder="Github"
-                value={mentorData.socials.github}
-                onChange={e =>
-                  setMentorData({
-                    ...mentorData,
-                    socials: {
-                      ...mentorData.socials,
-                      github: e.target.value,
-                    },
-                  })
-                }
-              />
-            </label>
-            <label htmlFor="">
-              <input
-                type="text"
-                name="socials.twitter"
-                placeholder="Twitter"
-                value={mentorData.socials.twitter}
-                onChange={e =>
-                  setMentorData({
-                    ...mentorData,
-                    socials: {
-                      ...mentorData.socials,
-                      twitter: e.target.value,
-                    },
-                  })
-                }
-              />
-            </label>
-          </div>
-        </div>
-        <div className={styles.formGroup}>
-          <span>Price : </span>
-          <span>
-            <label htmlFor=""> for 15 min (inr) : <input type="number" value={mentorData.price[15]} onChange={(e)=>priceChange(15, e.target.value)} /></label>
-            <label htmlFor=""> for 30 min (inr) : <input type="number" value={mentorData.price[30]} onChange={(e)=>priceChange(30, e.target.value)} /></label>
-            <label htmlFor=""> for 45 min (inr) : <input type="number" value={mentorData.price[45]} onChange={(e)=>priceChange(45, e.target.value)} /></label>
-            <label htmlFor=""> for 60 min (inr) : <input type="number" value={mentorData.price[60]} onChange={(e)=>priceChange(60, e.target.value)} /></label>
-          </span>
-        </div>
-        <div className={styles.formGroup}>
-          <span>Schedule</span>
-          <div>
-            {[
-              "monday",
-              "tuesday",
-              "wednesday",
-              "thursday",
-              "friday",
-              "saturday",
-              "sunday",
-            ].map(day => (
-              <div key={day} className={styles.scheduleGroup}>
-                <div className={styles.dayCheck}>
-                  <input
-                    type="checkbox"
-                    id={`${day}-checkbox`}
-                    checked={selectedTimes[day]?.allDay || false}
-                    onChange={e => handleCheckboxChange(day, e.target.checked)}
-                  />
-                  <h3>{day}</h3>
-                </div>
-                <div
-                  onClick={() => setPopOpen(pre => ({ ...pre, [day]: true }))}
-                >
-                  <IoAddCircle /> Add
-                </div>
+      {/* education */}
+      <div className={`flex-col-center ${styles.experienceContainer}`}>
+        <span>Education:</span>
 
-                <PopUpScheduleHandler
-                  open={popOpen[day] || false}
-                  setOpen={setPopOpen}
-                  day={day}
-                  handleScheduleSlotAdd={handleScheduleSlotAdd}
+        <div className={`flex-col-center ${styles.experienceBox}`}>
+          <div className={`flex-col-center ${styles.top}`}>
+            {mentorData.education.map((item, key) => (
+              <div className={`flex-row-center ${styles.expListBox}`} key={key}>
+                <p className={styles.eduListItems}>
+                  {item.degree} in {item.passingYear} at specialisation in{" "}
+                  {item.specialisation} from {item.department}, {item.institute}
+                </p>
+                <FaTrash
+                  onClick={() => {
+                    setMentorData({
+                      ...mentorData,
+                      education: mentorData.education.filter(
+                        ite => ite != item
+                      ),
+                    });
+                  }}
                 />
-
-                {mentorData.schedule[day]
-                  ? mentorData.schedule[day].map((item, index) => (
-                      <div key={index}>
-                        {" "}
-                        {item.startingTime} - {item.endingTime}{" "}
-                        <FaTrash
-                          onClick={() => handleScheduleSlotDelete(day, item)}
-                        />
-                      </div>
-                    ))
-                  : null}
               </div>
             ))}
-            <button className={styles.scheduleSaveButton}>Reset</button>
           </div>
-        </div>
 
-        <div className={styles.paymentGroup}>
-          <span className={styles.paymentLabel}> Payment Details:</span>
-          🔗
-          <div className={styles.paymentInputGroup}>
-            <input
-              type="text"
-              name="pmt.acn"
-              className={styles.paymentInputs}
-              placeholder="Account Name"
-              value={mentorData.pmt.acn}
-              onChange={e =>
-                setMentorData({
-                  ...mentorData,
-                  pmt: {
-                    ...mentorData.pmt,
-                    acn: e.target.value,
-                  },
-                })
-              }
-            />
-            <input
-              type="number"
-              name="pmt.acno"
-              className={styles.paymentInputs}
-              placeholder="Account Number"
-              value={mentorData.pmt.acno}
-              onChange={e =>
-                setMentorData({
-                  ...mentorData,
-                  pmt: {
-                    ...mentorData.pmt,
-                    acno: e.target.value,
-                  },
-                })
-              }
-            />
-            <input
-              type="text"
-              name="pmt.ic"
-              className={styles.paymentInputs}
-              placeholder="IFSC Code"
-              value={mentorData.pmt.ic}
-              onChange={e =>
-                setMentorData({
-                  ...mentorData,
-                  pmt: {
-                    ...mentorData.pmt,
-                    ic: e.target.value,
-                  },
-                })
-              }
-            />
-            <input
-              type="text"
-              name="pmt.nb"
-              placeholder="Branch Name"
-              className={styles.paymentInputs}
-              value={mentorData.pmt.nb}
-              onChange={e =>
-                setMentorData({
-                  ...mentorData,
-                  pmt: {
-                    ...mentorData.pmt,
-                    nb: e.target.value,
-                  },
-                })
-              }
-            />
-            <input
-              type="text"
-              name="pmt.bc"
-              placeholder="Branch Code"
-              className={styles.paymentInputs}
-              value={mentorData.pmt.bc}
-              onChange={e =>
-                setMentorData({
-                  ...mentorData,
-                  pmt: {
-                    ...mentorData.pmt,
-                    bc: e.target.value,
-                  },
-                })
-              }
-            />
-            <input
-              type="text"
-              name="pmt.ui"
-              placeholder="UPI"
-              className={styles.paymentInputs}
-              value={mentorData.pmt.ui}
-              onChange={e =>
-                setMentorData({
-                  ...mentorData,
-                  pmt: {
-                    ...mentorData.pmt,
-                    ui: e.target.value,
-                  },
-                })
-              }
-            />
+          <div className={`flex-row-center ${styles.bottom}`}>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>Institute:</span>
+              <input
+                type="text"
+                name="institute"
+                placeholder="Institute"
+                value={dummyEdu.institute}
+                onChange={handleEduChange}
+              />
+            </div>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>Passing Year:</span>
+              <input
+                type="text"
+                name="passingYear"
+                placeholder="Passing year"
+                value={dummyEdu.passingYear}
+                onChange={handleEduChange}
+              />
+            </div>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>Degree:</span>
+              <input
+                type="text"
+                name="degree"
+                placeholder="Degree"
+                value={dummyEdu.degree}
+                onChange={handleEduChange}
+              />
+            </div>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>Department:</span>
+              <input
+                type="text"
+                name="department"
+                placeholder="department"
+                value={dummyEdu.department}
+                onChange={handleEduChange}
+              />
+            </div>
+            <div className={`flex-row-center ${styles.inputContainer}`}>
+              <span>Specialisation:</span>
+              <input
+                type="text"
+                name="specialisation"
+                placeholder="specialisation"
+                value={dummyEdu.specialisation}
+                onChange={handleEduChange}
+              />
+            </div>
           </div>
+
+          <IoSend
+            className={styles.addEduButton}
+            onClick={handleEducationAddButton}
+          />
         </div>
-        <button
-          type="submit"
-          className={styles.submitButton}
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
-      </form>
-    </div>
+      </div>
+
+      {/* socials */}
+      <div className={`flex-col-center ${styles.socialsContainer}`}>
+        <span>Socials:</span>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>Linkedin:</span>
+          <input
+            type="text"
+            name="socials.linkedin"
+            placeholder="Linkedin"
+            value={mentorData.socials.linkedin}
+            onChange={e =>
+              setMentorData({
+                ...mentorData,
+                socials: {
+                  ...mentorData.socials,
+                  linkedin: e.target.value,
+                },
+              })
+            }
+          />
+        </div>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>Github:</span>
+          <input
+            type="text"
+            name="socials.github"
+            placeholder="Github"
+            value={mentorData.socials.github}
+            onChange={e =>
+              setMentorData({
+                ...mentorData,
+                socials: {
+                  ...mentorData.socials,
+                  github: e.target.value,
+                },
+              })
+            }
+          />
+        </div>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>Github:</span>
+          <input
+            type="text"
+            name="socials.twitter"
+            placeholder="Twitter"
+            value={mentorData.socials.twitter}
+            onChange={e =>
+              setMentorData({
+                ...mentorData,
+                socials: {
+                  ...mentorData.socials,
+                  twitter: e.target.value,
+                },
+              })
+            }
+          />
+        </div>
+      </div>
+
+      {/* price */}
+      <div className={`flex-col-center ${styles.priceContainer}`}>
+        <span>Price:</span>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>For 15 min (INR):</span>
+          <input
+            type="number"
+            value={mentorData.price[15]}
+            onChange={e => priceChange(15, e.target.value)}
+            placeholder="Price"
+          />
+        </div>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span> For 30 min (INR):</span>
+          <input
+            type="number"
+            value={mentorData.price[30]}
+            onChange={e => priceChange(30, e.target.value)}
+            placeholder="Price"
+          />
+        </div>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>For 45 min (INR):</span>
+          <input
+            type="number"
+            value={mentorData.price[45]}
+            onChange={e => priceChange(45, e.target.value)}
+            placeholder="Price"
+          />
+        </div>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>For 60 min (INR):</span>
+          <input
+            type="number"
+            value={mentorData.price[60]}
+            onChange={e => priceChange(60, e.target.value)}
+            placeholder="Price"
+          />
+        </div>
+      </div>
+
+      {/* schedule */}
+      <div className={`flex-col-center ${styles.scheduleContainer}`}>
+        <span>Schedule</span>
+        <div>
+          {[
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday",
+          ].map(day => (
+            <div key={day} className={styles.scheduleGroup}>
+              <div className={styles.dayCheck}>
+                <input
+                  type="checkbox"
+                  id={`${day}-checkbox`}
+                  checked={selectedTimes[day]?.allDay || false}
+                  onChange={e => handleCheckboxChange(day, e.target.checked)}
+                />
+                <h3>{day}</h3>
+              </div>
+              <div onClick={() => setPopOpen(pre => ({ ...pre, [day]: true }))}>
+                <IoAddCircle /> Add
+              </div>
+
+              <PopUpScheduleHandler
+                open={popOpen[day] || false}
+                setOpen={setPopOpen}
+                day={day}
+                handleScheduleSlotAdd={handleScheduleSlotAdd}
+              />
+
+              {mentorData.schedule[day]
+                ? mentorData.schedule[day].map((item, index) => (
+                    <div key={index}>
+                      {" "}
+                      {item.startingTime} - {item.endingTime}{" "}
+                      <FaTrash
+                        onClick={() => handleScheduleSlotDelete(day, item)}
+                      />
+                    </div>
+                  ))
+                : null}
+            </div>
+          ))}
+          <button className={styles.scheduleSaveButton}>Reset</button>
+        </div>
+      </div>
+
+      {/* payment */}
+      <div className={`flex-col-center ${styles.paymentContainer}`}>
+        <span className={styles.paymentLabel}> Payment Details:</span>
+
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>Account Name:</span>
+          <input
+            type="text"
+            name="pmt.acn"
+            className={styles.paymentInputs}
+            placeholder="Account Name"
+            value={mentorData.pmt.acn}
+            onChange={e =>
+              setMentorData({
+                ...mentorData,
+                pmt: {
+                  ...mentorData.pmt,
+                  acn: e.target.value,
+                },
+              })
+            }
+          />
+        </div>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>Account Number:</span>
+          <input
+            type="number"
+            name="pmt.acno"
+            className={styles.paymentInputs}
+            placeholder="Account Number"
+            value={mentorData.pmt.acno}
+            onChange={e =>
+              setMentorData({
+                ...mentorData,
+                pmt: {
+                  ...mentorData.pmt,
+                  acno: e.target.value,
+                },
+              })
+            }
+          />
+        </div>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>IFSC Code:</span>
+          <input
+            type="text"
+            name="pmt.ic"
+            className={styles.paymentInputs}
+            placeholder="IFSC Code"
+            value={mentorData.pmt.ic}
+            onChange={e =>
+              setMentorData({
+                ...mentorData,
+                pmt: {
+                  ...mentorData.pmt,
+                  ic: e.target.value,
+                },
+              })
+            }
+          />
+        </div>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>Branch Name:</span>
+          <input
+            type="text"
+            name="pmt.nb"
+            placeholder="Branch Name"
+            className={styles.paymentInputs}
+            value={mentorData.pmt.nb}
+            onChange={e =>
+              setMentorData({
+                ...mentorData,
+                pmt: {
+                  ...mentorData.pmt,
+                  nb: e.target.value,
+                },
+              })
+            }
+          />
+        </div>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>Branch Code:</span>
+          <input
+            type="text"
+            name="pmt.bc"
+            placeholder="Branch Code"
+            className={styles.paymentInputs}
+            value={mentorData.pmt.bc}
+            onChange={e =>
+              setMentorData({
+                ...mentorData,
+                pmt: {
+                  ...mentorData.pmt,
+                  bc: e.target.value,
+                },
+              })
+            }
+          />
+        </div>
+        <div className={`flex-row-center ${styles.inputContainer}`}>
+          <span>UPI:</span>
+          <input
+            type="text"
+            name="pmt.ui"
+            placeholder="UPI"
+            className={styles.paymentInputs}
+            value={mentorData.pmt.ui}
+            onChange={e =>
+              setMentorData({
+                ...mentorData,
+                pmt: {
+                  ...mentorData.pmt,
+                  ui: e.target.value,
+                },
+              })
+            }
+          />
+        </div>
+        <div className={styles.paymentInputGroup}></div>
+      </div>
+
+      <button type="submit" className={`btn1`} onClick={handleSubmit}>
+        Submit
+      </button>
+    </form>
   );
 };
 

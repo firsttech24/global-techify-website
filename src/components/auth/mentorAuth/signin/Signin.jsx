@@ -22,13 +22,13 @@ export default function Signin() {
     login()
       .then(data => {
         console.log("Student registered successfully:", data);
+      })
+      .catch(error => {
          localStorage.setItem(
            "gtechify!#",
            JSON.stringify({ id: data.user._id, role: "mentor" })
          );
          navigate("/mentor/meetrequests");
-      })
-      .catch(error => {
         console.error("Failed to register student:", error);
       });
   };

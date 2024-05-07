@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const timeSlots = [
   "00:00 AM",
@@ -100,15 +100,19 @@ const timeSlots = [
   "00:00 AM",
 ];
 
-const PopUpScheduleHandler = ({ open, setOpen, handleScheduleSlotAdd, day }) => {
-
+const PopUpScheduleHandler = ({
+  open,
+  setOpen,
+  handleScheduleSlotAdd,
+  day,
+}) => {
   const [startingTime, setStartingTime] = useState("");
   const [endingTime, setEndingTime] = useState("");
 
   const submitHandler = () => {
-    console.log(day)
+    console.log(day);
     if (timeSlots.indexOf(startingTime) >= timeSlots.indexOf(endingTime)) {
-      alert("bhagg sale...");
+      alert("not valid slot");
     } else {
       handleScheduleSlotAdd(day, startingTime, endingTime);
       setOpen(false);
@@ -129,18 +133,18 @@ const PopUpScheduleHandler = ({ open, setOpen, handleScheduleSlotAdd, day }) => 
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-        }}>
+        }}
+      >
         <div
           style={{
             textAlign: "center",
             padding: "20px",
             borderRadius: "8px",
             backgroundColor: "#333",
-          }}>
+          }}
+        >
           <div style={{ marginBottom: "10px" }}>
-            <label
-              htmlFor="start-time"
-              style={{ marginRight: "10px" }}>
+            <label htmlFor="start-time" style={{ marginRight: "10px" }}>
               Starting Time:
             </label>
             <select
@@ -148,20 +152,17 @@ const PopUpScheduleHandler = ({ open, setOpen, handleScheduleSlotAdd, day }) => 
               id="start-time"
               style={{ padding: "5px", borderRadius: "4px", border: "none" }}
               value={startingTime}
-              onChange={(e) => setStartingTime(e.target.value)}>
+              onChange={e => setStartingTime(e.target.value)}
+            >
               {timeSlots.map((timeSlot, index) => (
-                <option
-                  key={index}
-                  value={timeSlot}>
+                <option key={index} value={timeSlot}>
                   {timeSlot}
                 </option>
               ))}
             </select>
           </div>
           <div style={{ marginBottom: "10px" }}>
-            <label
-              htmlFor="end-time"
-              style={{ marginRight: "10px" }}>
+            <label htmlFor="end-time" style={{ marginRight: "10px" }}>
               Ending Time:
             </label>
             <select
@@ -169,11 +170,10 @@ const PopUpScheduleHandler = ({ open, setOpen, handleScheduleSlotAdd, day }) => 
               id="end-time"
               style={{ padding: "5px", borderRadius: "4px", border: "none" }}
               value={endingTime}
-              onChange={(e) => setEndingTime(e.target.value)}>
+              onChange={e => setEndingTime(e.target.value)}
+            >
               {timeSlots.map((timeSlot, index) => (
-                <option
-                  key={index}
-                  value={timeSlot}>
+                <option key={index} value={timeSlot}>
                   {timeSlot}
                 </option>
               ))}
@@ -188,7 +188,8 @@ const PopUpScheduleHandler = ({ open, setOpen, handleScheduleSlotAdd, day }) => 
               color: "white",
               margin: "10px",
             }}
-            onClick={() => setOpen(false)}>
+            onClick={() => setOpen(false)}
+          >
             Cancel
           </span>
           <span
@@ -200,7 +201,8 @@ const PopUpScheduleHandler = ({ open, setOpen, handleScheduleSlotAdd, day }) => 
               color: "white",
               margin: "10px",
             }}
-            onClick={submitHandler}>
+            onClick={submitHandler}
+          >
             Add
           </span>
         </div>
@@ -209,4 +211,4 @@ const PopUpScheduleHandler = ({ open, setOpen, handleScheduleSlotAdd, day }) => 
   );
 };
 
-export default PopUpScheduleHandler
+export default PopUpScheduleHandler;
