@@ -99,7 +99,7 @@ const Sidebar = ({mentors}) => {
                 : styles.inActiveButton
             }
             onClick={() => handleButtonClick("mentors")}>
-            mentors
+            Mentors
           </button>
         </Link>
         <Link to={"/student/meetrequests"}>

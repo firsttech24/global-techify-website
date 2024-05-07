@@ -42,7 +42,7 @@ export default function Signup() {
     registerStudent()
       .then(data => {
         console.log("Student registered successfully:", data);
-        localStorage.setItem("gtechify!#", data._id);
+        localStorage.setItem("gtechify!#", JSON.stringify({id : data_id, role : "student"}));
         setIsLoading(false);
         navigate("/user/profile");
       })

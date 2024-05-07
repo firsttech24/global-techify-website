@@ -223,7 +223,7 @@ const MentorProfile = () => {
   });
 
   useEffect(() => {
-    const item = localStorage.getItem("gtechify!#");
+    const item = JSON.parse(localStorage.getItem("gtechify!#")).id;
     if(!item) navigate("/auth");
     setId(item);
     fetch(`${import.meta.env.VITE_HOST_API}/mentor/get/${item}`)

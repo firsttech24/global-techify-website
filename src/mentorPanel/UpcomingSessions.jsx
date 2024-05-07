@@ -13,7 +13,7 @@ const UpcomingSessions = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const mentorId = localStorage.getItem("gtechify!#");
+    const mentorId = JSON.parse(localStorage.getItem("gtechify!#")).id;
     if (!mentorId) navigate("/auth");
     const fetchData = async () => {
       try {
@@ -21,6 +21,7 @@ const UpcomingSessions = () => {
           `${import.meta.env.VITE_HOST_API}/meet/all/mentor/${mentorId}`
         );
         if (!response.ok) {
+          alert(response.json().message || "server error");
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
