@@ -2,10 +2,13 @@
 
 import React, { useState } from "react";
 import styles from "./signin.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleEmailChange = e => {
     setEmail(e.target.value);
@@ -23,6 +26,11 @@ export default function Signin() {
     login()
       .then(data => {
         console.log("Student registered successfully:", data);
+         localStorage.setItem(
+           "gtechify!#",
+           JSON.stringify({ id: data.user._id, role: "student" })
+         );
+         navigate("/student/mentors");
       })
       .catch(error => {
         console.error("Failed to register student:", error);

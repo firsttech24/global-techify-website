@@ -11,11 +11,12 @@ const StudentRequestPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const studentId = localStorage.getItem("gtechify!#");
+        const studentId = JSON.parse(localStorage.getItem("gtechify!#")).id;
         const response = await fetch(
           `${import.meta.env.VITE_HOST_API}/meet/all/student/${studentId}`
         );
         if (!response.ok) {
+          alert(response.json().message || "server error");
           throw new Error("Network response was not ok");
         }
         const data = await response.json();

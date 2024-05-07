@@ -13,6 +13,7 @@ const Allmentors = () => {
     fetch(`${import.meta.env.VITE_HOST_API}/mentor/get/approved`)
       .then((response) => {
         if (!response.ok) {
+          alert(response.json().message || "server error");
           throw new Error("Network response was not ok");
         }
         return response.json();

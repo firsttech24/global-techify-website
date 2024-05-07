@@ -16,7 +16,7 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
   const [formData, setFormData] = useState({
     topic: "",
     type: "",
-    student: localStorage.getItem("gtechify!#"),
+    student: JSON.parse(localStorage.getItem("gtechify!#")).id,
     mentor: mentor._id,
     date: "",
     startTime: "",
@@ -52,29 +52,43 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
   const handleRequestClick = (e) => {
     e.preventDefault();
 
-    fetch(`${import.meta.env.VITE_HOST_API}/meet/initiate`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+  if (
+    !formData.topic ||
+    !formData.type ||
+    !formData.date ||
+    !formData.startTime ||
+    !formData.endTime
+  ) {
+    alert("Please fill in all the required fields.");
+    return;
+  }
+
+  console.log(formData)
+
+  fetch(`${import.meta.env.VITE_HOST_API}/meet/initiate`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        const message = response.json().message;
+        if (message) alert(message);
+        else alert("server error");
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
     })
-      .then((response) => {
-        if (!response.ok) {
-          const message = response.json().message;
-          if(message) alert(message);
-          else alert("server error")
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setIsOpen(false);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+    .then((data) => {
+      setIsOpen(false);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
 
   return (
     <>
