@@ -22,7 +22,7 @@ const UserCard = ({ buttons, item, linkRequired }) => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_HOST_API}/user/get/${item.student}`
+        `${import.meta.env.VITE_HOST_API}/user/get/${item.student._id}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");

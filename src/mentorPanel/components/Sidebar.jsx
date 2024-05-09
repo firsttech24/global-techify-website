@@ -12,7 +12,7 @@ const Sidebar = () => {
     setActiveButton(buttonName);
   };
 
-  const mentorId = localStorage.getItem("gtechify!#");
+  const mentorId = JSON.parse(localStorage.getItem("gtechify!#")).id;
 
   useEffect(() => {
     const fetchData = async () => {

@@ -9,7 +9,7 @@ const StudentAcceptedRequests = () => {
   const [loading, setLoading] = useState(false);
   const [requests, setRequests] = useState([]);
 
-  const studentId = localStorage.getItem("gtechify!#");
+  const studentId = JSON.parse(localStorage.getItem("gtechify!#")).id;
 
   useEffect(() => {
     setLoading(true);
@@ -19,6 +19,7 @@ const StudentAcceptedRequests = () => {
           `${import.meta.env.VITE_HOST_API}/meet/all/student/${studentId}`
         );
         if (!response.ok) {
+          alert(response.json().message || "server error");
           throw new Error("Network response was not ok");
         }
         const data = await response.json();

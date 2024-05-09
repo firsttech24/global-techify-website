@@ -13,7 +13,10 @@ import {
 } from "react-icons/fa";
 
 const MeetCard = ({ buttons, item, upcomingMeetCard }) => {
+
+  const [student, setStudent] = useState({});
   const studentId = localStorage.getItem("gtechify!#");
+
   const fetchMeetData = async () => {
     try {
       const response = await fetch(
@@ -30,47 +33,47 @@ const MeetCard = ({ buttons, item, upcomingMeetCard }) => {
     }
   };
 
-const checkOutHandler = async (amount) => {
-  const response = await fetch(
-    `${import.meta.env.VITE_HOST_API}/meet/paymentgateway`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+  const checkOutHandler = async (amount) => {
+    const response = await fetch(
+      `${import.meta.env.VITE_HOST_API}/meet/paymentgateway`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount: item.price }),
+      }
+    );
+
+    const order = await response.json();
+    const options = {
+      key: "rzp_test_oY9pdmUvq4pPpk",
+      amount: order.amount,
+      currency: "INR",
+      name: "Global Techify",
+      description: item.type,
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIdiKmb2SRGbNJDB5sE1EzzxmNNRfxSLSKrA&s",
+      order_id: order.id,
+      callback_url: `${import.meta.env.VITE_HOST_API}/meet/checkout`,
+      prefill: {
+        name: "Gaurav Kumar",
+        email: "gaurav.kumar@example.com",
+        contact: "9999999999",
       },
-      body: JSON.stringify({ amount: 5000 }),
-    }
-  );
-
-  const order = await response.json(); // Parse response as JSON
-  const options = {
-    key: "rzp_test_BbdZCd9xvyEEFa",
-    amount: order.amount,
-    currency: "INR",
-    name: "6 Pack Programmer",
-    description: "Tutorial of RazorPay",
-    image: "https://avatars.githubusercontent.com/u/25058652?v=4",
-    order_id: order.id,
-    callback_url: `${import.meta.env.VITE_HOST_API}/meet/checkout`,
-    prefill: {
-      name: "Gaurav Kumar",
-      email: "gaurav.kumar@example.com",
-      contact: "9999999999",
-    },
-    notes: {
-      address: "Razorpay Corporate Office",
-    },
-    theme: {
-      color: "#121212",
-    },
-    payment_method: {
-      method: "upi",
-    },
+      notes: {
+        address: "IIT BHU",
+      },
+      theme: {
+        color: "#121212",
+      },
+      payment_method: {
+        method: "upi",
+      },
+    };
+    const razor = new window.Razorpay(options);
+    razor.open();
   };
-  const razor = new window.Razorpay(options);
-  razor.open();
-};
-
 
   const approvePayMeet = async () => {
     try {
@@ -87,6 +90,23 @@ const checkOutHandler = async (amount) => {
       console.log(error);
     }
   };
+
+  const requestLink = async () => {
+    try {
+      console.log(item.mentor)
+      const response = await fetch(
+        `${import.meta.env.VITE_HOST_API}/meet/requestlink/${item._id}`
+      );
+      if(!response.ok) {
+        alert(response.json().message || "server error");
+        throw new Error("Failed to fetch data");
+      }
+      const jsonData = await response.json();
+      alert("request sent"); 
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className={styles.userCard}>
@@ -111,25 +131,22 @@ const checkOutHandler = async (amount) => {
         </span>
       </div>
 
-      {
-       ( upcomingMeetCard && item.link != "") && (
-        <a target="_blank" href={item.link} className={styles.linkhref}>
-           join
+      {upcomingMeetCard && item.link != "" && (
+        <a
+          target="_blank"
+          href={item.link}
+          className={styles.linkhref}>
+          join
         </a>
-       )
-      }
-      {
-       ( upcomingMeetCard && item.link == "") && (
-        <button>
-          request for meet link
-        </button>
-       )
-      }
+      )}
+      {upcomingMeetCard && item.link == "" && (
+        <button onClick={requestLink}>request for meet link</button>
+      )}
       {buttons.length !== 0 && (
         <div className={styles.buttonsContainer}>
           <button
             className={styles.acceptButton}
-            onClick={checkOutHandler}>
+            onClick={approvePayMeet}>
             <FaCheckCircle className={styles.icon} />
             Pay ${item.price}
           </button>

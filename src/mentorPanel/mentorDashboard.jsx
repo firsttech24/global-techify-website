@@ -7,7 +7,8 @@ import UserCard from "./components/UserCard";
 import { Outlet } from "react-router-dom";
 
 const MentorDashboard = () => {
-  const mentorId = localStorage.getItem("gtechify!#");
+  const mentorId = JSON.parse(localStorage.getItem("gtechify!#")).id;
+  console.log(mentorId)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -15,6 +16,7 @@ const MentorDashboard = () => {
           `${import.meta.env.VITE_HOST_API}/meet/all/mentor/${mentorId}`
         );
         if (!response.ok) {
+          alert(response.json().message || "server error");
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
