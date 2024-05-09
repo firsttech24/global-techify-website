@@ -44,7 +44,7 @@ export default function Signup() {
         console.log("Student registered successfully:", data);
         localStorage.setItem("gtechify!#", JSON.stringify({id : data._id, role : "student"}));
         setIsLoading(false);
-        navigate("/user/profile");
+        navigate("/user-profile");
       })
       .catch(error => {
         console.error("Failed to register student:", error);

@@ -40,7 +40,7 @@ export default function Signup() {
         // console.log("Signup submitted with:", formData);
         localStorage.setItem("gtechify!#", JSON.stringify({id : data.user._id, role : "mentor"}));
         setIsLoading(false);
-        navigate("/mentor/profile");
+        navigate("/mentor-profile");
         setFormData(initialState);
         setPasswordMatchError("");
       })
