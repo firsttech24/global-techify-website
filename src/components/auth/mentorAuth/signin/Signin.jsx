@@ -47,7 +47,9 @@ export default function Signin() {
       );
 
       if (!response.ok) {
-        alert(response.json().message);
+        if (response.json().message) {
+          alert(response.json().message);
+        }
         throw new Error("Failed to register student");
       }
 

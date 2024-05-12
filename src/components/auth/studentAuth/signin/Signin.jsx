@@ -26,11 +26,11 @@ export default function Signin() {
     login()
       .then(data => {
         console.log("Student registered successfully:", data);
-         localStorage.setItem(
-           "gtechify!#",
-           JSON.stringify({ id: data.user._id, role: "student" })
-         );
-         navigate("/student/mentors");
+        localStorage.setItem(
+          "gtechify!#",
+          JSON.stringify({ id: data.user._id, role: "student" })
+        );
+        navigate("/student/mentors");
       })
       .catch(error => {
         console.error("Failed to register student:", error);
@@ -51,6 +51,9 @@ export default function Signin() {
       );
 
       if (!response.ok) {
+        if (response.json().message) {
+          alert(response.json().message);
+        }
         throw new Error("Failed to register student");
       }
 

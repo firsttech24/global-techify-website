@@ -38,7 +38,10 @@ export default function Signup() {
       .then(data => {
         console.log("mentor registered successfully:", data);
         // console.log("Signup submitted with:", formData);
-        localStorage.setItem("gtechify!#", JSON.stringify({id : data.user._id, role : "mentor"}));
+        localStorage.setItem(
+          "gtechify!#",
+          JSON.stringify({ id: data.user._id, role: "mentor" })
+        );
         setIsLoading(false);
         navigate("/mentor-profile");
         setFormData(initialState);
@@ -63,6 +66,7 @@ export default function Signup() {
       );
 
       if (!response.ok) {
+        if (response.json().message) alert(response.json().message);
         throw new Error("Failed to register student");
       }
 
