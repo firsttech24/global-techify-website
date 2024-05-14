@@ -16,7 +16,7 @@ export default function Hero() {
             Over 1 million users trust us
           </p>
         </div>
-        <Link to={"/mentor"}>
+        <Link to={"/student/mentors"}>
           <button data-aos="fade-up" className={`bigOutlineBtn ${styles.btn}`}>
             Get Mentorship
           </button>

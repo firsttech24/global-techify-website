@@ -227,11 +227,11 @@ const MentorProfile = () => {
     if (!item) navigate("/auth");
     setId(item);
     fetch(`${import.meta.env.VITE_HOST_API}/mentor/get/${item}`)
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
         setMentorData(data);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Error fetching mentor data:", error);
       });
   }, []);
@@ -241,7 +241,7 @@ const MentorProfile = () => {
   const [popOpen, setPopOpen] = useState({});
 
   const handleCheckboxChange = (day, checked) => {
-    setSelectedTimes((prevState) => ({
+    setSelectedTimes(prevState => ({
       ...prevState,
       [day]: {
         ...prevState[day],
@@ -253,7 +253,7 @@ const MentorProfile = () => {
   };
 
   const handleStartingTimeChange = (day, event) => {
-    setSelectedTimes((prevState) => ({
+    setSelectedTimes(prevState => ({
       ...prevState,
       [day]: {
         ...prevState[day],
@@ -267,7 +267,7 @@ const MentorProfile = () => {
   };
 
   const handleEndingTimeChange = (day, event) => {
-    setSelectedTimes((prevState) => ({
+    setSelectedTimes(prevState => ({
       ...prevState,
       [day]: {
         ...prevState[day],
@@ -280,7 +280,7 @@ const MentorProfile = () => {
     }));
   };
 
-  const saveTimeRange = (e) => {
+  const saveTimeRange = e => {
     e.preventDefault();
     const outputSchedule = {};
     const daysOfWeek = [
@@ -293,7 +293,7 @@ const MentorProfile = () => {
       "sunday",
     ];
 
-    daysOfWeek.forEach((day) => {
+    daysOfWeek.forEach(day => {
       outputSchedule[day] = selectedTimes[day]
         ? {
             status: selectedTimes[day].allDay,
@@ -331,12 +331,12 @@ const MentorProfile = () => {
       ...mentorData,
       schedule: {
         ...mentorData.schedule,
-        [day]: mentorData.schedule[day].filter((ite) => ite != item),
+        [day]: mentorData.schedule[day].filter(ite => ite != item),
       },
     });
   };
 
-  const handleProfileChange = async (e) => {
+  const handleProfileChange = async e => {
     let imageRef = ref(store, `mentors/profilePics/${mentorData.name}`);
     await uploadBytes(imageRef, e.target.files[0]);
     const imageUrl = await getDownloadURL(imageRef);
@@ -347,28 +347,28 @@ const MentorProfile = () => {
     });
   };
 
-  const handleProfileRemove = async (e) => {
+  const handleProfileRemove = async e => {
     setMentorData({
       ...mentorData,
       profile: "",
     });
   };
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     const { name, value } = event.target;
     setMentorData({
       ...mentorData,
       [name]: value,
     });
   };
-  const handleExpChange = (event) => {
+  const handleExpChange = event => {
     const { name, value } = event.target;
     setDummyExp({
       ...dummyExp,
       [name]: value,
     });
   };
-  const handleEduChange = (event) => {
+  const handleEduChange = event => {
     const { name, value } = event.target;
     setDummyEdu({
       ...dummyEdu,
@@ -411,13 +411,13 @@ const MentorProfile = () => {
     setMentorData({ ...mentorData, price: newPrice });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     updateMentor()
-      .then((data) => {
+      .then(data => {
         console.log("Student registered successfully:", data);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Failed to register student:", error);
       });
   };
@@ -448,20 +448,31 @@ const MentorProfile = () => {
     }
   };
 
+  // handle logout
+  const handleLogout = () => {
+    localStorage.removeItem("gtechify!#");
+    navigate("/");
+  };
+
   return (
     <form className={`flex-col-center ${styles.MentorProfile}`}>
-      {/* <div className={styles.profile}>
-        <div className={`flex-row-center ${styles.imgContainer}`}>
-          <img
-            src={mentorData.profile}
-            className={styles.profileImage}
-            alt="profile image"
-          />
+      <div className={`flex-row-center ${styles.top}`}>
+        <div className={styles.profile}>
+          <div className={`flex-row-center ${styles.imgContainer}`}>
+            <img
+              src={mentorData.profile}
+              className={styles.profileImage}
+              alt="profile image"
+            />
+          </div>
+          {/*   <input type="file" name="profile" onChange={handleProfileChange} />
+          <button className={styles.removeProfileButton}>Remove</button> */}
         </div>
-        <input type="file" name="profile" onChange={handleProfileChange} />
-        <button className={styles.removeProfileButton}>Remove</button>
+        <button onClick={() => handleLogout()} className={`btn1`}>
+          Logout
+        </button>
       </div>
- */}
+
       {/* name */}
       <div className={`flex-row-center ${styles.inputContainer}`}>
         <span>Name:</span>
@@ -515,7 +526,8 @@ const MentorProfile = () => {
             {mentorData.areasOfInterest.map((item, ind) => (
               <div
                 key={ind}
-                className={`flex-row-center ${styles.profilesItem} ${styles.profilesItem}`}>
+                className={`flex-row-center ${styles.profilesItem} ${styles.profilesItem}`}
+              >
                 <span className={styles.profileName}>{item}</span>
                 <span
                   className={styles.trashIcon}
@@ -523,10 +535,11 @@ const MentorProfile = () => {
                     setMentorData({
                       ...mentorData,
                       areasOfInterest: mentorData.areasOfInterest.filter(
-                        (ite) => ite !== item
+                        ite => ite !== item
                       ),
                     });
-                  }}>
+                  }}
+                >
                   <FaTrash />
                 </span>{" "}
               </div>
@@ -539,7 +552,7 @@ const MentorProfile = () => {
               <select
                 name="nonCoreAreasOfInterest"
                 value={mentorData.areasOfInterest}
-                onChange={(event) => {
+                onChange={event => {
                   if (event.target.value !== "")
                     setMentorData({
                       ...mentorData,
@@ -548,11 +561,10 @@ const MentorProfile = () => {
                         event.target.value,
                       ],
                     });
-                }}>
+                }}
+              >
                 {profiles.nonCore.map((item, ind) => (
-                  <option
-                    key={ind}
-                    value={item.value}>
+                  <option key={ind} value={item.value}>
                     {item.name}
                   </option>
                 ))}
@@ -564,7 +576,7 @@ const MentorProfile = () => {
               <select
                 name="coreAreasOfInterest"
                 value={mentorData.areasOfInterest}
-                onChange={(event) => {
+                onChange={event => {
                   if (event.target.value !== "")
                     setMentorData({
                       ...mentorData,
@@ -573,11 +585,10 @@ const MentorProfile = () => {
                         event.target.value,
                       ],
                     });
-                }}>
+                }}
+              >
                 {profiles.core.map((item, ind) => (
-                  <option
-                    key={ind}
-                    value={item.value}>
+                  <option key={ind} value={item.value}>
                     {item.name}
                   </option>
                 ))}
@@ -599,7 +610,7 @@ const MentorProfile = () => {
             name="currentCompany.company"
             value={mentorData.currentCompany.company}
             placeholder="Current Company"
-            onChange={(e) =>
+            onChange={e =>
               setMentorData({
                 ...mentorData,
                 currentCompany: {
@@ -617,7 +628,7 @@ const MentorProfile = () => {
             name="currentCompany.position"
             placeholder="Current Position"
             value={mentorData.currentCompany.position}
-            onChange={(e) =>
+            onChange={e =>
               setMentorData({
                 ...mentorData,
                 currentCompany: {
@@ -637,9 +648,7 @@ const MentorProfile = () => {
         <div className={`flex-col-center ${styles.experienceBox}`}>
           <div className={`flex-col-center ${styles.top}`}>
             {mentorData.experience.map((item, key) => (
-              <div
-                key={key}
-                className={`flex-row-center ${styles.expListBox}`}>
+              <div key={key} className={`flex-row-center ${styles.expListBox}`}>
                 <p className={styles.expListItems}>
                   {item.position} at {item.company} ({item.startDate} -{" "}
                   {item.endDate})
@@ -649,7 +658,7 @@ const MentorProfile = () => {
                     setMentorData({
                       ...mentorData,
                       experience: mentorData.experience.filter(
-                        (ite) => ite !== item
+                        ite => ite !== item
                       ),
                     })
                   }
@@ -710,9 +719,7 @@ const MentorProfile = () => {
         <div className={`flex-col-center ${styles.experienceBox}`}>
           <div className={`flex-col-center ${styles.top}`}>
             {mentorData.education.map((item, key) => (
-              <div
-                className={`flex-row-center ${styles.expListBox}`}
-                key={key}>
+              <div className={`flex-row-center ${styles.expListBox}`} key={key}>
                 <p className={styles.eduListItems}>
                   {item.degree} in {item.passingYear} at specialisation in{" "}
                   {item.specialisation} from {item.department}, {item.institute}
@@ -722,7 +729,7 @@ const MentorProfile = () => {
                     setMentorData({
                       ...mentorData,
                       education: mentorData.education.filter(
-                        (ite) => ite != item
+                        ite => ite != item
                       ),
                     });
                   }}
@@ -801,7 +808,7 @@ const MentorProfile = () => {
             name="socials.linkedin"
             placeholder="Linkedin"
             value={mentorData.socials.linkedin}
-            onChange={(e) =>
+            onChange={e =>
               setMentorData({
                 ...mentorData,
                 socials: {
@@ -819,7 +826,7 @@ const MentorProfile = () => {
             name="socials.github"
             placeholder="Github"
             value={mentorData.socials.github}
-            onChange={(e) =>
+            onChange={e =>
               setMentorData({
                 ...mentorData,
                 socials: {
@@ -837,7 +844,7 @@ const MentorProfile = () => {
             name="socials.twitter"
             placeholder="Twitter"
             value={mentorData.socials.twitter}
-            onChange={(e) =>
+            onChange={e =>
               setMentorData({
                 ...mentorData,
                 socials: {
@@ -858,7 +865,7 @@ const MentorProfile = () => {
           <input
             type="number"
             value={mentorData.price[15]}
-            onChange={(e) => priceChange(15, e.target.value)}
+            onChange={e => priceChange(15, e.target.value)}
             placeholder="Price"
           />
         </div>
@@ -867,7 +874,7 @@ const MentorProfile = () => {
           <input
             type="number"
             value={mentorData.price[30]}
-            onChange={(e) => priceChange(30, e.target.value)}
+            onChange={e => priceChange(30, e.target.value)}
             placeholder="Price"
           />
         </div>
@@ -876,7 +883,7 @@ const MentorProfile = () => {
           <input
             type="number"
             value={mentorData.price[45]}
-            onChange={(e) => priceChange(45, e.target.value)}
+            onChange={e => priceChange(45, e.target.value)}
             placeholder="Price"
           />
         </div>
@@ -885,7 +892,7 @@ const MentorProfile = () => {
           <input
             type="number"
             value={mentorData.price[60]}
-            onChange={(e) => priceChange(60, e.target.value)}
+            onChange={e => priceChange(60, e.target.value)}
             placeholder="Price"
           />
         </div>
@@ -903,21 +910,18 @@ const MentorProfile = () => {
             "friday",
             "saturday",
             "sunday",
-          ].map((day) => (
-            <div
-              key={day}
-              className={styles.scheduleGroup}>
+          ].map(day => (
+            <div key={day} className={styles.scheduleGroup}>
               <div className={styles.dayCheck}>
-                <input
+                {/*   <input
                   type="checkbox"
                   id={`${day}-checkbox`}
                   checked={selectedTimes[day]?.allDay || false}
                   onChange={(e) => handleCheckboxChange(day, e.target.checked)}
-                />
-                <h3>{day}</h3>
+                /> */}
               </div>
-              <div
-                onClick={() => setPopOpen((pre) => ({ ...pre, [day]: true }))}>
+              <h3>{day}</h3>
+              <div onClick={() => setPopOpen(pre => ({ ...pre, [day]: true }))}>
                 <IoAddCircle /> Add
               </div>
 
@@ -957,7 +961,7 @@ const MentorProfile = () => {
             className={styles.paymentInputs}
             placeholder="Account Name"
             value={mentorData.pmt.acn}
-            onChange={(e) =>
+            onChange={e =>
               setMentorData({
                 ...mentorData,
                 pmt: {
@@ -976,7 +980,7 @@ const MentorProfile = () => {
             className={styles.paymentInputs}
             placeholder="Account Number"
             value={mentorData.pmt.acno}
-            onChange={(e) =>
+            onChange={e =>
               setMentorData({
                 ...mentorData,
                 pmt: {
@@ -995,7 +999,7 @@ const MentorProfile = () => {
             className={styles.paymentInputs}
             placeholder="IFSC Code"
             value={mentorData.pmt.ic}
-            onChange={(e) =>
+            onChange={e =>
               setMentorData({
                 ...mentorData,
                 pmt: {
@@ -1014,7 +1018,7 @@ const MentorProfile = () => {
             placeholder="Branch Name"
             className={styles.paymentInputs}
             value={mentorData.pmt.nb}
-            onChange={(e) =>
+            onChange={e =>
               setMentorData({
                 ...mentorData,
                 pmt: {
@@ -1033,7 +1037,7 @@ const MentorProfile = () => {
             placeholder="Branch Code"
             className={styles.paymentInputs}
             value={mentorData.pmt.bc}
-            onChange={(e) =>
+            onChange={e =>
               setMentorData({
                 ...mentorData,
                 pmt: {
@@ -1052,7 +1056,7 @@ const MentorProfile = () => {
             placeholder="UPI"
             className={styles.paymentInputs}
             value={mentorData.pmt.ui}
-            onChange={(e) =>
+            onChange={e =>
               setMentorData({
                 ...mentorData,
                 pmt: {
@@ -1066,10 +1070,7 @@ const MentorProfile = () => {
         <div className={styles.paymentInputGroup}></div>
       </div>
 
-      <button
-        type="submit"
-        className={`btn1`}
-        onClick={handleSubmit}>
+      <button type="submit" className={`btn1`} onClick={handleSubmit}>
         Submit
       </button>
     </form>
