@@ -457,7 +457,7 @@ const MentorProfile = () => {
   return (
     <form className={`flex-col-center ${styles.MentorProfile}`}>
       <div className={`flex-row-center ${styles.top}`}>
-        <div className={styles.profile}>
+        <div className={`flex-col-center ${styles.profile}`}>
           <div className={`flex-row-center ${styles.imgContainer}`}>
             <img
               src={mentorData.profile}
@@ -465,8 +465,8 @@ const MentorProfile = () => {
               alt="profile image"
             />
           </div>
-          {/*   <input type="file" name="profile" onChange={handleProfileChange} />
-          <button className={styles.removeProfileButton}>Remove</button> */}
+          <input type="file" name="profile" onChange={handleProfileChange} />
+          {/* <button className={styles.removeProfileButton}>Remove</button>*/}
         </div>
         <button onClick={() => handleLogout()} className={`btn1`}>
           Logout
@@ -901,7 +901,7 @@ const MentorProfile = () => {
       {/* schedule */}
       <div className={`flex-col-center ${styles.scheduleContainer}`}>
         <span>Schedule</span>
-        <div>
+        <div className={`flex-col-center ${styles.scheduleParent}`}>
           {[
             "monday",
             "tuesday",
@@ -911,18 +911,24 @@ const MentorProfile = () => {
             "saturday",
             "sunday",
           ].map(day => (
-            <div key={day} className={styles.scheduleGroup}>
-              <div className={styles.dayCheck}>
-                {/*   <input
+            <div
+              key={day}
+              className={`flex-row-center ${styles.singleSchedule}`}
+            >
+              {/* <div className={styles.dayCheck}>
+                  <input
                   type="checkbox"
                   id={`${day}-checkbox`}
                   checked={selectedTimes[day]?.allDay || false}
                   onChange={(e) => handleCheckboxChange(day, e.target.checked)}
-                /> */}
-              </div>
+                />
+              </div> */}
               <h3>{day}</h3>
-              <div onClick={() => setPopOpen(pre => ({ ...pre, [day]: true }))}>
-                <IoAddCircle /> Add
+              <div
+                onClick={() => setPopOpen(pre => ({ ...pre, [day]: true }))}
+                className={styles.add}
+              >
+                <IoAddCircle />
               </div>
 
               <PopUpScheduleHandler
@@ -934,7 +940,7 @@ const MentorProfile = () => {
 
               {mentorData.schedule[day]
                 ? mentorData.schedule[day].map((item, index) => (
-                    <div key={index}>
+                    <div key={index} className={styles.selectedSchedule}>
                       {" "}
                       {item.startingTime} - {item.endingTime}{" "}
                       <FaTrash
@@ -945,7 +951,7 @@ const MentorProfile = () => {
                 : null}
             </div>
           ))}
-          <button className={styles.scheduleSaveButton}>Reset</button>
+          {/* <button className={styles.reset}>Reset</button> */}
         </div>
       </div>
 
