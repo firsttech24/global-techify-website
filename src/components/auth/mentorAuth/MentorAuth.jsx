@@ -3,7 +3,7 @@ import styles from "./../studentAuth/studentAuth.module.css";
 import Signin from "./signin/Signin";
 import Signup from "./signup/Signup";
 
-export default function MentorAuth() {
+export default function MentorAuth({ setIsLogin }) {
   const [isSignin, setIsSignin] = useState(true);
   return (
     <div data-aos="fade-up" className={`${styles.StudentAuth} `}>
@@ -13,8 +13,8 @@ export default function MentorAuth() {
           !isSignin ? styles.signedIn : ""
         }`}
       >
-        {isSignin && <Signin />}
-        {!isSignin && <Signup />}
+        {isSignin && <Signin setIsLogin={setIsLogin} />}
+        {!isSignin && <Signup setIsLogin={setIsLogin} />}
       </div>
 
       {/* right container */}

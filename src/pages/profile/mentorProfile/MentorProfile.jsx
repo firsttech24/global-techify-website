@@ -529,7 +529,7 @@ const MentorProfile = ({ setIsLogout }) => {
 
         <div className={`flex-col-center ${styles.allProfilesContainer}`}>
           <div className={`flex-col-center ${styles.profilesBox}`}>
-            {mentorData.areasOfInterest.map((item, ind) => (
+            {mentorData?.areasOfInterest.map((item, ind) => (
               <div
                 key={ind}
                 className={`flex-row-center ${styles.profilesItem} ${styles.profilesItem}`}

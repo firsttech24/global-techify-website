@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ColorRing } from "react-loader-spinner";
 
-export default function Signup() {
+export default function Signup({ setIsLogin }) {
   const initialState = {
     name: "",
     email: "",
@@ -42,6 +42,7 @@ export default function Signup() {
           "gtechify!#",
           JSON.stringify({ id: data.user._id, role: "mentor" })
         );
+        setIsLogin(prev => !prev);
         setIsLoading(false);
         navigate("/mentor-profile");
         setFormData(initialState);

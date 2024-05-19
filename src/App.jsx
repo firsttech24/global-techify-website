@@ -41,20 +41,26 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const log = JSON.parse(localStorage.getItem("gtechify!#"));
-    console.log("log => ", log);
-    if (log) {
-      setRole(log.role);
-      console.log("log role => ", log.role);
-    } else {
-      setRole("");
-      console.log("log role => ", log);
-    }
+    setTimeout(() => {
+      const log = JSON.parse(localStorage.getItem("gtechify!#"));
+      console.log("log => ", log);
+      if (log) {
+        setRole(log.role);
+        console.log("log role => ", log.role);
+      } else {
+        setRole("");
+        console.log("log role => ", log);
+      }
+    }, 1000);
   }, [isLogout, isLogin]);
 
   return (
     <BrowserRouter>
-      <Header setIsDarkTheme={setIsDarkTheme} setIsLogout={setIsLogout} />
+      <Header
+        setIsDarkTheme={setIsDarkTheme}
+        isLogin={isLogin}
+        isLogout={isLogout}
+      />
 
       <Routes>
         {/* home page */}

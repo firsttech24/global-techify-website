@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./../../studentAuth/signin/signin.module.css";
 import { useNavigate } from "react-router-dom";
 
-export default function Signin() {
+export default function Signin({ setIsLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -27,6 +27,7 @@ export default function Signin() {
           JSON.stringify({ id: data.user._id, role: "mentor" })
           // 6639ad960e9211983b4272fc
         );
+        setIsLogin(prev => !prev);
         navigate("/mentor/meetrequests");
       })
       .catch(error => {
