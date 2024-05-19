@@ -32,11 +32,11 @@ export default function DesktopNavbar({ panel, pic }) {
           <li className={`${styles.products}`}>
             <span className={styles.span}>Panels</span>
             <ul className={styles.productsHoverContainer}>
-              <Link to={"/mentor/meetrequests"}>
+              <Link to={"/auth"}>
                 <li className={styles.list}>Mentor Panel</li>
               </Link>
 
-              <Link to={"/student/mentors"}>
+              <Link to={"/auth"}>
                 <li className={styles.list}>Student Panel</li>
               </Link>
             </ul>
