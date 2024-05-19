@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styles from "./signin.module.css";
 import { useNavigate } from "react-router-dom";
 
-export default function Signin() {
+export default function Signin({ setIsLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,6 +30,7 @@ export default function Signin() {
           "gtechify!#",
           JSON.stringify({ id: data.user._id, role: "student" })
         );
+        setIsLogin(prev => !prev);
         navigate("/student/mentors");
       })
       .catch(error => {

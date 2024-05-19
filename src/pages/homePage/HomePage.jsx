@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./homePage.module.css";
 import {
   Hero,
@@ -8,11 +8,11 @@ import {
   Slider,
 } from "../../components/home";
 
-export default function HomePage() {
+export default function HomePage({ role }) {
   return (
     <div className={styles.HomePage}>
       {/* hero */}
-      <Hero />
+      <Hero role={role} />
 
       {/* count-up */}
       <Count />
@@ -21,7 +21,7 @@ export default function HomePage() {
       <WhyGlobalTechify />
 
       {/* join-as-mentor */}
-      <JoinAsMentor />
+      <JoinAsMentor role={role} />
 
       {/* slider */}
       <Slider />

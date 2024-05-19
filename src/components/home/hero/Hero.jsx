@@ -3,7 +3,7 @@ import styles from "./hero.module.css";
 import heroIcon from "./../../../assets/home/hero/heroIcon.png";
 import { Link } from "react-router-dom";
 
-export default function Hero() {
+export default function Hero({ role }) {
   return (
     <div className={styles.Hero}>
       <div className={styles.leftContainer}>
@@ -16,7 +16,7 @@ export default function Hero() {
             Over 1 million users trust us
           </p>
         </div>
-        <Link to={"/student/mentors"}>
+        <Link to={role === "student" ? "/student/mentors" : "/auth"}>
           <button data-aos="fade-up" className={`bigOutlineBtn ${styles.btn}`}>
             Get Mentorship
           </button>

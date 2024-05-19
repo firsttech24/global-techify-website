@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import mentorIcon from "./../../../assets/home/joinAsMentor/mentorIcon.svg";
 
-export default function JoinAsMentor() {
+export default function JoinAsMentor({ role }) {
   return (
     <div className={styles.JoinAsMentor}>
       <div className={styles.leftContainer}>
@@ -36,7 +36,10 @@ export default function JoinAsMentor() {
             <span className="normalText">Build your own personal brand</span>
           </li>
         </ul>
-        <Link data-aos="fade-up" to={"/mentor"}>
+        <Link
+          data-aos="fade-up"
+          to={role === "mentor" ? "/mentor/meetrequests" : "/auth"}
+        >
           <button className={`btn1 ${styles.btn}`}>Become a Mentor</button>
         </Link>
       </div>

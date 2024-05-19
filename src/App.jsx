@@ -30,19 +30,35 @@ import UpcomingSessions from "./mentorPanel/UpcomingSessions";
 
 export default function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
+  const [role, setRole] = useState();
+  const [isLogout, setIsLogout] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     AOS.init({
       duration: 2000,
     });
   }, []);
+
+  useEffect(() => {
+    const log = JSON.parse(localStorage.getItem("gtechify!#"));
+    console.log("log => ", log);
+    if (log) {
+      setRole(log.role);
+      console.log("log role => ", log.role);
+    } else {
+      setRole("");
+      console.log("log role => ", log);
+    }
+  }, [isLogout, isLogin]);
+
   return (
     <BrowserRouter>
-      <Header setIsDarkTheme={setIsDarkTheme} />
+      <Header setIsDarkTheme={setIsDarkTheme} setIsLogout={setIsLogout} />
 
       <Routes>
         {/* home page */}
-        <Route path={"/"} element={<HomePage />} />
+        <Route path={"/"} element={<HomePage role={role} />} />
 
         {/* about page */}
         <Route
@@ -63,12 +79,18 @@ export default function App() {
         <Route path={"/contact"} element={<ContactPage />} />
 
         {/* auth page */}
-        <Route path={"/auth"} element={<AuthPage />} />
+        <Route path={"/auth"} element={<AuthPage setIsLogin={setIsLogin} />} />
 
         {/* mentor profile */}
-        <Route path={"/mentor-profile"} element={<MentorProfile />} />
+        <Route
+          path={"/mentor-profile"}
+          element={<MentorProfile setIsLogout={setIsLogout} />}
+        />
 
-        <Route path="/student-profile" element={<StudentProfile />} />
+        <Route
+          path="/student-profile"
+          element={<StudentProfile setIsLogout={setIsLogout} />}
+        />
 
         {/* student panel */}
         <Route path="/student" element={<StudentDashboard />}>
@@ -91,7 +113,7 @@ export default function App() {
           <Route path="upcomingsessions" element={<UpcomingSessions />} />
         </Route>
       </Routes>
-      <Footer />
+      <Footer role={role} />
     </BrowserRouter>
   );
 }

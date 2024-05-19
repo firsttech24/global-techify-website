@@ -6,7 +6,7 @@ import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const StudentProfile = () => {
+const StudentProfile = ({ setIsLogout }) => {
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [userData, setUserData] = useState({
@@ -170,6 +170,7 @@ const StudentProfile = () => {
   // handle logout
   const handleLogout = () => {
     localStorage.removeItem("gtechify!#");
+    setIsLogout(prev => !prev);
     navigate("/");
   };
   return (
@@ -214,7 +215,12 @@ const StudentProfile = () => {
           <input type="file" name="profile" onChange={handleProfileChange} />
           {/* <button className={styles.removeProfileButton}>Remove</button>*/}
         </div>
-        <button onClick={() => handleLogout()} className={`btn1`}>
+        <button
+          onClick={() => {
+            handleLogout();
+          }}
+          className={`btn1`}
+        >
           Logout
         </button>
       </div>

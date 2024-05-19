@@ -161,7 +161,7 @@ const profiles = {
   ],
 };
 
-const MentorProfile = () => {
+const MentorProfile = ({ setIsLogout }) => {
   const [id, setId] = useState("");
   const navigate = useNavigate();
   const [mentorData, setMentorData] = useState({
@@ -451,6 +451,7 @@ const MentorProfile = () => {
   // handle logout
   const handleLogout = () => {
     localStorage.removeItem("gtechify!#");
+    setIsLogout(prev => !prev);
     navigate("/");
   };
 
@@ -468,7 +469,12 @@ const MentorProfile = () => {
           <input type="file" name="profile" onChange={handleProfileChange} />
           {/* <button className={styles.removeProfileButton}>Remove</button>*/}
         </div>
-        <button onClick={() => handleLogout()} className={`btn1`}>
+        <button
+          onClick={() => {
+            handleLogout();
+          }}
+          className={`btn1`}
+        >
           Logout
         </button>
       </div>
