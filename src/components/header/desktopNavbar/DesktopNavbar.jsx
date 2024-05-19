@@ -42,11 +42,13 @@ export default function DesktopNavbar({ panel, pic }) {
             </ul>
           </li>
         )}
+
         {panel == "student" && (
           <Link to={"/student/mentors"}>
             <li>Panel</li>
           </Link>
         )}
+
         {panel == "mentor" && (
           <Link to={"/mentor/meetrequests"}>
             <li>Panel</li>

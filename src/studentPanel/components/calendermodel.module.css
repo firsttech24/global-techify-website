@@ -1,63 +1,103 @@
-:root {
-  --themeColor: rgba(0, 128, 0, 0.715);
-  --semiTransparentColor: rgba(0, 0, 0, 0.9);
-  --shadowColor: rgba(0, 0, 0, 0.3);
-  --textColor: #777;
-  --backgroundColor: #212121;
-}
-
 .modalBackground {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--semiTransparentColor);
+  background-color: var(--modal-bg);
+  z-index: 5000;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+  .modalContent {
+    background-color: var(--bg);
+    padding: 2vw;
+    border-radius: 1vw;
+    box-shadow: 0.3vw 0.3vw 0.9vw var(--box-shadow-color);
+    gap: 3vw;
+    .modalHeader {
+      width: 100%;
+      justify-content: space-between;
+      h2 {
+        color: var(--themeColor1);
+      }
+      button {
+        color: var(--themeColor1);
+        font-weight: 600;
+        font-size: 1.5vw;
+      }
+    }
+    .modalBody {
+      gap: 5vw;
+      .rightModal {
+        align-items: flex-start;
+        gap: 1vw;
+        .profileRadio {
+          span {
+            color: var(--themeColor1);
+            font-weight: 600;
+          }
+        }
 
-.modalContent {
-  background-color: var(--backgroundColor);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px var(--shadowColor);
-  max-width: 80%;
-  margin-top: 5vw;
-}
+        .typeRadio {
+          align-items: flex-start;
+          gap: 1vw;
+          .typeHeading {
+            color: var(--themeColor1);
+            font-weight: 600;
+          }
+          .typeRow {
+            align-items: flex-start;
+            gap: 0.5vw;
+            .typeOptions {
+              gap: 0.5vw;
+              cursor: pointer;
+              input {
+                width: 1.5vw;
+                height: 1.5vw;
+                cursor: pointer;
+              }
+            }
+          }
+        }
 
-.modalHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
+        .durationRadio {
+          align-items: flex-start;
+          gap: 1vw;
+          .heading {
+            color: var(--themeColor1);
+            font-weight: 600;
+          }
+          .durationRadioBox {
+            gap: 1vw;
+            .durationRadioItems {
+              gap: 0.5vw;
+              input {
+                width: 1.5vw;
+                height: 1.5vw;
+                cursor: pointer;
+              }
+              label {
+                cursor: pointer;
+              }
+            }
+          }
+        }
 
-.closeButton {
-  background-color: transparent;
-  border: none;
-  color: var(--textColor);
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.modalBody {
-  display: flex;
-  gap: 4vw;
-  padding-left: 3vw;
-}
-
-.rightModal {
-  display: flex;
-  flex-direction: column;
-  min-width: 20vw;
-  gap: 1.4vw;
-}
-
-.profileRadio {
-  display: flex;
-  flex-direction: column;
+        .slotRadio {
+          display: flex;
+          flex-direction: column;
+          .heading {
+            color: var(--themeColor1);
+            font-weight: 600;
+          }
+        }
+      }
+    }
+    .sendRqstBtn {
+      padding: 0.5vw 1vw !important;
+    }
+  }
 }
 
 .profileRadioOptionsBox {
@@ -70,31 +110,12 @@
 .profileRadioOptions {
   display: flex;
   gap: 1vw;
-  input{
+  input {
     width: 30px;
   }
-  label{
+  label {
     display: flex;
   }
-}
-
-.durationRadio{
-  display: flex;
-}
-
-.durationRadioBox{
-  display: flex;
-  align-items: center;
-}
-
-.durationRadioItems{
-  margin: 10px;
-  margin-top: 0;
-}
-
-.slotRadio {
-  display: flex;
-  flex-direction: column;
 }
 
 .slotRadioOptionsBox {
@@ -115,39 +136,4 @@
 
 .slotRadioOption label {
   cursor: pointer;
-}
-
-.typeRadio {
-  display: flex;
-  flex-direction: column;
-}
-
-.typeHeading {}
-
-.typeRow {
-  padding: 0.5vw;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4vw;
-}
-
-.typeOptions {
-  display: flex;
-  justify-content: flex-start;
-  gap: 0.5vw;
-  input {
-    width: 20px;
-  }
-}
-
-.buttonRow {
-  display: flex;
-  justify-content: center;
-  padding: 1vw;
-}
-
-.buttonRow button {
-  background-color: var(--themeColor);
-  padding: 0.7vw 1.2vw;
-  border-radius: 2px;
 }

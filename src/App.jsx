@@ -93,6 +93,7 @@ export default function App() {
           element={<MentorProfile setIsLogout={setIsLogout} />}
         />
 
+        {/* student profile */}
         <Route
           path="/student-profile"
           element={<StudentProfile setIsLogout={setIsLogout} />}

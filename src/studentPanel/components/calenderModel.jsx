@@ -22,11 +22,10 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
     startTime: "",
     endTime: "",
     duration: 60,
-    price : null,
+    price: null,
   });
 
-
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -34,7 +33,7 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
     });
   };
 
-  const handleDateChange = (date) => {
+  const handleDateChange = date => {
     setFormData({
       ...formData,
       date: date,
@@ -49,78 +48,80 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
     setIsOpen(false);
   };
 
-  const handleRequestClick = (e) => {
+  const handleRequestClick = e => {
     e.preventDefault();
 
-  if (
-    !formData.topic ||
-    !formData.type ||
-    !formData.date ||
-    !formData.startTime ||
-    !formData.endTime
-  ) {
-    alert("Please fill in all the required fields.");
-    return;
-  }
+    if (
+      !formData.topic ||
+      !formData.type ||
+      !formData.date ||
+      !formData.startTime ||
+      !formData.endTime
+    ) {
+      alert("Please fill in all the required fields.");
+      return;
+    }
 
-  console.log(formData)
+    console.log(formData);
 
-  fetch(`${import.meta.env.VITE_HOST_API}/meet/initiate`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        const message = response.json().message;
-        if (message) alert(message);
-        else alert("server error");
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
+    fetch(`${import.meta.env.VITE_HOST_API}/meet/initiate`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
     })
-    .then((data) => {
-      setIsOpen(false);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
-
+      .then(response => {
+        if (!response.ok) {
+          const message = response.json().message;
+          if (message) alert(message);
+          else alert("server error");
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then(data => {
+        setIsOpen(false);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   return (
     <>
       {isOpen && (
         <div
-          className={styles.modalBackground}
-          onClick={closeModal}>
+          className={`flex-row-center ${styles.modalBackground}`}
+          onClick={closeModal}
+        >
           <div
-            className={styles.modalContent}
-            onClick={(e) => e.stopPropagation()}>
-            <div className={styles.modalHeader}>
-              <h3>Set Schedule</h3>
-              <button
-                className={styles.closeButton}
-                onClick={closeModal}>
+            className={`flex-col-center ${styles.modalContent}`}
+            onClick={e => e.stopPropagation()}
+          >
+            {/* header */}
+            <div className={`flex-row-center ${styles.modalHeader}`}>
+              <h2>Set Schedule:</h2>
+              <button className={styles.closeButton} onClick={closeModal}>
                 Close
               </button>
             </div>
-            <div className={styles.modalBody}>
+
+            {/* body */}
+            <div className={`flex-row-center ${styles.modalBody}`}>
               <CustomDatePicker
                 schedule={mentor?.schedule}
                 handleDateChange={handleDateChange}
                 setSelectedDay={setSelectedDay}
               />
-              <div className={styles.rightModal}>
-                <div className={styles.profileRadio}>
+
+              <div className={`flex-col-center ${styles.rightModal}`}>
+                {/* choose profile */}
+                <div className={`flex-col-center ${styles.profileRadio}`}>
                   <span>Choose Profile:</span>
                   <div className={styles.profileRadioOptionsBox}>
                     {mentor?.areasOfInterest.map((item, index) => (
-                      <div
-                        key={index}
-                        className={styles.profileRadioOptions}>
+                      <div key={index} className={styles.profileRadioOptions}>
                         <input
                           type="radio"
                           id={item}
@@ -133,12 +134,13 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
                     ))}
                   </div>
                 </div>
-                <div className={styles.typeRadio}>
-                  <span className={styles.typeHeading}>
-                    Type Of Session :-{" "}
-                  </span>
-                  <div className={styles.typeRow}>
-                    <label className={styles.typeOptions}>
+
+                {/* type of session */}
+                <div className={`flex-col-center ${styles.typeRadio}`}>
+                  <span className={styles.typeHeading}>Type Of Session:</span>
+
+                  <div className={`flex-col-center ${styles.typeRow}`}>
+                    <label className={`flex-row-center ${styles.typeOptions}`}>
                       <input
                         type="radio"
                         name="type"
@@ -147,7 +149,7 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
                       />
                       Mock Interview
                     </label>
-                    <label className={styles.typeOptions}>
+                    <label className={`flex-row-center ${styles.typeOptions}`}>
                       <input
                         type="radio"
                         name="type"
@@ -159,28 +161,37 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
                   </div>
                 </div>
 
-                <div className={styles.durationRadio}>
-                  <span>Choose Duration (min) :- </span>
-                  <div className={styles.durationRadioBox}>
+                {/* choose duration */}
+                <div className={`flex-col-center ${styles.durationRadio}`}>
+                  <span className={styles.heading}>Choose Duration (min):</span>
+                  <div className={`flex-row-center ${styles.durationRadioBox}`}>
                     {[15, 30, 45, 60].map((dur, ind) => (
-                      <span className={styles.durationRadioItems}>
-                        {" "}
+                      <span
+                        className={`flex-col-center ${styles.durationRadioItems}`}
+                      >
                         <input
                           type="radio"
                           name="duration"
+                          id={dur}
                           onChange={() => {
                             setDuration(dur);
-                            setFormData({...formData, price : mentor.price[dur]})
+                            setFormData({
+                              ...formData,
+                              price: mentor.price[dur],
+                            });
                           }}
                         />
-                        {dur} (Rs.{mentor.price[dur]})
+                        <label htmlFor={dur}>
+                          {dur} (Rs.{mentor.price[dur]})
+                        </label>
                       </span>
                     ))}
                   </div>
                 </div>
 
+                {/* choose slot */}
                 <div className={styles.slotRadio}>
-                  <span>Choose Slot :- </span>
+                  <span className={styles.heading}>Choose Slot: </span>
                   {selectedDay && duration && (
                     <TimeSlotGenerator
                       schedule={mentor.schedule[selectedDay.toLowerCase()]}
@@ -191,9 +202,13 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
                 </div>
               </div>
             </div>
-            <div className={styles.buttonRow}>
-              <button onClick={handleRequestClick}>Send Requests</button>
-            </div>
+
+            <button
+              onClick={handleRequestClick}
+              className={`btn1 ${styles.sendRqstBtn}`}
+            >
+              Send Requests
+            </button>
           </div>
         </div>
       )}

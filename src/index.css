@@ -11,6 +11,7 @@
   --box-shadow-color: rgba(97, 218, 251, 0.4);
   --minor-text-color: #aaa;
 
+  --modal-bg: rgba(255, 255, 255, 0.5);
   [data-theme="light"] {
     --themeColor1: #5a62e0;
     --themeColor2: #212121;
@@ -19,6 +20,7 @@
     --bg: #f0f0f0;
     --box-shadow-color: rgba(0, 0, 0, 0.3);
     --minor-text-color: #666;
+    --modal-bg: rgba(0, 0, 0, 0.5);
   }
 }
 
