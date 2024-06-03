@@ -5,7 +5,7 @@ import Signup from "./signup/Signup";
 
 import { ColorRing } from "react-loader-spinner";
 
-export default function StudentAuth() {
+export default function StudentAuth({ setIsLogin }) {
   const [isSignin, setIsSignin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,8 +17,8 @@ export default function StudentAuth() {
           !isSignin ? styles.signedIn : ""
         }`}
       >
-        {isSignin && <Signin />}
-        {!isSignin && <Signup />}
+        {isSignin && <Signin setIsLogin={setIsLogin} />}
+        {!isSignin && <Signup setIsLogin={setIsLogin} />}
       </div>
 
       {/* right container */}

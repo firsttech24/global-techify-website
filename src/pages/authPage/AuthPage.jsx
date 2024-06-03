@@ -5,7 +5,7 @@ import StudentAuth from "../../components/auth/studentAuth/StudentAuth";
 import MentorAuth from "../../components/auth/mentorAuth/MentorAuth";
 import CollegeAuth from "../../components/auth/collegeAuth/CollegeAuth";
 
-export default function AuthPage() {
+export default function AuthPage({ setIsLogin }) {
   const [selectAuth, setSelectAuth] = useState("student");
   return (
     <div className={styles.AuthPage}>
@@ -38,11 +38,11 @@ export default function AuthPage() {
       </div>
 
       <div className={styles.auth}>
-        {selectAuth === "student" && <StudentAuth />}
+        {selectAuth === "student" && <StudentAuth setIsLogin={setIsLogin} />}
 
-        {selectAuth === "mentor" && <MentorAuth />}
+        {selectAuth === "mentor" && <MentorAuth setIsLogin={setIsLogin} />}
 
-        {selectAuth === "college" && <CollegeAuth />}
+        {selectAuth === "college" && <CollegeAuth setIsLogin={setIsLogin} />}
       </div>
     </div>
   );

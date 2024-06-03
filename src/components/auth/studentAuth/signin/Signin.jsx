@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styles from "./signin.module.css";
 import { useNavigate } from "react-router-dom";
 
-export default function Signin() {
+export default function Signin({ setIsLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,11 +26,12 @@ export default function Signin() {
     login()
       .then(data => {
         console.log("Student registered successfully:", data);
-         localStorage.setItem(
-           "gtechify!#",
-           JSON.stringify({ id: data.user._id, role: "student" })
-         );
-         navigate("/student/mentors");
+        localStorage.setItem(
+          "gtechify!#",
+          JSON.stringify({ id: data.user._id, role: "student" })
+        );
+        setIsLogin(prev => !prev);
+        navigate("/student/mentors");
       })
       .catch(error => {
         console.error("Failed to register student:", error);
@@ -51,6 +52,9 @@ export default function Signin() {
       );
 
       if (!response.ok) {
+        if (response.json().message) {
+          alert(response.json().message);
+        }
         throw new Error("Failed to register student");
       }
 

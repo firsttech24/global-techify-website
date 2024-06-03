@@ -9,7 +9,7 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
 
-export default function Footer() {
+export default function Footer({ role }) {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -133,7 +133,7 @@ export default function Footer() {
             </div>
             <div className={styles.linksTwo}>
               <Link
-                to={"/mentor"}
+                to={role === "mentor" ? "/mentor/meetrequests" : "/auth"}
                 onClick={scrollToTop}
                 className={`minorText`}
               >

@@ -24,7 +24,8 @@
         color: var(--themeColor1);
       }
       p {
-        text-align: justify;
+        text-align: left;
+        font-size: 1.3vw;
       }
     }
     .right {
@@ -72,7 +73,7 @@
         filter: drop-shadow(0 0.2vw 0.3vw var(--box-shadow-color));
       }
       .name {
-        font-size: 2vw;
+        font-size: 1.7vw;
         font-weight: 500;
       }
       .position {
@@ -113,7 +114,7 @@
           height: 18vw;
         }
         .name {
-          font-size: 3vw;
+          font-size: 2.7vw;
         }
         .position {
           font-size: 2.2vw;
@@ -154,7 +155,7 @@
           height: 22vw;
         }
         .name {
-          font-size: 4vw;
+          font-size: 3.7vw;
         }
         .position {
           font-size: 2.6vw;

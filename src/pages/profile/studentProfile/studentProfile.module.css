@@ -5,8 +5,15 @@
   gap: 2vw;
   padding: 4vw;
   align-items: center !important;
+  .top {
+    width: 80vw;
+    /* border: 1px solid white; */
+
+    justify-content: space-between;
+  }
   .profile {
-    align-self: flex-start;
+    align-items: flex-start;
+    gap: 1vw;
     .imgContainer {
       width: 10vw;
       height: 10vw;
@@ -88,6 +95,7 @@
         }
       }
       .bottom {
+        width: 95%;
         flex-wrap: wrap;
         gap: 1vw;
         justify-content: space-between;

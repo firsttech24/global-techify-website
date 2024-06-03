@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ColorRing } from "react-loader-spinner";
 
-export default function Signup() {
+export default function Signup({ setIsLogin }) {
   const initialState = {
     name: "",
     email: "",
@@ -42,8 +42,12 @@ export default function Signup() {
     registerStudent()
       .then(data => {
         console.log("Student registered successfully:", data);
-        localStorage.setItem("gtechify!#", JSON.stringify({id : data._id, role : "student"}));
+        localStorage.setItem(
+          "gtechify!#",
+          JSON.stringify({ id: data._id, role: "student" })
+        );
         setIsLoading(false);
+        setIsLogin(prev => !prev);
         navigate("/student-profile");
       })
       .catch(error => {

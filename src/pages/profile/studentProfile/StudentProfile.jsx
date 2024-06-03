@@ -4,8 +4,10 @@ import { IoSend } from "react-icons/io5";
 import { store } from "../../../config/firebase";
 import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 import { FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-const StudentProfile = () => {
+const StudentProfile = ({ setIsLogout }) => {
+  const navigate = useNavigate();
   const [id, setId] = useState("");
   const [userData, setUserData] = useState({
     name: "",
@@ -165,6 +167,12 @@ const StudentProfile = () => {
     }
   };
 
+  // handle logout
+  const handleLogout = () => {
+    localStorage.removeItem("gtechify!#");
+    setIsLogout(prev => !prev);
+    navigate("/");
+  };
   return (
     <form action="" className={`flex-col-center ${styles.StudentProfile}`}>
       {/* profile */}
@@ -194,6 +202,28 @@ const StudentProfile = () => {
           onChange={handleResumeChange}
         />
       </div> */}
+
+      <div className={`flex-row-center ${styles.top}`}>
+        <div className={`flex-col-center ${styles.profile}`}>
+          <div className={`flex-row-center ${styles.imgContainer}`}>
+            <img
+              src={userData.profilePhoto}
+              className={styles.profileImage}
+              alt="profile"
+            />
+          </div>
+          <input type="file" name="profile" onChange={handleProfileChange} />
+          {/* <button className={styles.removeProfileButton}>Remove</button>*/}
+        </div>
+        <button
+          onClick={() => {
+            handleLogout();
+          }}
+          className={`btn1`}
+        >
+          Logout
+        </button>
+      </div>
 
       {/* name */}
       <div className={`flex-row-center ${styles.inputContainer}`}>
