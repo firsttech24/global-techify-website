@@ -1,3 +1,5 @@
+/** @format */
+
 import { useEffect, useState } from "react";
 import styles from "./studentProfile.module.css";
 import { IoSend } from "react-icons/io5";
@@ -33,42 +35,49 @@ const StudentProfile = ({ setIsLogout }) => {
   });
 
   useEffect(() => {
-    const item = localStorage.getItem("gtechify!#");
-    setId(item);
-    fetch(`${import.meta.env.VITE_HOST_API}/user/get/${item}`)
-      .then(response => response.json())
-      .then(data => {
+    const item = JSON.parse(localStorage.getItem("gtechify!#"));
+    console.log(item.id, "log");
+    if (item.role != "student") navigate("/");
+    else {
+      setId(item.id);
+    }
+    fetch(`${import.meta.env.VITE_HOST_API}/user/get/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.profilePhoto)
+          setUserData((prevData) => ({ ...prevData, profilePhoto: data.profilePhoto }));
         if (data.name)
-          setUserData(prevData => ({ ...prevData, name: data.name }));
+          setUserData((prevData) => ({ ...prevData, name: data.name }));
         if (data.email)
-          setUserData(prevData => ({ ...prevData, email: data.email }));
+          setUserData((prevData) => ({ ...prevData, email: data.email }));
         if (data.wnumber)
-          setUserData(prevData => ({ ...prevData, wnumber: data.wnumber }));
+          setUserData((prevData) => ({ ...prevData, wnumber: data.wnumber }));
         if (data.resume)
-          setUserData(prevData => ({ ...prevData, resume: data.resume }));
+          setUserData((prevData) => ({ ...prevData, resume: data.resume }));
 
         if (data.experience)
-          setUserData(prevData => ({
+          setUserData((prevData) => ({
             ...prevData,
             experience: data.experience,
           }));
         if (data.education)
-          setUserData(prevData => ({
+          setUserData((prevData) => ({
             ...prevData,
             education: data.education,
           }));
         if (data.socials)
-          setUserData(prevData => ({
+          setUserData((prevData) => ({
             ...prevData,
             socials: data.socials,
           }));
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching mentor data:", error);
       });
   }, []);
 
-  const handleProfileChange = async e => {
+  const handleProfileChange = async (e) => {
     let imageRef = ref(store, "users/profilePics");
     await uploadBytes(imageRef, e.target.files[0]);
     const imageUrl = await getDownloadURL(imageRef);
@@ -78,7 +87,8 @@ const StudentProfile = ({ setIsLogout }) => {
       profilePhoto: imageUrl,
     });
   };
-  const handleResumeChange = async e => {
+
+  const handleResumeChange = async (e) => {
     let resumeRef = ref(store, "users/resume");
     await uploadBytes(resumeRef, e.target.files[0]);
     const resumeUrl = await getDownloadURL(resumeRef);
@@ -89,7 +99,7 @@ const StudentProfile = ({ setIsLogout }) => {
     });
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({
       ...userData,
@@ -97,7 +107,7 @@ const StudentProfile = ({ setIsLogout }) => {
     });
   };
 
-  const handleEduChange = event => {
+  const handleEduChange = (event) => {
     const { name, value } = event.target;
     setDummyEdu({
       ...dummyEdu,
@@ -131,14 +141,14 @@ const StudentProfile = ({ setIsLogout }) => {
       });
     }
   };
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     console.log(userData);
     updateUser()
-      .then(data => {
+      .then((data) => {
         console.log("Student registered successfully:", data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Failed to register student:", error);
       });
   };
@@ -170,11 +180,13 @@ const StudentProfile = ({ setIsLogout }) => {
   // handle logout
   const handleLogout = () => {
     localStorage.removeItem("gtechify!#");
-    setIsLogout(prev => !prev);
+    setIsLogout((prev) => !prev);
     navigate("/");
   };
   return (
-    <form action="" className={`flex-col-center ${styles.StudentProfile}`}>
+    <form
+      action=""
+      className={`flex-col-center ${styles.StudentProfile}`}>
       {/* profile */}
       {/*  <div className={styles.profile}>
         <div className={`flex-row-center ${styles.imgContainer}`}>
@@ -212,15 +224,18 @@ const StudentProfile = ({ setIsLogout }) => {
               alt="profile"
             />
           </div>
-          <input type="file" name="profile" onChange={handleProfileChange} />
+          <input
+            type="file"
+            name="profile"
+            onChange={handleProfileChange}
+          />
           {/* <button className={styles.removeProfileButton}>Remove</button>*/}
         </div>
         <button
           onClick={() => {
             handleLogout();
           }}
-          className={`btn1`}
-        >
+          className={`btn1`}>
           Logout
         </button>
       </div>
@@ -271,22 +286,24 @@ const StudentProfile = ({ setIsLogout }) => {
         <div className={`flex-col-center ${styles.experienceBox}`}>
           <div className={`flex-col-center ${styles.top}`}>
             {userData.education.map((item, key) => (
-              <div key={key} className={`flex-row-center ${styles.expListBox}`}>
+              <div
+                key={key}
+                className={`flex-row-center ${styles.expListBox}`}>
                 <p className={styles.expListItems}>
                   {item.degree} in {item.passingYear} at specialisation in{" "}
                   {item.specialisation} from {item.department}, {item.institute}
                 </p>
 
-                {/* <FaTrash
-                onClick={() => {
-                    setMentorData({
-                      ...mentorData,
-                      education: mentorData.education.filter(
-                        ite => ite != item
+                <FaTrash
+                  onClick={() => {
+                    setUserData({
+                      ...userData,
+                      education: userData.education.filter(
+                        (ite) => ite != item
                       ),
                     });
                   }}
-                /> */}
+                />
               </div>
             ))}
           </div>
@@ -360,23 +377,48 @@ const StudentProfile = ({ setIsLogout }) => {
       <div className={`flex-col-center ${styles.areasOfInterest}`}>
         <span>Areas Of Interest:</span>
         <div className={`flex-col-center ${styles.allProfilesContainer}`}>
-          {userData.areasOfInterest.join(", ")}
+          {userData.areasOfInterest.map((item, key) => (
+            <div
+              key={key}
+              className={`flex-row-center ${styles.profilesBox}`}>
+              <p className={styles.profilesItems}>
+                {item}{" "}
+                <FaTrash
+                  className={styles.trashIcon}
+                  onClick={() => {
+                    setUserData({
+                      ...userData,
+                      areasOfInterest: userData.areasOfInterest.filter(
+                        (ite) => ite != item
+                      ),
+                    });
+                  }}
+                />
+              </p>
+            </div>
+          ))}
           <div className={`flex-col-center ${styles.profileContainer}`}>
             <label className={`flex-row-center ${styles.singleProfile}`}>
               <span>Non-Core Profiles:</span>
               <select
                 name="nonCoreAreasOfInterest"
                 value={userData.areasOfInterest}
-                onChange={event =>
-                  setUserData({
-                    ...userData,
-                    areasOfInterest: [
-                      ...userData.areasOfInterest,
-                      event.target.value,
-                    ],
-                  })
-                }
-              >
+                onChange={(event) => {
+                  const newValue = event.target.value;
+                  setUserData((prevState) => {
+                    if (!prevState.areasOfInterest.includes(newValue)) {
+                      return {
+                        ...prevState,
+                        areasOfInterest: [
+                          ...prevState.areasOfInterest,
+                          newValue,
+                        ],
+                      };
+                    } else {
+                      return prevState;
+                    }
+                  });
+                }}>
                 <option value="Data Science">Data Science</option>
                 <option value="Software">Software</option>
                 <option value="Banking and Finance">Banking and Finance</option>
@@ -400,16 +442,20 @@ const StudentProfile = ({ setIsLogout }) => {
               <select
                 name="coreAreasOfInterest"
                 value={userData.areasOfInterest}
-                onChange={event =>
-                  setUserData({
-                    ...userData,
-                    areasOfInterest: [
-                      ...userData.areasOfInterest,
-                      event.target.value,
-                    ],
-                  })
-                }
-              >
+                onChange={(event) => {
+                  const newValue = event.target.value;
+                  setUserData((prevState) => {
+                    if (!prevState.areasOfInterest.includes(newValue)) {
+                      return {
+                        ...prevState,
+                        areasOfInterest: [
+                          ...prevState.areasOfInterest,
+                          newValue,
+                        ],
+                      };
+                    } else return prevState;
+                  });
+                }}>
                 <option value="Aerospace Engineering">
                   Aerospace Engineering
                 </option>
@@ -463,7 +509,7 @@ const StudentProfile = ({ setIsLogout }) => {
             name="socials.linkedin"
             placeholder="Linkedin"
             value={userData.socials.linkedin}
-            onChange={e =>
+            onChange={(e) =>
               setUserData({
                 ...userData,
                 socials: {
@@ -481,7 +527,7 @@ const StudentProfile = ({ setIsLogout }) => {
             name="socials.github"
             placeholder="Github"
             value={userData.socials.github}
-            onChange={e =>
+            onChange={(e) =>
               setUserData({
                 ...userData,
                 socials: {
@@ -499,7 +545,7 @@ const StudentProfile = ({ setIsLogout }) => {
             name="socials.twitter"
             placeholder="Twitter"
             value={userData.socials.twitter}
-            onChange={e =>
+            onChange={(e) =>
               setUserData({
                 ...userData,
                 socials: {
@@ -512,7 +558,10 @@ const StudentProfile = ({ setIsLogout }) => {
         </div>
       </div>
 
-      <button type="submit" className={`btn1`} onClick={handleSubmit}>
+      <button
+        type="submit"
+        className={`btn1`}
+        onClick={handleSubmit}>
         Submit
       </button>
     </form>

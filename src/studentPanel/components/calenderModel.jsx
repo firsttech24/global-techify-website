@@ -22,7 +22,7 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
     startTime: "",
     endTime: "",
     duration: 60,
-    price: null,
+    price : null,
   });
 
   const handleChange = e => {
@@ -175,10 +175,7 @@ const CalenderModel = ({ isOpen, setIsOpen, mentor }) => {
                           id={dur}
                           onChange={() => {
                             setDuration(dur);
-                            setFormData({
-                              ...formData,
-                              price: mentor.price[dur],
-                            });
+                            setFormData({...formData, price : mentor.price[dur]})
                           }}
                         />
                         <label htmlFor={dur}>

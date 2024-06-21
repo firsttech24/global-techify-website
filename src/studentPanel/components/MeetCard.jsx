@@ -102,7 +102,7 @@ const MeetCard = ({ buttons, item, upcomingMeetCard }) => {
         throw new Error("Failed to fetch data");
       }
       const jsonData = await response.json();
-      alert("request sent"); 
+      alert("request sent");
     } catch (error) {
       console.log(error);
     }

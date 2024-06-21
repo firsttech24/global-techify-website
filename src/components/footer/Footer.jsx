@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./footer.module.css";
 import { Link } from "react-router-dom";
 
@@ -17,6 +17,31 @@ export default function Footer({ role }) {
     });
   };
 
+  const [email, setEmail] = useState("");
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_HOST_API}/portal/mail`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body : JSON.stringify({
+            email
+          })
+        }
+      );
+      if(!response.ok) {
+        alert("server error");
+        throw new Error("internal server error");
+      }
+      alert("Thanks! We will contact you soon...");
+      setEmail("");
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className={styles.Footer}>
       {/* footer one */}
@@ -165,8 +190,10 @@ export default function Footer({ role }) {
                 type="email"
                 className={styles.input}
                 placeholder="Email address"
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
               />
-              <IoSend />
+              <IoSend onClick={handleSubmit} />
             </div>
           </div>
         </div>
