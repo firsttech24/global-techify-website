@@ -12,7 +12,6 @@ export default function ContactPage() {
     message: "",
   });
 
-  // Function to handle form input changes
   const handleInputChange = e => {
     const { name, value } = e.target;
     setFormData({
@@ -21,9 +20,33 @@ export default function ContactPage() {
     });
   };
 
-  // handle submit
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_HOST_API}/portal/mail`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      if(!response.ok) {
+        alert("server error");
+        throw new Error("Internal Server Error");
+      }
+      alert("Thanks! we will contact you soon...");
+      setFormData({
+        name: "",
+        email: "",
+        mobile: "",
+        message: "",
+      });
+    } catch (error) {
+      console.log(error);
+    }
     console.log(formData);
   };
 
@@ -63,7 +86,7 @@ export default function ContactPage() {
           />
         </div>
         <div>
-          <textarea
+          <input
             id="message"
             name="message"
             placeholder="Message"

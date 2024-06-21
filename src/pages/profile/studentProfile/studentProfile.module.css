@@ -148,7 +148,7 @@
           }
           .trashIcon {
             font-size: 1.2vw;
-            color: var(--themeColor1);
+            color: var(--themeColor1) !important;
             cursor: pointer;
           }
         }

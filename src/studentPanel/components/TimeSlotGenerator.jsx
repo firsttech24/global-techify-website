@@ -77,7 +77,8 @@ const generateTimeSlots = () => {
             onClick={() => handleSlotClick(slot, index)}
             style={{
               cursor: "pointer",
-              backgroundColor: selectedSlot === index ? "blue" : "#212121",
+              backgroundColor: selectedSlot === index ? "blue" : "",
+              color: selectedSlot === index ? "white" : "",
               display: "flex",
               padding: "5px",
               width: "max-content",

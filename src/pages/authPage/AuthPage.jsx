@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+/** @format */
+
+import React, { useEffect, useState } from "react";
 import styles from "./authPage.module.css";
 
 import StudentAuth from "../../components/auth/studentAuth/StudentAuth";
 import MentorAuth from "../../components/auth/mentorAuth/MentorAuth";
 import CollegeAuth from "../../components/auth/collegeAuth/CollegeAuth";
+import { useLocation } from "react-router-dom";
 
 export default function AuthPage({ setIsLogin }) {
   const [selectAuth, setSelectAuth] = useState("student");
+  const location = useLocation();
+
+  useEffect(() => {
+    if(location?.state?.setAuth == "mentor") setSelectAuth("mentor");
+    console.log(location.state)
+  }, [location]);
+
+
   return (
     <div className={styles.AuthPage}>
       {/* categories */}
@@ -15,24 +26,21 @@ export default function AuthPage({ setIsLogin }) {
           onClick={() => setSelectAuth("student")}
           className={`${styles.btn} ${
             selectAuth === "student" ? styles.filledBtn : ""
-          }`}
-        >
+          }`}>
           Student
         </button>
         <button
           onClick={() => setSelectAuth("mentor")}
           className={`${styles.btn} ${
             selectAuth === "mentor" ? styles.filledBtn : ""
-          }`}
-        >
+          }`}>
           Mentor
         </button>
         <button
           onClick={() => setSelectAuth("college")}
           className={`${styles.btn} ${
             selectAuth === "college" ? styles.filledBtn : ""
-          }`}
-        >
+          }`}>
           College
         </button>
       </div>
